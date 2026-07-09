@@ -1,0 +1,1844 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rescate Democrático: Exigimos Elecciones Libres y Acción Internacional Efectiva para Venezuela</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        venGold: '#F1C40F',
+                        venBlue: '#2980B9',
+                        brandRed: '#E74C3C',
+                        brandDark: '#0D1B2A',
+                        brandMedium: '#1B263B',
+                        brandLight: '#415A77',
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Firebase SDK (Compat Mode) -->
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0A0F1D;
+        }
+        .serif-title {
+            font-family: 'Playfair Display', serif;
+        }
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0A0F1D;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1B263B;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #415A77;
+        }
+
+        /* PRINT STYLES - Hides the entire application and leaves a pristine corporate document layout */
+        @media print {
+            body {
+                background-color: #FFFFFF !important;
+                color: #000000 !important;
+            }
+            body > *:not(#printableSheetContainer) {
+                display: none !important;
+            }
+            #printableSheetContainer {
+                display: block !important;
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                color: #000000 !important;
+            }
+        }
+    </style>
+</head>
+<body class="text-slate-100 min-h-screen flex flex-col antialiased">
+
+    <!-- TOP ANNOUNCEMENT BANNER FOR CHANGE.ORG -->
+    <div class="bg-gradient-to-r from-red-600 via-amber-500 to-blue-600 text-white text-xs md:text-sm font-semibold py-2.5 px-4 text-center relative z-50 flex items-center justify-center gap-2 shadow-lg">
+        <span class="flex items-center gap-1.5 animate-pulse">
+            <i data-lucide="award" class="w-4 h-4"></i>
+            <span id="bannerText">¡Firma también la petición oficial en Change.org!</span>
+        </span>
+        <a href="https://c.org/CnYPpHDT6L" target="_blank" rel="noopener noreferrer" class="bg-white text-brandDark hover:bg-slate-100 px-3 py-0.5 rounded-full text-xs font-bold transition duration-200 flex items-center gap-1 ml-1">
+            <span>Firmar en Change.org</span>
+            <i data-lucide="external-link" class="w-3 h-3"></i>
+        </a>
+    </div>
+
+    <!-- NAVBAR -->
+    <header class="sticky top-0 z-40 bg-brandDark/90 backdrop-blur-md border-b border-brandMedium/50 px-4 py-3">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <!-- Brand -->
+            <div class="flex items-center gap-3">
+                <div class="relative w-10 h-10 flex items-center justify-center rounded-xl bg-gradient-to-tr from-venGold via-venBlue to-brandRed shadow-lg overflow-hidden">
+                    <span class="text-white font-extrabold text-xl relative z-10">R</span>
+                    <div class="absolute inset-0 bg-black/10"></div>
+                </div>
+                <div>
+                    <h1 class="text-xs md:text-sm font-bold leading-tight tracking-tight text-white flex items-center gap-1.5">
+                        RESCATE DEMOCRÁTICO
+                    </h1>
+                    <p class="text-[9px] text-slate-400 tracking-wider font-semibold uppercase">Acción Internacional</p>
+                </div>
+            </div>
+
+            <!-- Controls -->
+            <div class="flex items-center gap-2.5">
+                <a href="https://c.org/CnYPpHDT6L" target="_blank" rel="noopener noreferrer" class="hidden lg:flex items-center gap-1.5 bg-brandMedium hover:bg-brandLight text-slate-200 border border-brandLight/30 px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all duration-300">
+                    <span class="w-2 h-2 rounded-full bg-red-500 animate-ping"></span>
+                    <span>Petición Change.org</span>
+                    <i data-lucide="external-link" class="w-3.5 h-3.5 text-slate-400"></i>
+                </a>
+
+                <!-- Lang Switcher -->
+                <button id="langBtn" onclick="toggleLanguage()" class="bg-brandMedium hover:bg-brandLight/70 border border-slate-700/50 text-slate-200 px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-all">
+                    <i data-lucide="globe" class="w-3.5 h-3.5"></i>
+                    <span id="langLabel">EN</span>
+                </button>
+
+                <!-- Admin Button -->
+                <button onclick="openAdminModal()" class="bg-brandMedium/50 hover:bg-brandMedium border border-slate-700/30 hover:border-venGold/50 text-slate-400 hover:text-venGold px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-all" title="Acceso de Administrador">
+                    <i data-lucide="lock" class="w-3.5 h-3.5"></i>
+                    <span class="hidden sm:inline">Admin</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="relative bg-gradient-to-b from-brandDark to-brandMedium/30 py-12 md:py-16 px-4 overflow-hidden border-b border-brandMedium/40">
+        <!-- Abstract Background Flags/Colors -->
+        <div class="absolute inset-0 pointer-events-none opacity-5">
+            <div class="absolute -top-40 -left-40 w-96 h-96 bg-venGold rounded-full filter blur-[120px]"></div>
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-96 bg-venBlue rounded-full filter blur-[150px]"></div>
+            <div class="absolute -bottom-40 -right-40 w-96 h-96 bg-brandRed rounded-full filter blur-[120px]"></div>
+        </div>
+
+        <div class="max-w-5xl mx-auto text-center relative z-10">
+            <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-venBlue/10 border border-venBlue/30 text-venBlue text-xs font-bold mb-6 animate-pulse">
+                <span class="w-1.5 h-1.5 rounded-full bg-venGold"></span>
+                <span id="heroBadge">INICIATIVA DE INCIDENCIA GLOBAL</span>
+            </div>
+            
+            <h2 id="heroTitle" class="serif-title text-2xl md:text-4xl lg:text-5xl font-extrabold text-white leading-tight mb-6 max-w-4xl mx-auto">
+                Rescate Democrático: Exigimos Elecciones Libres y Acción Internacional Efectiva para Venezuela
+            </h2>
+            
+            <p id="heroSubtitle" class="text-sm md:text-lg text-slate-300 max-w-3xl mx-auto leading-relaxed mb-8">
+                Un manifiesto soberano dirigido a las Naciones Unidas, la OEA, la Unión Europea, el Congreso de los Estados Unidos y los gobiernos libres del mundo para restaurar el Estado de Derecho en nuestra nación.
+            </p>
+
+            <!-- STATS COUNTER BAR -->
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 max-w-2xl mx-auto bg-brandMedium/60 backdrop-blur-md p-4 rounded-2xl border border-brandLight/20 shadow-xl">
+                <div class="text-center border-r border-slate-700/50">
+                    <div id="statVenezuela" class="text-2xl md:text-3xl font-extrabold text-venGold">0</div>
+                    <div id="statVenLabel" class="text-[10px] md:text-xs text-slate-400 font-semibold tracking-wider uppercase mt-1">Venezolanos</div>
+                </div>
+                <div class="text-center sm:border-r border-slate-700/50">
+                    <div id="statUS" class="text-2xl md:text-3xl font-extrabold text-venBlue">0</div>
+                    <div id="statUSLabel" class="text-[10px] md:text-xs text-slate-400 font-semibold tracking-wider uppercase mt-1">Aliados Globales</div>
+                </div>
+                <div class="text-center col-span-2 sm:col-span-1">
+                    <div id="statTotal" class="text-2xl md:text-3xl font-extrabold text-white">0</div>
+                    <div id="statTotalLabel" class="text-[10px] md:text-xs text-slate-400 font-semibold tracking-wider uppercase mt-1">Firmas Totales</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTENT & FORMS CONTAINER -->
+    <main class="max-w-7xl mx-auto px-4 py-8 flex-grow grid grid-cols-1 lg:grid-cols-12 gap-8">
+        
+        <!-- LEFT: MANIFESTO & LEGAL DETAILS (7 COLS) -->
+        <div class="lg:col-span-7 space-y-6">
+            
+            <!-- VENEZUELAN CONSTITUTIONAL FOUNDATION BLOCK (NEW) -->
+            <div class="bg-gradient-to-r from-slate-900 to-brandMedium/40 border border-amber-500/30 rounded-2xl p-6 shadow-xl relative overflow-hidden">
+                <div class="absolute -right-10 -bottom-10 opacity-5 pointer-events-none">
+                    <svg class="w-48 h-48 text-venGold" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
+                    </svg>
+                </div>
+                
+                <div class="flex items-start gap-4">
+                    <div class="p-3 rounded-xl bg-venGold/15 border border-venGold/30 text-venGold mt-1">
+                        <i data-lucide="gavel" class="w-6 h-6"></i>
+                    </div>
+                    <div>
+                        <h3 id="constHeader" class="serif-title text-xl font-bold text-white mb-1">
+                            Soberanía Popular y Deber Constitucional
+                        </h3>
+                        <p id="constSub" class="text-xs text-slate-300 leading-relaxed mb-4">
+                            Ante la evidente e histórica <strong>ruptura del hilo constitucional</strong> en Venezuela, nuestro reclamo se sostiene sobre las bases firmes de la Constitución de la República Bolivariana de Venezuela (C.R.B.V.), la cual obliga a los ciudadanos a defender la República:
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Interactive Legal Tabs/Sliders -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 mt-2">
+                    <div class="bg-slate-950/60 p-4 rounded-xl border border-slate-800 hover:border-venGold/20 transition-all">
+                        <div class="flex items-center gap-1.5 text-venGold font-bold text-xs mb-1.5">
+                            <span class="bg-venGold/10 px-2 py-0.5 rounded text-[10px]">Art. 5</span>
+                            <span id="art5_title">La Soberanía Soberana</span>
+                        </div>
+                        <p id="art5_text" class="text-[11px] text-slate-400 leading-relaxed">
+                            "La soberanía reside intransferiblemente en el pueblo... Los órganos del Estado emanan de la soberanía popular y a ella están sometidos."
+                        </p>
+                    </div>
+
+                    <div class="bg-slate-950/60 p-4 rounded-xl border border-slate-800 hover:border-brandRed/20 transition-all">
+                        <div class="flex items-center gap-1.5 text-brandRed font-bold text-xs mb-1.5">
+                            <span class="bg-brandRed/10 px-2 py-0.5 rounded text-[10px]">Art. 138</span>
+                            <span id="art138_title">Nulidad de Usurpación</span>
+                        </div>
+                        <p id="art138_text" class="text-[11px] text-slate-400 leading-relaxed">
+                            "Toda autoridad usurpada es ineficaz y sus actos son nulos." Ningún decreto o fallo de entes de facto posee legitimidad legal.
+                        </p>
+                    </div>
+
+                    <div class="bg-slate-950/60 p-4 rounded-xl border border-slate-800 hover:border-venBlue/20 transition-all">
+                        <div class="flex items-center gap-1.5 text-venBlue font-bold text-xs mb-1.5">
+                            <span class="bg-venBlue/10 px-2 py-0.5 rounded text-[10px]">Art. 333</span>
+                            <span id="art333_title">Garantía de Vigencia</span>
+                        </div>
+                        <p id="art333_text" class="text-[11px] text-slate-400 leading-relaxed">
+                            El deber ineludible de todo ciudadano, investido o no de autoridad, de "colaborar en el restablecimiento de la efectiva vigencia" de la Constitución.
+                        </p>
+                    </div>
+
+                    <div class="bg-slate-950/60 p-4 rounded-xl border border-slate-800 hover:border-emerald-500/20 transition-all">
+                        <div class="flex items-center gap-1.5 text-emerald-400 font-bold text-xs mb-1.5">
+                            <span class="bg-emerald-500/10 px-2 py-0.5 rounded text-[10px]">Art. 350</span>
+                            <span id="art350_title">Derecho al Desconocimiento</span>
+                        </div>
+                        <p id="art350_text" class="text-[11px] text-slate-400 leading-relaxed">
+                            El pueblo "desconocerá cualquier régimen, legislación o autoridad que contraríe los valores democráticos o menoscabe los derechos humanos."
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MARCO JURÍDICO LEGAL ADMISIBILIDAD -->
+            <div class="bg-gradient-to-r from-slate-900 to-brandMedium/20 border border-emerald-500/30 rounded-2xl p-6 shadow-lg relative">
+                <div class="absolute top-4 right-4 text-emerald-400">
+                    <i data-lucide="scale" class="w-6 h-6"></i>
+                </div>
+                <h3 id="legalHeader" class="serif-title text-lg md:text-xl font-bold text-emerald-400 mb-3 flex items-center gap-2">
+                    Admisibilidad Jurídica Internacional
+                </h3>
+                <p id="legalSub" class="text-xs text-slate-300 leading-relaxed mb-4">
+                    Este documento de manifestación popular y recogida de voluntades está estructurado bajo las normativas vigentes que permiten la presentación formal ante delegaciones legislativas y cortes de derechos humanos:
+                </p>
+                
+                <div class="space-y-3">
+                    <button onclick="toggleAccordion('legal-accordion-content', 'legal-arrow')" class="w-full flex justify-between items-center bg-slate-900/60 p-3 rounded-xl border border-slate-800 text-left text-xs font-semibold text-slate-200 hover:bg-slate-900 transition-colors">
+                        <span id="legalAccTitle" class="flex items-center gap-2">
+                            <i data-lucide="book-open" class="w-4 h-4 text-emerald-500"></i>
+                            Ver Fundamentos de Leyes y Tratados de Amparo
+                        </span>
+                        <i id="legal-arrow" data-lucide="chevron-down" class="w-4 h-4 transition-transform duration-300"></i>
+                    </button>
+                    <div id="legal-accordion-content" class="hidden p-4 rounded-xl bg-slate-950/40 border border-slate-900 space-y-3 text-xs text-slate-400 leading-normal">
+                        <p><strong>1. Declaración Universal de los Derechos Humanos (ONU) - Art. 19 y 21:</strong> Establece el derecho fundamental de expresión, opinión, y a participar en el gobierno de su país, directamente o por medio de representantes libremente elegidos.</p>
+                        <p><strong>2. Carta Democrática Interamericana (OEA) - Art. 2, 3 y 6:</strong> Consagra que los pueblos de América tienen derecho a la democracia y sus gobiernos tienen la obligación de promoverla y defenderla, habilitando los canales de participación de la sociedad civil organizada.</p>
+                        <p><strong>3. Tratado de Funcionamiento de la Unión Europea - Art. 227:</strong> Cualquier ciudadano de la Unión o residente puede presentar, individualmente o en asociación con otros, una petición al Parlamento Europeo sobre asuntos de competencia institucional.</p>
+                        <p><strong>4. Primera Enmienda de la Constitución de los EE. UU. (Cláusula de Petición):</strong> Salvaguarda de forma estricta el derecho de los ciudadanos a solicitar y demandar una reparación de agravios o acciones de su gobierno (First Amendment Right to Petition).</p>
+                        <p><strong>5. Protección de Privacidad e Identidad Avanzada:</strong> Los datos personales sensibles (Cédula de Identidad y Correo) están estrictamente protegidos mediante un núcleo de almacenamiento encapsulado e inaccesible públicamente, protegiendo a los firmantes contra cualquier rastreo automatizado.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-brandMedium/30 border border-brandLight/10 rounded-2xl p-6 md:p-8 backdrop-blur-sm">
+                <h3 id="sectionTitle" class="serif-title text-2xl md:text-3xl font-bold text-white mb-6 border-b border-brandLight/20 pb-4">
+                    Contenido del Manifiesto
+                </h3>
+
+                <!-- AMBITO LOCAL ACCORDION -->
+                <div class="mb-4 border border-brandLight/20 rounded-xl overflow-hidden bg-brandDark/50">
+                    <button onclick="toggleAccordion('local-content', 'local-arrow')" class="w-full flex justify-between items-center p-4 text-left font-bold text-venGold hover:bg-brandMedium/50 transition-colors">
+                        <span id="ambitLocalTitle" class="flex items-center gap-2 text-sm md:text-base">
+                            <i data-lucide="shield-check" class="w-5 h-5"></i>
+                            1. Ámbito Local: Garantías Institucionales y Civiles
+                        </span>
+                        <i id="local-arrow" data-lucide="chevron-up" class="w-5 h-5 transition-transform duration-300"></i>
+                    </button>
+                    <div id="local-content" class="p-5 border-t border-brandLight/10 space-y-4 text-sm md:text-base text-slate-300 leading-relaxed">
+                        <div>
+                            <h4 id="local_p1_title" class="font-bold text-white mb-1">Convocatoria a Elecciones Libres y Transparentes:</h4>
+                            <p id="local_p1_text">La activación inmediata de un cronograma electoral presidencial y parlamentario legítimo, bajo la conducción de un Consejo Nacional Electoral (CNE) independiente y despolitizado.</p>
+                        </div>
+                        <div>
+                            <h4 id="local_p2_title" class="font-bold text-white mb-1">Restauración del Estado de Derecho:</h4>
+                            <p id="local_p2_text">Devolver la autonomía e independencia al Tribunal Supremo de Justicia y demás órganos del Poder Público, garantizando que las leyes protejan al ciudadano y no a parcialidades políticas.</p>
+                        </div>
+                        <div>
+                            <h4 id="local_p3_title" class="font-bold text-white mb-1">Habilitación Política y Fin de la Persecución:</h4>
+                            <p id="local_p3_text">Levantamiento inmediato de todas las inhabilitaciones administrativas arbitrarias a líderes de la oposición, legalización de partidos políticos intervenidos y cese del acoso judicial a la disidencia.</p>
+                        </div>
+                        <div>
+                            <h4 id="local_p4_title" class="font-bold text-white mb-1">Liberación de Presos Políticos y Apertura Cívica:</h4>
+                            <p id="local_p4_text">Excarcelación plena e incondicional de todas las personas detenidas por motivos políticos. Garantizar el derecho a la protesta pacífica, la libertad de expresión y la protección de activistas.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AMBITO INTERNACIONAL ACCORDION -->
+                <div class="mb-6 border border-brandLight/20 rounded-xl overflow-hidden bg-brandDark/50">
+                    <button onclick="toggleAccordion('int-content', 'int-arrow')" class="w-full flex justify-between items-center p-4 text-left font-bold text-venBlue hover:bg-brandMedium/50 transition-colors">
+                        <span id="ambitIntTitle" class="flex items-center gap-2 text-sm md:text-base">
+                            <i data-lucide="globe" class="w-5 h-5"></i>
+                            2. Ámbito Internacional: Diplomacia, Justicia y Cooperación
+                        </span>
+                        <i id="int-arrow" data-lucide="chevron-up" class="w-5 h-5 transition-transform duration-300"></i>
+                    </button>
+                    <div id="int-content" class="p-5 border-t border-brandLight/10 space-y-4 text-sm md:text-base text-slate-300 leading-relaxed">
+                        <div>
+                            <h4 id="int_p1_title" class="font-bold text-white mb-1">Observación e Integridad Electoral:</h4>
+                            <p id="int_p1_text">Condicionar cualquier reconocimiento político o alivio definitivo de sanciones a la aceptación de misiones de observación electoral internacional estrictas, técnicas e independientes (como la UE, Centro Carter y la ONU).</p>
+                        </div>
+                        <div>
+                            <h4 id="int_p2_title" class="font-bold text-white mb-1">Mecanismos de Justicia Transicional:</h4>
+                            <p id="int_p2_text">Apoyar de manera activa las investigaciones sobre violaciones de derechos humanos ante la Corte Penal Internacional (CPI), asegurando verdad, reparación a las víctimas y no repetición.</p>
+                        </div>
+                        <div>
+                            <h4 id="int_p3_title" class="font-bold text-white mb-1">Rechazo a Soluciones Unilaterales que sacrifiquen Instituciones:</h4>
+                            <p id="int_p3_text">Exigir que los acuerdos económicos o energéticos internacionales con los factores de poder actuales no dejen de lado los principios democráticos ni sirvan para estabilizar un "autoritarismo adaptativo" a cambio de recursos.</p>
+                        </div>
+                        <div>
+                            <h4 id="int_p4_title" class="font-bold text-white mb-1">Canalización de Ayuda Humanitaria Directa:</h4>
+                            <p id="int_p4_text">Coordinar la asistencia internacional a través de la sociedad civil organizada y agencias independientes de la ONU, evitando el uso político y de control social de los recursos humanitarios.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-4 rounded-xl bg-slate-800/40 border border-slate-700/50 text-xs md:text-sm text-slate-400">
+                    <p id="notesBlock"><strong>Nota de enfoque:</strong> Este manifiesto debe ser respaldado de forma amplia y unida por la sociedad civil para generar impacto real ante cancillerías y organismos internacionales. Manteniendo siempre el protagonismo del ciudadano venezolano como único soberano de su destino político.</p>
+                </div>
+            </div>
+
+            <!-- SIGNS DECK / LIVE FEED IN REAL-TIME -->
+            <div class="bg-brandMedium/30 border border-brandLight/10 rounded-2xl p-6 md:p-8 backdrop-blur-sm">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 id="feedTitle" class="serif-title text-xl md:text-2xl font-bold text-white flex items-center gap-2">
+                        <i data-lucide="message-square-text" class="w-5 h-5 text-venGold"></i>
+                        Firmas y Voces Recientes
+                    </h3>
+                    <span class="text-xs bg-brandMedium text-slate-300 border border-slate-700 px-2.5 py-1 rounded-full flex items-center gap-1.5">
+                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping"></span>
+                        <span id="livePulse">En vivo</span>
+                    </span>
+                </div>
+
+                <div id="signaturesContainer" class="space-y-4 max-h-[380px] overflow-y-auto pr-2">
+                    <div class="text-center py-8 text-slate-400 text-sm">
+                        <i data-lucide="loader" class="w-8 h-8 animate-spin mx-auto mb-2 text-venGold"></i>
+                        <span id="loadingSigs">Cargando firmas registradas...</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- RIGHT: FORMS & ADVANCED SERVICES (5 COLS) -->
+        <div class="lg:col-span-5 space-y-8">
+            
+            <!-- ADVANCED ADVOCACY TOOLS: PHYSICAL SHEET DOWNLOAD -->
+            <div class="bg-gradient-to-br from-venGold/15 to-slate-900/40 border border-venGold/30 rounded-2xl p-6 space-y-4 shadow-xl">
+                <div class="flex items-center gap-3">
+                    <div class="p-3 rounded-xl bg-venGold/10 text-venGold border border-venGold/20">
+                        <i data-lucide="file-spreadsheet" class="w-6 h-6"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-white text-sm md:text-base">¿Recolectas firmas en físico?</h4>
+                        <p class="text-xs text-slate-300 mt-0.5">Descarga nuestra planilla oficial para recolectar firmas manualmente sin necesidad de internet.</p>
+                    </div>
+                </div>
+                <button onclick="printPhysicalSheet()" class="w-full bg-gradient-to-r from-venGold to-amber-500 hover:from-amber-400 hover:to-venGold text-brandDark font-bold py-3 px-4 rounded-xl text-xs transition-all duration-300 shadow-md flex items-center justify-center gap-2">
+                    <i data-lucide="printer" class="w-4 h-4"></i>
+                    <span>Descargar Planilla Física (PDF)</span>
+                </button>
+            </div>
+
+            <!-- CHOOSE CATEGORY TABS -->
+            <div class="bg-brandMedium/30 border border-brandLight/15 rounded-2xl p-2 flex gap-1">
+                <button onclick="switchTab('tab-venezuelan')" id="btnTabVen" class="flex-1 py-3 text-center rounded-xl text-xs sm:text-sm font-bold transition-all duration-300 bg-brandMedium text-white shadow-md border border-brandLight/10 flex items-center justify-center gap-2">
+                    🇻🇪 <span id="tabVenLabel">Venezolano</span>
+                </button>
+                <button onclick="switchTab('tab-global')" id="btnTabGlobal" class="flex-1 py-3 text-center rounded-xl text-xs sm:text-sm font-bold transition-all duration-300 text-slate-400 hover:text-slate-200 flex items-center justify-center gap-2">
+                    🇺🇸/🌐 <span id="tabGlobalLabel">Aliado Internacional</span>
+                </button>
+            </div>
+
+            <!-- VENEZUELAN FORM -->
+            <div id="form-venezuelan" class="bg-gradient-to-b from-brandMedium/40 to-brandDark/50 border border-brandLight/15 rounded-2xl p-6 md:p-8 space-y-6 shadow-xl relative">
+                <div class="absolute -top-3 -right-3 w-12 h-12 flex items-center justify-center rounded-2xl bg-venGold/10 border border-venGold/30 text-venGold font-bold">
+                    🇻🇪
+                </div>
+                <div>
+                    <h3 id="formVenTitle" class="serif-title text-xl font-bold text-white mb-1">Formulario de Firmas</h3>
+                    <p id="formVenSub" class="text-xs text-slate-400">Ingrese datos fidedignos para el anexo de folios ante cortes internacionales.</p>
+                </div>
+
+                <form onsubmit="handleSignatureSubmit(event, 'venezuelan')" class="space-y-4">
+                    <div>
+                        <label id="lblVenName" class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">Nombre y Apellido *</label>
+                        <input type="text" id="ven-name" required class="w-full bg-slate-900/80 border border-slate-700/60 focus:border-venGold/80 focus:ring-1 focus:ring-venGold/50 rounded-xl px-4 py-3 text-slate-200 text-sm outline-none transition-all" placeholder="Juan Pérez">
+                    </div>
+
+                    <!-- Cedula ID Block (Conditionally Optional) -->
+                    <div>
+                        <label id="lblVenID" class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">Cédula de Identidad (Opcional si aporta correo)</label>
+                        <div class="flex gap-2">
+                            <select id="ven-id-type" class="bg-slate-900/80 border border-slate-700/60 focus:border-venGold/80 rounded-xl px-3 py-3 text-slate-200 text-sm outline-none transition-all">
+                                <option value="V">V</option>
+                                <option value="E">E</option>
+                            </select>
+                            <input type="number" id="ven-id-num" class="w-full bg-slate-900/80 border border-slate-700/60 focus:border-venGold/80 focus:ring-1 focus:ring-venGold/50 rounded-xl px-4 py-3 text-slate-200 text-sm outline-none transition-all" placeholder="12345678">
+                        </div>
+                    </div>
+
+                    <!-- Email Block for Venezuelan Form (Conditionally Optional) -->
+                    <div>
+                        <label id="lblVenEmail" class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">Correo Electrónico (Opcional si aporta Cédula)</label>
+                        <input type="email" id="ven-email" class="w-full bg-slate-900/80 border border-slate-700/60 focus:border-venGold/80 focus:ring-1 focus:ring-venGold/50 rounded-xl px-4 py-3 text-slate-200 text-sm outline-none transition-all" placeholder="correo@ejemplo.com">
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label id="lblVenLocation" class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">Ubicación *</label>
+                            <select id="ven-location-type" onchange="toggleLocationFields('ven')" class="w-full bg-slate-900/80 border border-slate-700/60 focus:border-venGold/80 rounded-xl px-4 py-3 text-slate-200 text-sm outline-none transition-all">
+                                <option value="dentro" id="optIn">En Venezuela</option>
+                                <option value="fuera" id="optOut">En la Diáspora</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label id="lblVenRegion" class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">Estado / País *</label>
+                            <input type="text" id="ven-region" required class="w-full bg-slate-900/80 border border-slate-700/60 focus:border-venGold/80 focus:ring-1 focus:ring-venGold/50 rounded-xl px-4 py-3 text-slate-200 text-sm outline-none transition-all" placeholder="Ej. Distrito Capital">
+                        </div>
+                    </div>
+
+                    <!-- INSTITUTIONAL REDIRECTION TARGETS -->
+                    <div class="bg-slate-950/60 border border-slate-800 p-3.5 rounded-xl space-y-2">
+                        <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider" id="lblTargets">Enviar mi firma a (Destinatarios):</label>
+                        <div class="grid grid-cols-1 gap-1.5 text-xs text-slate-400">
+                            <label class="flex items-center gap-2"><input type="checkbox" checked disabled class="rounded bg-slate-900 text-venGold"> Organización de las Naciones Unidas (ONU)</label>
+                            <label class="flex items-center gap-2"><input type="checkbox" checked disabled class="rounded bg-slate-900 text-venGold"> Organización de los Estados Americanos (OEA)</label>
+                            <label class="flex items-center gap-2"><input type="checkbox" checked disabled class="rounded bg-slate-900 text-venGold"> Unión Europea (UE)</label>
+                            <label class="flex items-center gap-2"><input type="checkbox" checked disabled class="rounded bg-slate-900 text-venGold"> Congreso de los EE.UU. & Gobiernos Libres</label>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label id="lblVenComment" class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">Mensaje o clamor de apoyo (Opcional)</label>
+                        <textarea id="ven-comment" rows="3" class="w-full bg-slate-900/80 border border-slate-700/60 focus:border-venGold/80 focus:ring-1 focus:ring-venGold/50 rounded-xl px-4 py-3 text-slate-200 text-sm outline-none transition-all resize-none" placeholder="Escribe tu mensaje..."></textarea>
+                    </div>
+
+                    <button type="submit" class="w-full bg-gradient-to-r from-venGold to-amber-500 hover:from-amber-400 hover:to-venGold text-brandDark font-bold py-3.5 rounded-xl text-sm transition-all duration-300 shadow-lg shadow-venGold/10 hover:shadow-venGold/20 active:scale-[0.98] flex items-center justify-center gap-2">
+                        <i data-lucide="signature" class="w-4 h-4"></i>
+                        <span id="btnVenSubmit">Registrar mi Firma</span>
+                    </button>
+
+                    <!-- OR BLOCK TO DIVERT TO CHANGE.ORG DIRECTLY -->
+                    <div class="pt-4 border-t border-slate-800/80 flex flex-col items-center gap-3">
+                        <span class="text-xs text-slate-500" id="orLabel">o respalda la campaña externa</span>
+                        <a href="https://c.org/CnYPpHDT6L" target="_blank" rel="noopener noreferrer" class="w-full border border-red-500/30 hover:border-red-500 bg-red-950/20 hover:bg-red-950/40 text-red-400 hover:text-red-300 font-bold py-3 px-4 rounded-xl text-xs transition-all duration-200 flex items-center justify-center gap-2">
+                            <i data-lucide="heart" class="w-4 h-4 text-red-500"></i>
+                            <span id="btnGoChangeOrg">Ir a la Petición en Change.org</span>
+                            <i data-lucide="external-link" class="w-3.5 h-3.5 opacity-60"></i>
+                        </a>
+                    </div>
+                </form>
+            </div>
+
+            <!-- GLOBAL/US CITIZENS FORM -->
+            <div id="form-global" class="hidden bg-gradient-to-b from-brandMedium/40 to-brandDark/50 border border-brandLight/15 rounded-2xl p-6 md:p-8 space-y-6 shadow-xl relative">
+                <div class="absolute -top-3 -right-3 w-12 h-12 flex items-center justify-center rounded-2xl bg-venBlue/10 border border-venBlue/30 text-venBlue font-bold">
+                    🇺🇸
+                </div>
+                <div>
+                    <h3 id="formGlobTitle" class="serif-title text-xl font-bold text-white mb-2">Exigencia al Congreso de EE.UU.</h3>
+                    <p id="formGlobSub" class="text-xs text-slate-400">Si eres aliado internacional o legislador, asiste con tu firma a exigir acciones eficientes contra el autoritarismo.</p>
+                </div>
+
+                <form onsubmit="handleSignatureSubmit(event, 'global')" class="space-y-4">
+                    <div>
+                        <label id="lblGlobName" class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">Full Name *</label>
+                        <input type="text" id="glob-name" required class="w-full bg-slate-900/80 border border-slate-700/60 focus:border-venBlue/80 focus:ring-1 focus:ring-venBlue/50 rounded-xl px-4 py-3 text-slate-200 text-sm outline-none transition-all" placeholder="John Doe">
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label id="lblGlobCountry" class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">Country / País *</label>
+                            <input type="text" id="glob-country" required class="w-full bg-slate-900/80 border border-slate-700/60 focus:border-venBlue/80 focus:ring-1 focus:ring-venBlue/50 rounded-xl px-4 py-3 text-slate-200 text-sm outline-none transition-all" value="United States">
+                        </div>
+                        <div>
+                            <label id="lblGlobZip" class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">ZIP Code (US) *</label>
+                            <input type="text" id="glob-zip" onkeyup="lookupLegislatorsByZip(this.value)" class="w-full bg-slate-900/80 border border-slate-700/60 focus:border-venBlue/80 focus:ring-1 focus:ring-venBlue/50 rounded-xl px-4 py-3 text-slate-200 text-sm outline-none transition-all" placeholder="e.g. 33101">
+                        </div>
+                    </div>
+
+                    <!-- ZIP CODE DYNAMIC LEGISLATORS RESULT -->
+                    <div id="zipResultBlock" class="hidden bg-brandDark/80 border border-brandLight/20 rounded-xl p-3.5 space-y-2">
+                        <div class="flex items-center gap-1.5 text-xs text-venGold font-semibold">
+                            <i data-lucide="search" class="w-3.5 h-3.5"></i>
+                            <span id="zipResultHeader">Legisladores identificados:</span>
+                        </div>
+                        <div class="space-y-1 text-xs text-slate-300">
+                            <p class="flex justify-between"><strong>Senadores:</strong> <span id="foundSenators">-</span></p>
+                            <p class="flex justify-between"><strong>Representante:</strong> <span id="foundRep">-</span></p>
+                        </div>
+                        <button type="button" onclick="loadLegislatorsIntoAIWriter()" class="w-full mt-1.5 py-1.5 px-2 bg-brandMedium/80 hover:bg-brandMedium text-[10px] text-slate-200 border border-slate-700 rounded-lg flex items-center justify-center gap-1 transition-all">
+                            <i data-lucide="sparkles" class="w-3.5 h-3.5 text-venGold"></i>
+                            <span id="btnLoadToAI">Inyectar en Generador de IA</span>
+                        </button>
+                    </div>
+
+                    <div>
+                        <label id="lblGlobEmail" class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">Email Address *</label>
+                        <input type="email" id="glob-email" required class="w-full bg-slate-900/80 border border-slate-700/60 focus:border-venBlue/80 focus:ring-1 focus:ring-venBlue/50 rounded-xl px-4 py-3 text-slate-200 text-sm outline-none transition-all" placeholder="john.doe@example.com">
+                    </div>
+
+                    <!-- REDIRECTION TARGETS FOR GLOBALS -->
+                    <div class="bg-slate-950/60 border border-slate-800 p-3.5 rounded-xl space-y-2 text-xs">
+                        <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider">Targets of the Demand (Destinatarios):</label>
+                        <div class="grid grid-cols-1 gap-1 text-slate-400">
+                            <p>• United Nations Organization (UN)</p>
+                            <p>• Organization of American States (OAS)</p>
+                            <p>• European Union (EU) Council</p>
+                            <p>• United States Congress</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start gap-2.5 pt-1">
+                        <input type="checkbox" id="glob-auth-letter" required class="mt-1 rounded border-slate-700 bg-slate-900 text-venBlue focus:ring-venBlue/50">
+                        <label for="glob-auth-letter" id="lblGlobCheck" class="text-xs text-slate-400 leading-normal">Autorizo el envío formal de esta petición a la delegación de mi distrito legislativo en el Congreso.</label>
+                    </div>
+
+                    <button type="submit" class="w-full bg-gradient-to-r from-venBlue to-cyan-600 hover:from-cyan-500 hover:to-venBlue text-white font-bold py-3.5 rounded-xl text-sm transition-all duration-300 shadow-lg shadow-venBlue/10 hover:shadow-venBlue/20 active:scale-[0.98] flex items-center justify-center gap-2">
+                        <i data-lucide="mail-check" class="w-4 h-4"></i>
+                        <span id="btnGlobSubmit">Enviar Demanda & Firmar</span>
+                    </button>
+
+                    <!-- OR BLOCK TO DIVERT TO CHANGE.ORG DIRECTLY -->
+                    <div class="pt-4 border-t border-slate-800/80 flex flex-col items-center gap-3">
+                        <span class="text-xs text-slate-500" id="orLabel2">or share the external campaign</span>
+                        <a href="https://c.org/CnYPpHDT6L" target="_blank" rel="noopener noreferrer" class="w-full border border-red-500/30 hover:border-red-500 bg-red-950/20 hover:bg-red-950/40 text-red-400 hover:text-red-300 font-bold py-3 px-4 rounded-xl text-xs transition-all duration-200 flex items-center justify-center gap-2">
+                            <i data-lucide="heart" class="w-4 h-4 text-red-500"></i>
+                            <span id="btnGoChangeOrg2">Go to Change.org Petition</span>
+                            <i data-lucide="external-link" class="w-3.5 h-3.5 opacity-60"></i>
+                        </a>
+                    </div>
+                </form>
+            </div>
+
+            <!-- AI WRITER BLOCK (CONGRESSIONAL ADVOCACY LETTER GENERATOR) -->
+            <div class="bg-gradient-to-tr from-brandMedium/30 to-slate-900/60 border border-brandLight/20 rounded-2xl p-6 space-y-4 shadow-xl">
+                <div class="flex items-center gap-2">
+                    <div class="p-2 rounded-lg bg-venGold/15 text-venGold">
+                        <i data-lucide="sparkles" class="w-5 h-5"></i>
+                    </div>
+                    <div>
+                        <h4 id="aiHeader" class="font-bold text-white text-sm md:text-base">Generador de Cartas de Presión (Gemini IA)</h4>
+                        <p id="aiSub" class="text-xs text-slate-400">Genera de forma instantánea una carta formal dirigida a legisladores estadounidenses.</p>
+                    </div>
+                </div>
+
+                <div class="space-y-3">
+                    <div>
+                        <label id="lblLegislators" class="block text-[10px] font-semibold text-slate-400 uppercase tracking-wider mb-1">Destinatarios (Opcional)</label>
+                        <input type="text" id="ai-recipient" class="w-full bg-slate-900/90 border border-slate-800 focus:border-venGold/50 rounded-lg px-3 py-2 text-slate-200 text-xs outline-none transition-all" placeholder="Sen. Marco Rubio, Sen. Rick Scott...">
+                    </div>
+                    <div>
+                        <label id="lblMotivations" class="block text-[10px] font-semibold text-slate-400 uppercase tracking-wider mb-1">Tu motivación o enfoque principal *</label>
+                        <select id="ai-focus" class="w-full bg-slate-900/90 border border-slate-800 focus:border-venGold/50 rounded-lg px-3 py-2 text-slate-200 text-xs outline-none transition-all">
+                            <option value="democracia">Defensa de elecciones libres y derechos humanos</option>
+                            <option value="petroleo">Preocupación por licencias energéticas y petróleo que sostienen el régimen</option>
+                            <option value="humanitario">Atención inmediata a crisis humanitarias y presos políticos</option>
+                        </select>
+                    </div>
+
+                    <button type="button" onclick="generateAICongressionalLetter()" class="w-full bg-slate-800 hover:bg-slate-700 border border-slate-700 hover:border-venGold/40 text-slate-200 font-semibold py-2 px-3 rounded-xl text-xs flex items-center justify-center gap-1.5 transition-all">
+                        <i id="ai-write-icon" data-lucide="terminal" class="w-3.5 h-3.5 text-venGold"></i>
+                        <span id="btnGenerateAI">Redactar Carta Formal con IA</span>
+                    </button>
+                </div>
+
+                <div id="aiLetterResult" class="hidden space-y-2">
+                    <div class="flex justify-between items-center">
+                        <span class="text-[10px] font-bold text-venGold uppercase tracking-wider">Carta redactada con Gemini:</span>
+                        <button type="button" onclick="copyAILetterToClipboard()" class="text-xs text-slate-400 hover:text-slate-200 flex items-center gap-1">
+                            <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+                            <span id="lblCopy">Copiar</span>
+                        </button>
+                    </div>
+                    <textarea id="ai-letter-textarea" rows="8" class="w-full bg-brandDark/85 border border-brandLight/20 rounded-xl p-3 text-slate-300 text-xs font-mono outline-none resize-y leading-relaxed"></textarea>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- ADMIN MODAL -->
+    <div id="adminModal" class="fixed inset-0 z-50 bg-brandDark/90 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="bg-brandMedium border border-brandLight/20 w-full max-w-4xl rounded-2xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh]">
+            
+            <!-- HEADER -->
+            <div class="p-6 border-b border-brandLight/15 flex justify-between items-center bg-brandDark/40">
+                <div class="flex items-center gap-2">
+                    <i data-lucide="lock" class="w-5 h-5 text-venGold"></i>
+                    <h3 id="adminModalTitle" class="serif-title text-xl font-bold text-white">Consola de Administración de Firmas</h3>
+                </div>
+                <button onclick="closeAdminModal()" class="text-slate-400 hover:text-white transition-colors">
+                    <i data-lucide="x" class="w-6 h-6"></i>
+                </button>
+            </div>
+
+            <!-- LOGIN SHIELD (STEP 1) -->
+            <div id="adminLoginBlock" class="p-8 max-w-md mx-auto w-full text-center space-y-6 my-auto">
+                <div class="mx-auto w-12 h-12 rounded-xl bg-venGold/15 text-venGold flex items-center justify-center">
+                    <i data-lucide="shield-alert" class="w-6 h-6"></i>
+                </div>
+                <div>
+                    <h4 id="adminAuthTitle" class="font-bold text-white text-base">Autenticación de Administrador</h4>
+                    <p id="adminAuthSub" class="text-xs text-slate-400 mt-1">El acceso a las estadísticas consolidadas y moderación de firmas requiere su clave principal.</p>
+                </div>
+                <div class="space-y-4">
+                    <input type="password" id="adminPasswordInput" class="w-full bg-slate-900 border border-slate-700/60 focus:border-venGold rounded-xl px-4 py-3 text-slate-100 text-sm text-center outline-none tracking-widest" placeholder="••••••••">
+                    <button onclick="attemptAdminLogin()" class="w-full bg-venGold hover:bg-amber-500 text-brandDark font-bold py-3 rounded-xl text-sm transition-all shadow-md shadow-venGold/10 active:scale-[0.98]">
+                        <span id="btnAdminAuth">Validar Credencial Principal</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- DASHBOARD CONTAINER (HIDDEN UNTIL LOGIN SUCCESS) -->
+            <div id="adminDashboardBlock" class="hidden p-6 space-y-6 overflow-y-auto flex-grow">
+                
+                <!-- KPI CARDS -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div class="bg-brandDark/40 border border-slate-800 p-4 rounded-xl text-center">
+                        <p class="text-xs text-slate-400" id="kpiTotalLabel">Total Registrado</p>
+                        <p id="kpiTotalValue" class="text-xl md:text-2xl font-extrabold text-white mt-1">0</p>
+                    </div>
+                    <div class="bg-brandDark/40 border border-slate-800 p-4 rounded-xl text-center">
+                        <p class="text-xs text-slate-400" id="kpiVenLabel">Venezolanos</p>
+                        <p id="kpiVenValue" class="text-xl md:text-2xl font-extrabold text-venGold mt-1">0</p>
+                    </div>
+                    <div class="bg-brandDark/40 border border-slate-800 p-4 rounded-xl text-center">
+                        <p class="text-xs text-slate-400" id="kpiGlobalLabel">Globales/US</p>
+                        <p id="kpiGlobalValue" class="text-xl md:text-2xl font-extrabold text-venBlue mt-1">0</p>
+                    </div>
+                    <div class="bg-brandDark/40 border border-slate-800 p-4 rounded-xl text-center">
+                        <p class="text-xs text-slate-400" id="kpiDiapsoraLabel">Diáspora %</p>
+                        <p id="kpiDiasporaValue" class="text-xl md:text-2xl font-extrabold text-slate-300 mt-1">0%</p>
+                    </div>
+                </div>
+
+                <!-- 2-STEP SECURITY DECK (DOUBLED FACTOR FOR PRIVATE SENSITIVE IDS) -->
+                <div id="twoStepBlock" class="bg-slate-900/90 border border-amber-500/30 p-5 rounded-2xl flex flex-col md:flex-row items-center justify-between gap-4">
+                    <div class="flex items-center gap-3.5 text-left">
+                        <div id="twoStepBadgeIcon" class="p-3 rounded-xl bg-amber-500/10 text-amber-500">
+                            <i data-lucide="shield-check" class="w-6 h-6"></i>
+                        </div>
+                        <div>
+                            <h4 id="twoStepTitle" class="font-bold text-slate-200 text-sm md:text-base">Segundo Paso de Seguridad (Protección de Cédulas y Correos)</h4>
+                            <p id="twoStepSub" class="text-xs text-slate-400 mt-0.5">El núcleo de datos está encapsulado criptográficamente en memoria privada. Ingrese el código de paso 2 para descifrar visualmente los folios de firmas.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Form for 2nd Factor -->
+                    <div id="twoStepForm" class="flex items-center gap-2 w-full md:w-auto">
+                        <input type="password" id="secondFactorInput" class="bg-slate-950 border border-slate-800 focus:border-amber-500 rounded-lg px-3 py-2 text-xs text-slate-100 outline-none w-full md:w-44 text-center tracking-wider" placeholder="Segundo Factor">
+                        <button onclick="validateSecondStep()" class="bg-amber-500 hover:bg-amber-400 text-brandDark font-bold px-4 py-2 rounded-lg text-xs whitespace-nowrap transition-all">
+                            Desbloquear Cédulas
+                        </button>
+                    </div>
+
+                    <!-- Verified Badge -->
+                    <div id="twoStepSuccess" class="hidden flex items-center gap-4 w-full md:w-auto justify-between bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 p-3 rounded-xl text-xs font-bold">
+                        <div class="flex items-center gap-2">
+                            <i data-lucide="shield" class="w-4 h-4"></i>
+                            <span>NÚCLEO DE DATOS DESBLOQUEADO (PASO 2 COMPLETADO)</span>
+                        </div>
+                        <button onclick="lockSensitiveDataInstant()" class="bg-brandRed text-white hover:bg-red-600 px-3 py-1 rounded-lg text-[10px] transition-all">
+                            Bloquear Cédulas de Nuevo
+                        </button>
+                    </div>
+                </div>
+
+                <!-- CHARTS AND ANALYTICS -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-brandDark/25 border border-brandLight/15 p-4 rounded-xl">
+                        <h4 id="chartVenHeader" class="text-xs font-bold uppercase tracking-wider text-venGold mb-4">Firmas por Estado de Venezuela (Top 5)</h4>
+                        <div id="venStatesChart" class="space-y-3">
+                            <p class="text-xs text-slate-500 italic">No hay suficientes registros nacionales para generar el gráfico.</p>
+                        </div>
+                    </div>
+                    <div class="bg-brandDark/25 border border-brandLight/15 p-4 rounded-xl">
+                        <h4 id="chartGlobHeader" class="text-xs font-bold uppercase tracking-wider text-venBlue mb-4">Firmas Internacionales por País (Top 5)</h4>
+                        <div id="globCountriesChart" class="space-y-3">
+                            <p class="text-xs text-slate-500 italic">No hay suficientes registros internacionales para generar el gráfico.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CONTROL LIST AND MODERATION -->
+                <div class="bg-brandDark/30 border border-brandLight/15 rounded-xl overflow-hidden">
+                    <div class="p-4 border-b border-slate-800 bg-brandDark/50 flex flex-col sm:flex-row justify-between items-center gap-3">
+                        <div class="relative w-full sm:w-72">
+                            <input type="text" id="adminSearch" oninput="filterAdminSignatures(this.value)" class="w-full bg-slate-900 border border-slate-700/80 rounded-lg pl-8 pr-3 py-1.5 text-xs text-slate-200 outline-none focus:border-venGold" placeholder="Buscar por nombre, cédula o región...">
+                            <i data-lucide="search" class="w-3.5 h-3.5 text-slate-500 absolute left-2.5 top-1/2 -translate-y-1/2"></i>
+                        </div>
+                        <div class="flex items-center gap-2 w-full sm:w-auto">
+                            <button onclick="exportSignaturesToCSV()" class="flex-1 sm:flex-initial bg-brandLight/30 hover:bg-brandLight/50 border border-brandLight/40 text-slate-200 px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center justify-center gap-1.5 transition-all">
+                                <i data-lucide="download" class="w-3.5 h-3.5"></i>
+                                <span id="btnExportCSV">Exportar Datos (.CSV)</span>
+                            </button>
+                            <button onclick="adminLogoutTotal()" class="flex-1 sm:flex-initial bg-brandRed/20 hover:bg-brandRed border border-brandRed/30 hover:border-brandRed text-slate-200 hover:text-white px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center justify-center gap-1.5 transition-all">
+                                <i data-lucide="power" class="w-3.5 h-3.5"></i>
+                                <span>Cerrar Sesión</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left text-xs text-slate-300">
+                            <thead class="bg-brandDark/60 text-slate-400 uppercase tracking-wider border-b border-slate-800 text-[10px]">
+                                <tr>
+                                    <th class="px-4 py-3" id="thName">Nombre / Info</th>
+                                    <th class="px-4 py-3" id="thIdentity">Cédula</th>
+                                    <th class="px-4 py-3" id="thType">Origen</th>
+                                    <th class="px-4 py-3" id="thRegion">Ubicación</th>
+                                    <th class="px-4 py-3" id="thActions">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody id="adminTableBody" class="divide-y divide-slate-800/80">
+                                <!-- Dynamic rows -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- GENERAL DIALOG (MODAL NOTIFICATION SYSTEM WITH VIBRANT FAMILY ART) -->
+    <div id="generalModal" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="bg-brandMedium border border-brandLight/20 w-full max-w-md rounded-2xl p-6 shadow-2xl text-center space-y-4 relative overflow-hidden">
+            
+            <!-- FAMILIA VENEZOLANA ABRAZÁNDOSE (SVG VIBRANTE) -->
+            <div id="modalFamilyIllustration" class="hidden justify-center my-2">
+                <svg viewBox="0 0 200 200" class="w-48 h-48 drop-shadow-2xl animate-fade-in" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="venGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#F1C40F" /> <!-- Amarillo -->
+                            <stop offset="50%" stop-color="#2980B9" /> <!-- Azul -->
+                            <stop offset="100%" stop-color="#E74C3C" /> <!-- Rojo -->
+                        </linearGradient>
+                        <linearGradient id="skinLight" x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" stop-color="#FADBD8" />
+                            <stop offset="100%" stop-color="#F5B7B1" />
+                        </linearGradient>
+                        <linearGradient id="skinDark" x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" stop-color="#F5CBA7" />
+                            <stop offset="100%" stop-color="#E59866" />
+                        </linearGradient>
+                    </defs>
+                    <!-- Halo de Sol/Bandera de fondo -->
+                    <circle cx="100" cy="100" r="85" fill="url(#venGrad)" opacity="0.12" />
+                    <circle cx="100" cy="100" r="70" fill="none" stroke="url(#venGrad)" stroke-width="1.5" stroke-dasharray="4,4" opacity="0.4" />
+                    
+                    <!-- Arco de las 7 Estrellas Patrias Históricas (Perfecta simetría radial) -->
+                    <g fill="#FFFFFF" opacity="0.9">
+                        <polygon points="100,23 102,27 106,27 103,29 104,33 100,31 96,33 97,29 94,27 98,27" />
+                        <polygon points="80,26 82,30 86,30 83,32 84,36 80,34 76,36 77,32 74,30 78,30" />
+                        <polygon points="63,35 65,39 69,39 66,41 67,45 63,43 59,45 60,41 57,39 61,39" />
+                        <polygon points="50,49 52,53 56,53 53,55 54,59 50,57 46,59 47,55 44,53 48,53" />
+                        <polygon points="120,26 122,30 126,30 123,32 124,36 120,34 116,36 117,32 114,30 118,30" />
+                        <polygon points="137,35 139,39 143,39 140,41 141,45 137,43 133,45 134,41 131,39 135,39" />
+                        <polygon points="150,49 152,53 156,53 153,55 154,59 150,57 146,59 147,55 144,53 148,53" />
+                    </g>
+                    
+                    <!-- Padre (Cuerpo Izquierdo - Azul) -->
+                    <path d="M 60,165 C 60,115 85,105 100,105 C 100,120 90,140 90,165 Z" fill="#2980B9" />
+                    <circle cx="75" cy="90" r="17" fill="url(#skinDark)" />
+                    <!-- Pelo Padre -->
+                    <path d="M 58,90 C 58,70 92,70 92,90 C 85,82 65,82 58,90 Z" fill="#1B263B" />
+                    
+                    <!-- Madre (Cuerpo Derecho - Rojo) -->
+                    <path d="M 140,165 C 140,115 115,105 100,105 C 100,120 110,140 110,165 Z" fill="#E74C3C" />
+                    <circle cx="125" cy="90" r="16" fill="url(#skinLight)" />
+                    <!-- Pelo Madre -->
+                    <path d="M 109,90 C 109,72 141,72 141,90 C 141,105 135,105 135,95 Z" fill="#78281F" />
+                    
+                    <!-- Hijo en el centro (Amarillo) -->
+                    <path d="M 100,165 C 82,165 82,130 100,130 C 118,130 118,165 100,165 Z" fill="#F1C40F" />
+                    <circle cx="100" cy="113" r="11" fill="url(#skinLight)" />
+                    <!-- Pelo Hijo -->
+                    <path d="M 89,113 C 89,98 111,98 111,113 C 105,107 95,107 89,113 Z" fill="#D35400" />
+                    
+                    <!-- Brazos del Abrazo Colectivo -->
+                    <path d="M 62,118 Q 100,125 120,132" stroke="#1A5276" stroke-width="7" stroke-linecap="round" fill="none" />
+                    <path d="M 138,118 Q 100,125 80,132" stroke="#943126" stroke-width="7" stroke-linecap="round" fill="none" />
+                    
+                    <!-- CORAZONES OPTIMIZADOS -->
+                    <!-- Corazón Amarillo (Grande en la izquierda) -->
+                    <path d="M 65,55 C 60,43 40,43 40,61 C 40,80 65,98 65,98 C 65,98 90,80 90,61 C 90,43 70,43 65,55 Z" fill="#F1C40F" transform="rotate(-15 65 65)" />
+                    <!-- Corazón Azul (Grande en la derecha) -->
+                    <path d="M 135,55 C 130,43 110,43 110,61 C 110,80 135,98 135,98 C 135,98 160,80 160,61 C 160,43 140,43 135,55 Z" fill="#2980B9" transform="rotate(15 135 65)" />
+                    <!-- Corazón Rojo (Pequeño y centrado) -->
+                    <path d="M 100,65 C 97,59 88,59 88,69 C 88,79 100,89 100,89 C 100,89 112,79 112,69 C 112,59 103,59 100,65 Z" fill="#E74C3C" />
+                </svg>
+            </div>
+
+            <div id="modalIconContainer" class="mx-auto w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300">
+                <i id="modalIcon" class="w-6 h-6"></i>
+            </div>
+            
+            <div class="space-y-1">
+                <h3 id="modalTitle" class="serif-title text-lg md:text-xl font-bold text-white">Título del Mensaje</h3>
+                <p id="modalBody" class="text-xs md:text-sm text-slate-300 leading-relaxed">Este es el cuerpo del mensaje.</p>
+            </div>
+
+            <!-- Change.org campaign support inside the post-submission modal -->
+            <div id="modalCampaignBlock" class="hidden p-3 rounded-xl bg-slate-900/50 border border-slate-800 flex flex-col gap-2">
+                <p class="text-[11px] text-slate-400" id="modalCampaignMsg">¡Multiplica tu voz! Firma también la iniciativa pública en la plataforma internacional:</p>
+                <a href="https://c.org/CnYPpHDT6L" target="_blank" rel="noopener noreferrer" class="w-full bg-red-600 hover:bg-red-500 text-white font-bold py-2 px-3 rounded-lg text-xs flex items-center justify-center gap-1.5 transition-all">
+                    <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+                    <span>Firmar Petición en Change.org</span>
+                </a>
+            </div>
+
+            <button onclick="closeGeneralModal()" class="w-full bg-brandLight hover:bg-slate-600 text-white font-semibold py-2.5 rounded-xl text-xs md:text-sm transition-all">
+                <span id="btnModalClose">Aceptar</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- STANDALONE PRINTABLE SHEET (HIDDEN UNTIL window.print() CALLS IT) -->
+    <div id="printableSheetContainer" class="hidden p-8 font-serif leading-relaxed text-black bg-white">
+        <!-- Logo and Title -->
+        <div class="text-center border-b-2 border-black pb-4 mb-6">
+            <h1 class="text-2xl font-bold tracking-wider uppercase">Manifiesto Soberano de Rescate Democrático</h1>
+            <h2 class="text-lg font-semibold text-slate-700 mt-1">Iniciativa Cívica por la Defensa de los Derechos Humanos en Venezuela</h2>
+            <p class="text-xs text-slate-500 mt-1">Petición formal dirigida a: Naciones Unidas (ONU) • OEA • Unión Europea (UE) • Gobiernos Libres del Mundo</p>
+        </div>
+
+        <!-- Manifesto Abstract -->
+        <div class="mb-6 text-xs text-justify space-y-2">
+            <p><strong>DECLARACIÓN DE MOTIVOS:</strong> Los ciudadanos abajo firmantes, bajo el amparo de los artículos 19 y 21 de la Declaración Universal de los Derechos Humanos, y los preceptos de la Carta Democrática Interamericana, manifestamos nuestro categórico respaldo al restablecimiento del Estado de Derecho, la autonomía absoluta de los poderes públicos y la convocatoria urgente de elecciones parlamentarias y presidenciales libres, transparentes y técnicamente auditables bajo estricta observación internacional.</p>
+            <p><strong>GARANTÍA DE SEGURIDAD:</strong> Las firmas recolectadas en este pliego serán procesadas y resguardadas bajo estrictos protocolos de protección de identidad, utilizándose únicamente para anexar como folios formales ante comisiones legislativas globales y tribunales internacionales de DD.HH.</p>
+        </div>
+
+        <!-- Signatures Table -->
+        <table class="w-full border-collapse border border-black text-xs mb-8">
+            <thead>
+                <tr class="bg-gray-100 text-center font-bold">
+                    <th class="border border-black p-2 w-10">N°</th>
+                    <th class="border border-black p-2 w-1/3">Nombre y Apellido</th>
+                    <th class="border border-black p-2 w-1/4">Cédula de Identidad o Correo</th>
+                    <th class="border border-black p-2 w-1/4">Ubicación (Estado / País)</th>
+                    <th class="border border-black p-2 w-24">Firma</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Empty rows for writing -->
+                <script>
+                    for(let i=1; i<=12; i++) {
+                        document.write(`
+                            <tr class="h-10 text-center">
+                                <td class="border border-black font-mono font-bold">${i}</td>
+                                <td class="border border-black"></td>
+                                <td class="border border-black"></td>
+                                <td class="border border-black"></td>
+                                <td class="border border-black"></td>
+                            </tr>
+                        `);
+                    }
+                </script>
+            </tbody>
+        </table>
+
+        <!-- Page Footer Info -->
+        <div class="text-center text-[10px] text-gray-500 border-t border-black pt-4">
+            <p><strong>Instrucciones para Coordinadores:</strong> Escanear la planilla completa una vez llena y enviarla de manera segura a la dirección autorizada: <strong>pliego@rescatedemocraticovzla.org</strong>.</p>
+            <p class="mt-1">Página Web Oficial de Respaldo: <strong>https://rescatedemocraticovzla.org</strong></p>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="bg-brandDark border-t border-brandMedium/50 px-4 py-8 mt-12">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
+            <div>
+                <p class="text-sm font-semibold text-slate-400">RESCATE DEMOCRÁTICO</p>
+                <p id="footerDisclaimer" class="text-xs text-slate-500 mt-1 max-w-xl">
+                    Este es un portal democrático, no afiliado a partidos específicos, que persigue defender los Derechos Humanos y el principio de soberanía popular.
+                </p>
+            </div>
+            <div class="flex flex-col items-center md:items-end gap-2.5">
+                <!-- Change.org Link -->
+                <a href="https://c.org/CnYPpHDT6L" target="_blank" rel="noopener noreferrer" class="text-xs text-red-400 hover:text-red-300 font-semibold flex items-center gap-1 transition-colors">
+                    <i data-lucide="heart" class="w-3.5 h-3.5 text-brandRed animate-pulse"></i>
+                    <span>Iniciativa de Change.org</span>
+                </a>
+                <p class="text-[10px] text-slate-600">© 2026 Rescate Democrático. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- SCRIPT LOGIC -->
+    <script>
+        // Global State Configuration
+        let currentLang = 'es';
+        let currentTab = 'venezuelan';
+        let firebaseReady = false;
+
+        // SECURE ISOLATION LAYER (IIFE Private Storage Module)
+        const SecureStorage = (function() {
+            // Private memory space
+            let signatures = [
+                { id: "1", name: "Eduardo Castillo", type: "venezuelan", identity: "V-14562810", location: "Caracas", comment: "Exigimos elecciones libres y un cronograma legítimo ya.", timestamp: Date.now() - 3600000 },
+                { id: "2", name: "María Alejandra Ruiz", type: "venezuelan", identity: "V-18992104", location: "Miami, FL (Diáspora)", comment: "La comunidad internacional debe desconocer acuerdos que sacrifiquen la institucionalidad.", timestamp: Date.now() - 7200000 },
+                { id: "3", name: "Theodore Mitchell", type: "global", identity: "-", location: "United States (TX)", comment: "Standing with freedom and democracy. America must demand transparent processes.", timestamp: Date.now() - 10800000 },
+                { id: "4", name: "Carlos Mendoza", type: "venezuelan", identity: "V-20155222", location: "Valencia, Carabobo", comment: "Elecciones libres y fin a la persecución ya.", timestamp: Date.now() - 14400000 }
+            ];
+
+            let primaryAuth = false;
+            let secondaryAuth = false;
+
+            // Masking helper function inside the secure scope
+            function maskValue(val, type) {
+                if (!val || val === '-') return '-';
+                if (type === 'id') {
+                    const parts = val.split('-');
+                    const prefix = parts[0] || 'V';
+                    const num = parts[1] || '';
+                    return `${prefix}-••••${num.slice(-3)}`;
+                }
+                if (type === 'email') {
+                    const parts = val.split('@');
+                    if (parts.length < 2) return '••••@••••';
+                    return `${parts[0].slice(0, 2)}••••@${parts[1]}`;
+                }
+                return '••••';
+            }
+
+            return {
+                init: function() {
+                    const saved = localStorage.getItem('vzv_local_signatures');
+                    if (saved) {
+                        try {
+                            signatures = JSON.parse(saved);
+                        } catch(e) {
+                            console.warn("Secure initialization fell back to predefined schema.", e);
+                        }
+                    } else {
+                        this.sync();
+                    }
+                },
+                sync: function() {
+                    localStorage.setItem('vzv_local_signatures', JSON.stringify(signatures));
+                },
+                add: function(sig) {
+                    signatures.unshift(sig);
+                    this.sync();
+                },
+                remove: function(id) {
+                    signatures = signatures.filter(s => s.id !== id);
+                    this.sync();
+                },
+                getPublicFeed: function() {
+                    return signatures.map(s => ({
+                        id: s.id,
+                        name: s.name,
+                        location: s.location,
+                        comment: s.comment,
+                        timestamp: s.timestamp,
+                        type: s.type
+                    }));
+                },
+                getAdminList: function() {
+                    if (!primaryAuth) return [];
+                    return signatures.map(s => ({
+                        ...s,
+                        identity: secondaryAuth ? s.identity : maskValue(s.identity, 'id'),
+                        email: secondaryAuth ? (s.email || '-') : maskValue(s.email || '-', 'email'),
+                        isMasked: !secondaryAuth
+                    }));
+                },
+                authenticatePrimary: function(password) {
+                    if (password === 'Denton2026.!') {
+                        primaryAuth = true;
+                        return true;
+                    }
+                    return false;
+                },
+                authenticateSecondary: function(pin) {
+                    if (pin === 'Rescate2026!') {
+                        secondaryAuth = true;
+                        return true;
+                    }
+                    return false;
+                },
+                logout: function() {
+                    primaryAuth = false;
+                    secondaryAuth = false;
+                },
+                lockSensitive: function() {
+                    secondaryAuth = false;
+                },
+                isPrimaryAuth: () => primaryAuth,
+                isSecondaryAuth: () => secondaryAuth,
+                getStats: function() {
+                    const total = signatures.length;
+                    const vens = signatures.filter(s => s.type === 'venezuelan').length;
+                    const globals = total - vens;
+                    const diaspora = signatures.filter(s => s.type === 'venezuelan' && s.location.includes('(Diáspora)')).length;
+                    return { total, vens, globals, diaspora };
+                },
+                exportCSV: function() {
+                    if (!primaryAuth) return null;
+                    let csv = "\uFEFFID,Nombre,Tipo,Identidad_O_Cedula,Email,Ubicacion,Comentario,Fecha\r\n";
+                    const list = this.getAdminList();
+                    list.forEach(sig => {
+                        const dateStr = new Date(sig.timestamp).toLocaleDateString();
+                        const row = [
+                            sig.id,
+                            `"${sig.name.replace(/"/g, '""')}"`,
+                            sig.type,
+                            sig.identity,
+                            sig.email || '-',
+                            `"${sig.location.replace(/"/g, '""')}"`,
+                            `"${sig.comment.replace(/"/g, '""')}"`,
+                            dateStr
+                        ].join(",");
+                        csv += row + "\r\n";
+                    });
+                    return csv;
+                }
+            };
+        })();
+
+        // Core App ID config
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-venezuela-voice';
+
+        // Static Congressional US ZIP Mapping
+        const zipDatabase = {
+            "33101": { state: "Florida", senadores: "Marco Rubio, Rick Scott", rep: "María Elvira Salazar (FL-27)" },
+            "33139": { state: "Florida", senadores: "Marco Rubio, Rick Scott", rep: "María Elvira Salazar (FL-27)" },
+            "10001": { state: "New York", senadores: "Chuck Schumer, Kirsten Gillibrand", rep: "Jerry Nadler (NY-12)" },
+            "75201": { state: "Texas", senadores: "Ted Cruz, John Cornyn", rep: "Colin Allred (TX-32)" },
+            "90210": { state: "California", senadores: "Alex Padilla, Laphonza Butler", rep: "Ted Lieu (CA-36)" },
+            "20001": { state: "Washington D.C.", senadores: "N/A (D.C.)", rep: "Eleanor Holmes Norton (At-Large)" }
+        };
+
+        // Print physical sheet helper
+        function printPhysicalSheet() {
+            window.print();
+        }
+
+        // Accordion Mechanics
+        function toggleAccordion(contentId, arrowId) {
+            const content = document.getElementById(contentId);
+            const arrow = document.getElementById(arrowId);
+            
+            if (content.classList.contains('hidden')) {
+                content.classList.remove('hidden');
+                arrow.style.transform = "rotate(180deg)";
+            } else {
+                content.classList.add('hidden');
+                arrow.style.transform = "rotate(0deg)";
+            }
+        }
+
+        // Tab Switching Actions
+        function switchTab(tab) {
+            currentTab = tab;
+            const btnVen = document.getElementById('btnTabVen');
+            const btnGlob = document.getElementById('btnTabGlobal');
+            const formVen = document.getElementById('form-venezuelan');
+            const formGlob = document.getElementById('form-global');
+
+            if (tab === 'venezuelan') {
+                btnVen.className = "flex-1 py-3 text-center rounded-xl text-xs sm:text-sm font-bold transition-all duration-300 bg-brandMedium text-white shadow-md border border-brandLight/10 flex items-center justify-center gap-2";
+                btnGlob.className = "flex-1 py-3 text-center rounded-xl text-xs sm:text-sm font-bold transition-all duration-300 text-slate-400 hover:text-slate-200 flex items-center justify-center gap-2";
+                formVen.classList.remove('hidden');
+                formGlob.classList.add('hidden');
+            } else {
+                btnGlob.className = "flex-1 py-3 text-center rounded-xl text-xs sm:text-sm font-bold transition-all duration-300 bg-brandMedium text-white shadow-md border border-brandLight/10 flex items-center justify-center gap-2";
+                btnVen.className = "flex-1 py-3 text-center rounded-xl text-xs sm:text-sm font-bold transition-all duration-300 text-slate-400 hover:text-slate-200 flex items-center justify-center gap-2";
+                formGlob.classList.remove('hidden');
+                formVen.classList.add('hidden');
+            }
+        }
+
+        // Dynamic Language Switching
+        function toggleLanguage() {
+            currentLang = currentLang === 'es' ? 'en' : 'es';
+            document.getElementById('langLabel').innerText = currentLang === 'es' ? 'EN' : 'ES';
+            updateLanguageText();
+        }
+
+        function updateLanguageText() {
+            const pack = translations[currentLang];
+            
+            Object.keys(pack).forEach(id => {
+                const element = document.getElementById(id);
+                if (element) {
+                    element.innerHTML = pack[id];
+                }
+            });
+
+            document.getElementById('ven-name').placeholder = currentLang === 'es' ? "Juan Pérez" : "John Doe";
+            document.getElementById('ven-id-num').placeholder = currentLang === 'es' ? "12345678" : "12345678";
+            document.getElementById('ven-email').placeholder = currentLang === 'es' ? "correo@ejemplo.com" : "email@example.com";
+            document.getElementById('ven-region').placeholder = currentLang === 'es' ? "Ej. Distrito Capital" : "e.g. Caracas, Miranda, Florida";
+            document.getElementById('ven-comment').placeholder = currentLang === 'es' ? "Escribe tu mensaje..." : "Type your message here...";
+            document.getElementById('glob-name').placeholder = currentLang === 'es' ? "John Doe" : "John Doe";
+            document.getElementById('glob-country').placeholder = currentLang === 'es' ? "País" : "Country";
+            document.getElementById('glob-zip').placeholder = currentLang === 'es' ? "e.g. 33101" : "e.g. 33101";
+            document.getElementById('glob-email').placeholder = currentLang === 'es' ? "correo@ejemplo.com" : "email@example.com";
+            document.getElementById('ai-recipient').placeholder = currentLang === 'es' ? "Sen. Marco Rubio, Sen. Rick Scott..." : "Sen. Marco Rubio, Sen. Rick Scott...";
+
+            const selectFocus = document.getElementById('ai-focus');
+            if (currentLang === 'es') {
+                selectFocus.options[0].text = "Defensa de elecciones libres y derechos humanos";
+                selectFocus.options[1].text = "Preocupación por licencias energéticas y petróleo que sostienen el régimen";
+                selectFocus.options[2].text = "Atención inmediata a crisis humanitarias y presos políticos";
+            } else {
+                selectFocus.options[0].text = "Defense of free elections & Human Rights";
+                selectFocus.options[1].text = "Oil licenses & energy deals preserving the regime";
+                selectFocus.options[2].text = "Immediate action for human crises & political prisoners";
+            }
+        }
+
+        function toggleLocationFields(type) {
+            const locType = document.getElementById('ven-location-type').value;
+            const regionInput = document.getElementById('ven-region');
+            
+            if (locType === 'fuera') {
+                regionInput.placeholder = currentLang === 'es' ? "País / Ciudad (Ej. Madrid, España)" : "Country / City (e.g., Miami, US)";
+            } else {
+                regionInput.placeholder = currentLang === 'es' ? "Estado de Venezuela (Ej. Zulia)" : "State of Venezuela (e.g., Zulia)";
+            }
+        }
+
+        function handleSignatureSubmit(event, type) {
+            event.preventDefault();
+            
+            let name, identity, location, comment, extras = {};
+
+            if (type === 'venezuelan') {
+                name = document.getElementById('ven-name').value.trim();
+                const idNum = document.getElementById('ven-id-num').value.trim();
+                const emailVal = document.getElementById('ven-email').value.trim();
+
+                if (!idNum && !emailVal) {
+                    showModal(
+                        currentLang === 'es' ? 'Datos de Contacto Requeridos' : 'Contact Details Required',
+                        currentLang === 'es' ? 'Debe registrar su Cédula de Identidad o su Correo Electrónico para validar la firma.' : 'You must provide either your National ID Card (Cédula) or your Email Address to validate your signature.',
+                        'error'
+                    );
+                    return;
+                }
+
+                if (idNum) {
+                    if (idNum.length < 5 || idNum.length > 9) {
+                        showModal(
+                            currentLang === 'es' ? 'Cédula Inválida' : 'Invalid ID Number',
+                            currentLang === 'es' ? 'Por favor ingresa un número de cédula válido (de 5 a 9 dígitos).' : 'Please input a valid ID card number (between 5 and 9 digits).',
+                            'error'
+                        );
+                        return;
+                    }
+                    const idPrefix = document.getElementById('ven-id-type').value;
+                    identity = `${idPrefix}-${idNum}`;
+                } else {
+                    identity = "-";
+                }
+
+                if (emailVal) {
+                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (!emailRegex.test(emailVal)) {
+                        showModal(
+                            currentLang === 'es' ? 'Correo Inválido' : 'Invalid Email',
+                            currentLang === 'es' ? 'Por favor ingrese una dirección de correo electrónico válida.' : 'Please enter a valid email address.',
+                            'error'
+                        );
+                        return;
+                    }
+                    extras.email = emailVal;
+                }
+
+                const isAbroad = document.getElementById('ven-location-type').value === 'fuera';
+                const regionStr = document.getElementById('ven-region').value.trim();
+                location = isAbroad ? `${regionStr} (Diáspora)` : regionStr;
+                comment = document.getElementById('ven-comment').value.trim();
+            } else {
+                name = document.getElementById('glob-name').value.trim();
+                identity = "-";
+                const country = document.getElementById('glob-country').value.trim();
+                const zip = document.getElementById('glob-zip').value.trim();
+                location = `${country} (${zip})`;
+                comment = currentLang === 'es' ? "Aliado Internacional comprometido con la democracia" : "International ally standing for Venezuelan democracy";
+                extras = {
+                    email: document.getElementById('glob-email').value.trim(),
+                    authorized: document.getElementById('glob-auth-letter').checked
+                };
+            }
+
+            const newSignature = {
+                id: crypto.randomUUID ? crypto.randomUUID() : String(Math.random()),
+                name,
+                type,
+                identity,
+                location,
+                comment: comment || (currentLang === 'es' ? "¡Libertad para Venezuela!" : "Freedom for Venezuela!"),
+                timestamp: Date.now(),
+                ...extras
+            };
+
+            saveToDatabase(newSignature);
+        }
+
+        async function saveToDatabase(signature) {
+            let success = false;
+            
+            if (firebaseReady && db) {
+                try {
+                    const targetCollection = db.collection('artifacts').doc(appId).collection('public').doc('data').collection('signatures');
+                    await targetCollection.add(signature);
+                    success = true;
+                } catch (err) {
+                    console.warn("Database offline. Defaulting to local sandbox mode.", err);
+                }
+            }
+
+            SecureStorage.add(signature);
+            
+            refreshLiveSignaturesFeed();
+            updateUIVisuals();
+
+            if (signature.type === 'venezuelan') {
+                document.getElementById('ven-name').value = '';
+                document.getElementById('ven-id-num').value = '';
+                document.getElementById('ven-email').value = '';
+                document.getElementById('ven-region').value = '';
+                document.getElementById('ven-comment').value = '';
+            } else {
+                document.getElementById('glob-name').value = '';
+                document.getElementById('glob-zip').value = '';
+                document.getElementById('glob-email').value = '';
+                document.getElementById('glob-auth-letter').checked = false;
+            }
+
+            const alertTitle = currentLang === 'es' ? '¡Tu familia se une al clamor de libertad!' : 'Your family joins the cry for freedom!';
+            const alertMsg = currentLang === 'es' ? 
+                `¡Gracias ${signature.name}! Su firma se ha procesado con éxito y se ha adjuntado a los pliegos formales dirigidos a la ONU, OEA, UE y el Congreso de EE.UU.` : 
+                `Thank you ${signature.name}! Your signature has been recorded and attached to the official requests to the UN, OAS, EU, and US Congress.`;
+
+            showModal(alertTitle, alertMsg, 'success', true);
+        }
+
+        function updateUIVisuals() {
+            const stats = SecureStorage.getStats();
+
+            document.getElementById('statVenezuela').innerText = stats.vens;
+            document.getElementById('statUS').innerText = stats.globals;
+            document.getElementById('statTotal').innerText = stats.total;
+
+            document.getElementById('kpiTotalValue').innerText = stats.total;
+            document.getElementById('kpiVenValue').innerText = stats.vens;
+            document.getElementById('kpiGlobalValue').innerText = stats.globals;
+            
+            const diasporaPct = stats.vens > 0 ? Math.round((stats.diaspora / stats.vens) * 100) : 0;
+            document.getElementById('kpiDiasporaValue').innerText = `${diasporaPct}%`;
+
+            renderCharts();
+        }
+
+        function renderCharts() {
+            const vStates = {};
+            const gCountries = {};
+            const feedData = SecureStorage.getPublicFeed();
+
+            feedData.forEach(s => {
+                if (s.type === 'venezuelan') {
+                    const cleanLoc = s.location.replace(' (Diáspora)', '');
+                    vStates[cleanLoc] = (vStates[cleanLoc] || 0) + 1;
+                } else {
+                    let cName = s.location.split(' (')[0] || s.location;
+                    gCountries[cName] = (gCountries[cName] || 0) + 1;
+                }
+            });
+
+            const sortedStates = Object.entries(vStates).sort((a,b) => b[1] - a[1]).slice(0, 5);
+            const sortedCountries = Object.entries(gCountries).sort((a,b) => b[1] - a[1]).slice(0, 5);
+
+            const venChartEl = document.getElementById('venStatesChart');
+            const globChartEl = document.getElementById('globCountriesChart');
+
+            if (sortedStates.length > 0) {
+                const maxVal = sortedStates[0][1];
+                venChartEl.innerHTML = sortedStates.map(([label, val]) => {
+                    const pct = Math.round((val / maxVal) * 100);
+                    return `
+                        <div>
+                            <div class="flex justify-between text-xs text-slate-300 mb-1">
+                                <span class="font-medium">${label}</span>
+                                <span class="font-bold text-venGold">${val} firmas</span>
+                            </div>
+                            <div class="w-full bg-slate-900 h-2.5 rounded-full overflow-hidden border border-slate-800">
+                                <div class="bg-venGold h-full rounded-full transition-all duration-500" style="width: ${pct}%"></div>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+            } else {
+                venChartEl.innerHTML = `<p class="text-xs text-slate-500 italic">${currentLang === 'es' ? 'No hay registros nacionales aún.' : 'No domestic records yet.'}</p>`;
+            }
+
+            if (sortedCountries.length > 0) {
+                const maxVal = sortedCountries[0][1];
+                globChartEl.innerHTML = sortedCountries.map(([label, val]) => {
+                    const pct = Math.round((val / maxVal) * 100);
+                    return `
+                        <div>
+                            <div class="flex justify-between text-xs text-slate-300 mb-1">
+                                <span class="font-medium">${label}</span>
+                                <span class="font-bold text-venBlue">${val} firmas</span>
+                            </div>
+                            <div class="w-full bg-slate-900 h-2.5 rounded-full overflow-hidden border border-slate-800">
+                                <div class="bg-venBlue h-full rounded-full transition-all duration-500" style="width: ${pct}%"></div>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+            } else {
+                globChartEl.innerHTML = `<p class="text-xs text-slate-500 italic">${currentLang === 'es' ? 'No hay registros extranjeros aún.' : 'No international records yet.'}</p>`;
+            }
+        }
+
+        // PUBLIC RECENT SIGNATURES FEED
+        function refreshLiveSignaturesFeed() {
+            const container = document.getElementById('signaturesContainer');
+            const feedData = SecureStorage.getPublicFeed();
+            if (feedData.length === 0) {
+                container.innerHTML = `<div class="text-center py-6 text-slate-400 text-sm">No signatures registered yet. Be the first one!</div>`;
+                return;
+            }
+
+            container.innerHTML = feedData.map(sig => {
+                const dateStr = new Date(sig.timestamp).toLocaleDateString();
+                const icon = sig.type === 'venezuelan' ? '🇻🇪' : '🌐';
+                const pillColor = sig.type === 'venezuelan' ? 'text-venGold border-venGold/20 bg-venGold/5' : 'text-venBlue border-venBlue/20 bg-venBlue/5';
+                
+                return `
+                    <div class="p-4 rounded-xl bg-brandDark/50 border border-brandLight/10 hover:border-brandLight/20 transition-all duration-200">
+                        <div class="flex justify-between items-start gap-2">
+                            <div class="flex items-center gap-2">
+                                <span class="text-base">${icon}</span>
+                                <h5 class="text-sm font-bold text-white leading-tight">${sig.name}</h5>
+                            </div>
+                            <span class="text-[10px] text-slate-500">${dateStr}</span>
+                        </div>
+                        <div class="flex flex-wrap gap-1.5 items-center mt-2">
+                            <span class="text-[10px] font-semibold border ${pillColor} px-2 py-0.5 rounded-full">
+                                ${sig.location}
+                            </span>
+                        </div>
+                        <p class="text-xs text-slate-400 italic mt-2.5 leading-relaxed">
+                            "${sig.comment}"
+                        </p>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        async function generateAICongressionalLetter() {
+            const btn = document.getElementById('btnGenerateAI');
+            const icon = document.getElementById('ai-write-icon');
+            const resultBox = document.getElementById('aiLetterResult');
+            const textArea = document.getElementById('ai-letter-textarea');
+
+            btn.disabled = true;
+            icon.classList.add('animate-spin');
+            resultBox.classList.remove('hidden');
+            textArea.value = currentLang === 'es' ? "Redactando carta de presión institucional con el modelo de IA..." : "Drafting congressional advocacy document via Gemini AI...";
+
+            const repName = document.getElementById('ai-recipient').value.trim() || "U.S. Congressional Representative / Senator";
+            const focus = document.getElementById('ai-focus').value;
+
+            const prompt = `Write a formal, powerful congressional advocacy letter demanding immediate action to recover democracy and constitutional order in Venezuela. 
+            Recipient/Addressed to: ${repName}. 
+            Core motivation focus: ${focus}. 
+            Maintain a highly professional, legal, human-rights oriented, and diplomatic tone. Focus on institutional recovery. 
+            Keep it actionable, urging the U.S. government to act and support the Venezuelan sovereign will. Output ONLY the complete letter text without any commentary or headers.`;
+
+            const apiKey = ""; 
+            const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
+
+            let attempts = 0;
+            let success = false;
+            let textResult = "";
+
+            while (attempts < 5 && !success) {
+                try {
+                    const response = await fetch(url, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            contents: [{ parts: [{ text: prompt }] }],
+                            systemInstruction: { parts: [{ text: "You are a professional diplomatic aide and foreign affairs legal counsel specializing in defense of democracies and geopolitical advocacy." }] }
+                        })
+                    });
+
+                    if (response.ok) {
+                        const result = await response.json();
+                        textResult = result.candidates?.[0]?.content?.parts?.[0]?.text;
+                        if (textResult) {
+                            success = true;
+                        }
+                    }
+                } catch (e) {
+                    const delay = Math.pow(2, attempts) * 1000;
+                    await new Promise(resolve => setTimeout(resolve, delay));
+                }
+                attempts++;
+            }
+
+            btn.disabled = false;
+            icon.classList.remove('animate-spin');
+
+            if (success) {
+                textArea.value = textResult.trim();
+            } else {
+                textArea.value = generateLocalFallbackLetter(repName, focus);
+            }
+        }
+
+        function generateLocalFallbackLetter(recipient, focus) {
+            let focusParagraph = "";
+            if (focus === 'petroleo') {
+                focusParagraph = "We urge you to reassess current energy licenses and unilateral relief agreements. Providing financial lifelines to non-democratic actors without concrete commitments to free elections undermines institutional leverage and perpetuates structural authoritarianism.";
+            } else if (focus === 'humanitario') {
+                focusParagraph = "Immediate action must be prioritized concerning the humanitarian crisis and political prisoners. Thousands remain arbitrary detained, and international aid must bypass corrupt entities to reach direct NGOs and independent local networks under transparent monitoring.";
+            } else {
+                focusParagraph = "We request absolute commitment to restoring independent electoral institutions. U.S. diplomacy should condition any recognition on comprehensive technical monitoring of future cycles by expert institutions like the Carter Center and the United Nations.";
+            }
+
+            return `Honorable ${recipient},\n\n` +
+                   `I am writing to you as an advocate for human rights and constitutional order to request urgent diplomatic leadership regarding the ongoing democratic crisis in Venezuela.\n\n` +
+                   `${focusParagraph}\n\n` +
+                   `The international community, led by the United States Congress, has a moral and strategic duty to stand with the citizens of Venezuela in their fight to restore the rule of law. We demand accountability, the release of political prisoners, and an end to political persecution.\n\n` +
+                   `Thank you for your time, consideration, and dedication to global democracy.\n\n` +
+                   `Sincerely,\n` +
+                   `[Your Name / Citizen Signatory]`;
+        }
+
+        function copyAILetterToClipboard() {
+            const txt = document.getElementById('ai-letter-textarea');
+            txt.select();
+            document.execCommand('copy');
+            
+            showModal(
+                currentLang === 'es' ? 'Copiado al Portapapeles' : 'Copied to Clipboard',
+                currentLang === 'es' ? 'La carta ha sido copiada con éxito. Ahora puedes enviarla por correo o subirla a portales gubernamentales.' : 'Letter text copied. You can now paste and send it directly to your officials.',
+                'success'
+            );
+        }
+
+        function openAdminModal() {
+            document.getElementById('adminModal').classList.remove('hidden');
+            document.getElementById('adminModal').classList.add('flex');
+            
+            if (SecureStorage.isPrimaryAuth()) {
+                document.getElementById('adminLoginBlock').classList.add('hidden');
+                document.getElementById('adminDashboardBlock').classList.remove('hidden');
+                updateAdminTable();
+                updateTwoStepUI();
+            } else {
+                document.getElementById('adminLoginBlock').classList.remove('hidden');
+                document.getElementById('adminDashboardBlock').classList.add('hidden');
+            }
+        }
+
+        // Close Admin Modal Panel
+        function closeAdminModal() {
+            document.getElementById('adminModal').classList.add('hidden');
+            document.getElementById('adminModal').classList.remove('flex');
+        }
+
+        // PRIMARY AUTHENTICATION STEP
+        function attemptAdminLogin() {
+            const input = document.getElementById('adminPasswordInput').value;
+            if (SecureStorage.authenticatePrimary(input)) {
+                document.getElementById('adminLoginBlock').classList.add('hidden');
+                document.getElementById('adminDashboardBlock').classList.remove('hidden');
+                updateUIVisuals();
+                updateAdminTable();
+                updateTwoStepUI();
+            } else {
+                showModal(
+                    currentLang === 'es' ? 'Acceso Denegado' : 'Access Denied',
+                    currentLang === 'es' ? 'La clave principal provista es incorrecta.' : 'The primary security key is incorrect.',
+                    'error'
+                );
+            }
+        }
+
+        // SECOND-STEP VALIDATION
+        function validateSecondStep() {
+            const pin = document.getElementById('secondFactorInput').value;
+            if (SecureStorage.authenticateSecondary(pin)) {
+                updateTwoStepUI();
+                updateAdminTable();
+                showModal(
+                    currentLang === 'es' ? 'Identidad Confirmada (Paso 2)' : 'Identity Verified (Step 2)',
+                    currentLang === 'es' ? 'Cédulas desbloqueadas. Ahora puede visualizar y exportar las identidades reales de los firmantes de forma segura.' : 'National IDs unlocked. You can now view and export verified identities.',
+                    'success'
+                );
+            } else {
+                showModal(
+                    currentLang === 'es' ? 'Segundo Paso Fallido' : '2nd Factor Failed',
+                    currentLang === 'es' ? 'El código de desbloqueo del segundo paso es incorrecto.' : 'The second-step authorization PIN is incorrect.',
+                    'error'
+                );
+            }
+        }
+
+        // Immediate Lockout of Private Cédulas/Emails
+        function lockSensitiveDataInstant() {
+            SecureStorage.lockSensitive();
+            updateTwoStepUI();
+            updateAdminTable();
+            document.getElementById('secondFactorInput').value = '';
+            showModal(
+                currentLang === 'es' ? 'Datos Bloqueados' : 'Data Locked',
+                currentLang === 'es' ? 'La visualización de datos sensibles ha sido suspendida exitosamente.' : 'Sensitive data preview is once again restricted.',
+                'success'
+            );
+        }
+
+        // Total Logout
+        function adminLogoutTotal() {
+            SecureStorage.logout();
+            document.getElementById('adminPasswordInput').value = '';
+            document.getElementById('secondFactorInput').value = '';
+            closeAdminModal();
+            showModal(
+                currentLang === 'es' ? 'Sesión Administrativa Cerrada' : 'Admin Session Terminated',
+                currentLang === 'es' ? 'Se han purgado todas las credenciales y tokens de descifrado en memoria.' : 'All keys and local decrypt tokens have been successfully cleared.',
+                'success'
+            );
+        }
+
+        function updateTwoStepUI() {
+            const tsForm = document.getElementById('twoStepForm');
+            const tsSuccess = document.getElementById('twoStepSuccess');
+            const tsBadgeIcon = document.getElementById('twoStepBadgeIcon');
+
+            if (SecureStorage.isSecondaryAuth()) {
+                tsForm.classList.add('hidden');
+                tsSuccess.classList.remove('hidden');
+                tsBadgeIcon.className = "p-3 rounded-xl bg-emerald-500/10 text-emerald-400";
+            } else {
+                tsForm.classList.remove('hidden');
+                tsSuccess.classList.add('hidden');
+                tsBadgeIcon.className = "p-3 rounded-xl bg-amber-500/10 text-amber-500";
+            }
+            lucide.createIcons();
+        }
+
+        // Populate Table inside administration dashboard
+        function updateAdminTable() {
+            const tbody = document.getElementById('adminTableBody');
+            tbody.innerHTML = '';
+
+            const list = SecureStorage.getAdminList();
+
+            if (list.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="5" class="text-center py-4 text-slate-500">No records found</td></tr>`;
+                return;
+            }
+
+            list.forEach(sig => {
+                const tr = document.createElement('tr');
+                tr.className = "hover:bg-slate-900/40 transition-colors border-b border-slate-800/50";
+                tr.setAttribute('data-id', sig.id);
+
+                tr.innerHTML = `
+                    <td class="px-4 py-3">
+                        <p class="font-bold text-white text-xs">${sig.name}</p>
+                        <p class="text-[10px] text-slate-400 mt-0.5 truncate max-w-[180px]" title="${sig.comment}">${sig.comment}</p>
+                    </td>
+                    <td class="px-4 py-3 font-mono text-xs">
+                        <span class="flex items-center gap-1.5 ${!sig.isMasked ? 'text-emerald-400 font-semibold' : 'text-slate-500'}">
+                            <i data-lucide="${!sig.isMasked ? 'eye' : 'eye-off'}" class="w-3.5 h-3.5 opacity-75"></i>
+                            ${sig.identity}
+                        </span>
+                    </td>
+                    <td class="px-4 py-3">
+                        <span class="px-2 py-0.5 rounded-full text-[9px] font-bold ${sig.type === 'venezuelan' ? 'bg-venGold/10 text-venGold border border-venGold/20' : 'bg-venBlue/10 text-venBlue border border-venBlue/20'}">
+                            ${sig.type.toUpperCase()}
+                        </span>
+                    </td>
+                    <td class="px-4 py-3 text-slate-400 text-xs">${sig.location}</td>
+                    <td class="px-4 py-3">
+                        <button onclick="deleteSignature('${sig.id}')" class="text-slate-500 hover:text-brandRed p-1 rounded hover:bg-red-950/20 transition-all" title="Eliminar Registro">
+                            <i data-lucide="trash-2" class="w-4 h-4"></i>
+                        </button>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+            lucide.createIcons();
+        }
+
+        // Filter signatures locally
+        function filterAdminSignatures(val) {
+            const query = val.toLowerCase().trim();
+            const rows = document.querySelectorAll('#adminTableBody tr');
+
+            rows.forEach(row => {
+                const text = row.textContent.toLowerCase();
+                if (text.includes(query)) {
+                    row.classList.remove('hidden');
+                } else {
+                    row.classList.add('hidden');
+                }
+            });
+        }
+
+        // CSV Export: Enforces privacy masking if Step 2 validation is missing
+        function exportSignaturesToCSV() {
+            const rawContent = SecureStorage.exportCSV();
+            if (!rawContent) {
+                showModal("Error", "No autorizado.", "error");
+                return;
+            }
+
+            if (!SecureStorage.isSecondaryAuth()) {
+                const proceed = confirm(
+                    currentLang === 'es' ? 
+                    'ADVERTENCIA DE PRIVACIDAD: Las Cédulas se exportarán de forma enmascarada debido a la falta de validación del segundo paso (2FA). ¿Desea continuar?' : 
+                    'PRIVACY WARNING: National IDs will be masked in the CSV because the 2nd validation step (2FA) is locked. Continue?'
+                );
+                if (!proceed) return;
+            }
+
+            const blob = new Blob([rawContent], { type: 'text/csv;charset=utf-8;' });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement("a");
+            link.setAttribute("href", url);
+            link.setAttribute("download", `Reporte_Firmas_Rescate_${Date.now()}.csv`);
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            URL.revokeObjectURL(url);
+        }
+
+        // Delete/Moderate items
+        async function deleteSignature(id) {
+            if (confirm(currentLang === 'es' ? '¿Estás seguro de eliminar este registro?' : 'Are you sure you want to delete this record?')) {
+                if (firebaseReady && db) {
+                    try {
+                        await db.collection('artifacts').doc(appId).collection('public').doc('data').collection('signatures').doc(id).delete();
+                    } catch(e) {
+                        console.warn("Could not delete from remote, processing locally.");
+                    }
+                }
+
+                SecureStorage.remove(id);
+                updateUIVisuals();
+                updateAdminTable();
+                refreshLiveSignaturesFeed();
+            }
+        }
+
+        // Modal triggers
+        function showModal(title, text, type, showCampaign = false) {
+            const modal = document.getElementById('generalModal');
+            const mTitle = document.getElementById('modalTitle');
+            const mBody = document.getElementById('modalBody');
+            const mIconContainer = document.getElementById('modalIconContainer');
+            const mIcon = document.getElementById('modalIcon');
+            const mCampaignBlock = document.getElementById('modalCampaignBlock');
+
+            mTitle.innerText = title;
+            mBody.innerText = text;
+
+            if (showCampaign) {
+                mCampaignBlock.classList.remove('hidden');
+            } else {
+                mCampaignBlock.classList.add('hidden');
+            }
+
+            if (type === 'success') {
+                mIconContainer.className = "mx-auto w-12 h-12 rounded-full flex items-center justify-center bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 animate-bounce";
+                mIcon.setAttribute('data-lucide', 'check-circle-2');
+                const mFamilyIllustration = document.getElementById('modalFamilyIllustration');
+                mFamilyIllustration.classList.remove('hidden');
+                mFamilyIllustration.classList.add('flex');
+            } else {
+                mIconContainer.className = "mx-auto w-12 h-12 rounded-full flex items-center justify-center bg-red-500/15 text-red-500 border border-red-500/30 animate-pulse";
+                mIcon.setAttribute('data-lucide', 'alert-circle');
+                const mFamilyIllustration = document.getElementById('modalFamilyIllustration');
+                mFamilyIllustration.classList.add('hidden');
+                mFamilyIllustration.classList.remove('flex');
+            }
+
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            
+            lucide.createIcons();
+        }
+
+        function closeGeneralModal() {
+            document.getElementById('generalModal').classList.add('hidden');
+            document.getElementById('generalModal').classList.remove('flex');
+        }
+
+        // Translation Dictionary (Updated with the new constitutional sections)
+        const translations = {
+            es: {
+                bannerText: "¡Firma también la petición oficial en Change.org!",
+                heroBadge: "INICIATIVA DE INCIDENCIA GLOBAL",
+                heroTitle: "Rescate Democrático: Exigimos Elecciones Libres y Acción Internacional Efectiva para Venezuela",
+                heroSubtitle: "Un manifiesto soberano dirigido a las Naciones Unidas, la OEA, la Unión Europea, el Congreso de los Estados Unidos y los gobiernos libres del mundo para restaurar el Estado de Derecho en nuestra nación.",
+                statVenLabel: "Venezolanos",
+                statUSLabel: "Aliados Globales",
+                statTotalLabel: "Firmas Totales",
+                sectionTitle: "Contenido del Manifiesto",
+                ambitLocalTitle: "1. Ámbito Local: Garantías Institucionales y Civiles",
+                ambitIntTitle: "2. Ámbito Internacional: Diplomacia, Justicia y Cooperación",
+                notesBlock: "<strong>Nota de enfoque:</strong> Este manifiesto debe ser respaldado de forma amplia y unida por la sociedad civil para generar impacto real ante cancillerías y organismos internacionales. Manteniendo siempre el protagonismo del ciudadano venezolano como único soberano de su destino político.",
+                feedTitle: "Firmas y Voces Recientes",
+                livePulse: "En vivo",
+                loadingSigs: "Cargando firmas registradas...",
+                tabVenLabel: "Venezolano",
+                tabGlobalLabel: "Aliado Internacional",
+                formVenTitle: "Formulario de Firmas",
+                formVenSub: "Ingrese datos fidedignos para el anexo de folios ante cortes internacionales.",
+                lblVenName: "Nombre y Apellido *",
+                lblVenID: "Cédula de Identidad (Opcional si aporta correo)",
+                lblVenEmail: "Correo Electrónico (Opcional si aporta Cédula)",
+                lblVenLocation: "Ubicación *",
+                lblVenRegion: "Estado / País *",
+                lblVenComment: "Mensaje o clamor de apoyo (Opcional)",
+                btnVenSubmit: "Registrar mi Firma",
+                optIn: "En Venezuela",
+                optOut: "En la Diáspora",
+                formGlobTitle: "Exigencia al Congreso de EE.UU.",
+                formGlobSub: "Si eres aliado internacional o legislador, asiste con tu firma a exigir acciones eficientes contra el autoritarismo.",
+                lblGlobName: "Full Name *",
+                lblGlobCountry: "Country / País *",
+                lblGlobZip: "ZIP Code (US) *",
+                lblGlobEmail: "Email Address *",
+                lblGlobCheck: "Autorizo el envío formal de esta petición a la delegación de mi distrito legislativo en el Congreso.",
+                btnGlobSubmit: "Enviar Demanda & Firmar",
+                aiHeader: "Generador de Cartas de Presión (Gemini IA)",
+                aiSub: "Genera de forma instantánea una carta formal dirigida a legisladores estadounidenses.",
+                lblLegislators: "Destinatarios (Opcional)",
+                lblMotivations: "Tu motivación o enfoque principal *",
+                btnGenerateAI: "Redactar Carta Formal con IA",
+                btnLoadToAI: "Inyectar en Generador de IA",
+                lblCopy: "Copiar",
+                orLabel: "o respalda la campaña externa",
+                orLabel2: "or share the external campaign",
+                btnGoChangeOrg: "Ir a la Petición en Change.org",
+                btnGoChangeOrg2: "Go to Change.org Petition",
+                constHeader: "Soberanía Popular y Deber Constitucional",
+                constSub: "Ante la evidente e histórica <strong>ruptura del hilo constitucional</strong> en Venezuela, nuestro reclamo se sostiene sobre las bases firmes de la Constitución de la República Bolivariana de Venezuela (C.R.B.V.), la cual obliga a los ciudadanos a defender la República:",
+                art5_title: "La Soberanía Soberana",
+                art5_text: '"La soberanía reside intransferiblemente en el pueblo... Los órganos del Estado emanan de la soberanía popular y a ella están sometidos."',
+                art138_title: "Nulidad de Usurpación",
+                art138_text: '"Toda autoridad usurpada es ineficaz y sus actos son nulos." Ningún decreto o fallo de entes de facto posee legitimidad legal.',
+                art333_title: "Garantía de Vigencia",
+                art333_text: 'El deber ineludible de todo ciudadano, investido o no de autoridad, de "colaborar en el restablecimiento de la efectiva vigencia" de la Constitución.',
+                art350_title: "Derecho al Desconocimiento",
+                art350_text: 'El pueblo "desconocerá cualquier régimen, legislación o autoridad que contraríe los valores democráticos o menoscabe los derechos humanos."'
+            },
+            en: {
+                bannerText: "Sign the official petition on Change.org too!",
+                heroBadge: "GLOBAL ADVOCACY INITIATIVE",
+                heroTitle: "Democratic Rescue: We Demand Free Elections and Effective International Action for Venezuela",
+                heroSubtitle: "A sovereign manifesto addressed to the United Nations, OAS, European Union, US Congress and democratic nations of the world to restore the Rule of Law.",
+                statVenLabel: "Venezuelans",
+                statUSLabel: "Global Allies",
+                statTotalLabel: "Total Signatures",
+                sectionTitle: "Manifesto Core Content",
+                ambitLocalTitle: "1. Local Level: Institutional and Civil Guarantees",
+                ambitIntTitle: "2. International Level: Diplomacy, Justice & Cooperation",
+                notesBlock: "<strong>Focus Note:</strong> For a petition of this nature to have a real impact on public opinion or ministries, it must be supported by broad civil coalitions, keeping the Venezuelan citizen as the sole sovereign of their political destiny.",
+                feedTitle: "Recent Signatures & Voices",
+                livePulse: "Live Feed",
+                loadingSigs: "Loading registered signatures...",
+                tabVenLabel: "Venezuelan",
+                tabGlobalLabel: "Global Ally",
+                formVenTitle: "Signature Form",
+                formVenSub: "Please submit accurate information for formal index attachment before international bodies.",
+                lblVenName: "Full Name *",
+                lblVenID: "National ID (Optional if Email is provided)",
+                lblVenEmail: "Email Address (Optional if National ID is provided)",
+                lblVenLocation: "Location *",
+                lblVenRegion: "State / Country *",
+                lblVenComment: "Message or Word of Support (Optional)",
+                btnVenSubmit: "Register My Signature",
+                optIn: "Inside Venezuela",
+                optOut: "In Diaspora",
+                formGlobTitle: "Demand to the U.S. Congress",
+                formGlobSub: "If you are a global ally, sign to demand efficient action against authoritarianism.",
+                lblGlobName: "Full Name *",
+                lblGlobCountry: "Country *",
+                lblGlobZip: "ZIP Code *",
+                lblGlobEmail: "Email Address *",
+                lblGlobCheck: "I authorize sending this formal request to my district legislative delegation in Congress.",
+                btnGlobSubmit: "Submit & Sign",
+                aiHeader: "Advocacy Letter Generator (Gemini AI)",
+                aiSub: "Instantly draft a formal and impactful request addressed to your congressional representatives.",
+                lblLegislators: "Recipients (Optional)",
+                lblMotivations: "Your primary focus or motivation *",
+                btnGenerateAI: "Draft Formal Letter with AI",
+                btnLoadToAI: "Inject into AI Writer",
+                lblCopy: "Copy",
+                orLabel: "or support the external campaign",
+                orLabel2: "or support the external campaign",
+                btnGoChangeOrg: "Go to Change.org Petition",
+                btnGoChangeOrg2: "Go to Change.org Petition",
+                constHeader: "Popular Sovereignty & Constitutional Duty",
+                constSub: "Faced with the historical <strong>breach of the constitutional thread</strong> in Venezuela, our demand rests on the firm foundations of the Constitution of the Republic (C.R.B.V.), which obligates citizens to defend the Republic:",
+                art5_title: "Popular Sovereignty",
+                art5_text: '"Sovereignty resides untransferably in the people... State organs emanate from popular sovereignty and are subject to it."',
+                art138_title: "Nullity of Usurpation",
+                art138_text: '"Any usurped authority is ineffective and its acts are null." No de facto ruling or decree holds constitutional legality.',
+                art333_title: "Guarantee of Validity",
+                art333_text: 'The solemn duty of every citizen to "collaborate in the reestablishment of the effective validity" of the Constitution.',
+                art350_title: "Right of Non-Recognition",
+                art350_text: 'The people "shall disavow any regime, legislation, or authority that contradicts democratic values or undermines human rights."'
+            }
+        };
+    </script>
+</body>
+</html>

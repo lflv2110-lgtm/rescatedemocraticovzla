@@ -27,6 +27,20 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- SOLUCIÓN AL REFERENCEERROR: Declaración temprana del fallback del logo -->
+    <script>
+        function showNavbarLogoFallback() {
+            const img = document.getElementById('navbarLogoImg');
+            const fallback = document.getElementById('navbarLogoFallback');
+            if (img) img.style.display = 'none';
+            if (fallback) {
+                fallback.classList.remove('hidden');
+                fallback.classList.add('flex');
+            }
+        }
+    </script>
+
     <style>
         body {
             font-family: 'Inter', sans-serif;
@@ -49,7 +63,7 @@
             background: #1e293b;
         }
 
-        /* PRINT STYLES - Corporate document layout for street coordinators */
+        /* ESTILOS DE IMPRESIÓN - Maqueta de planilla física corporativa */
         @media print {
             body {
                 background-color: #FFFFFF !important;
@@ -86,11 +100,100 @@
     <!-- NAVBAR -->
     <header class="sticky top-0 z-40 bg-brandDark/90 backdrop-blur-md border-b border-brandLight/50 px-4 py-3">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
-            <!-- Brand with Crop-adjusted logo -->
+            
+            <!-- Brand with PNG Logo masking and premium vector fallback -->
             <div class="flex items-center gap-3">
-                <div class="relative w-12 h-12 flex items-center justify-center rounded-xl bg-gradient-to-tr from-venGold via-venBlue to-brandRed shadow-lg overflow-hidden border border-venGold/30">
-                    <img src="watermarked_img_17515122939470996373.png" alt="Logo Rescate Democrático" class="w-full h-full object-cover scale-[1.38] origin-center animate-fade-in" onerror="this.style.display='none'; document.getElementById('fallbackR').style.display='block';">
-                    <span id="fallbackR" class="hidden text-white font-extrabold text-xl relative z-10">R</span>
+                <div class="relative w-12 h-12 flex items-center justify-center rounded-full bg-slate-950/80 shadow-lg border border-venGold/30 overflow-hidden">
+                    <!-- Imagen PNG con mascara circular y recorte de bordes blancos mediante scale -->
+                    <img id="navbarLogoImg" src="Gemini_Generated_Image_h6wo1wh6wo1wh6wo.png" alt="Logo Rescate Democrático" class="w-full h-full object-cover rounded-full scale-[1.08] origin-center" onerror="showNavbarLogoFallback()">
+                    
+                    <!-- Logotipo Vectorial de Respaldo Exclusivo (Réplica SVG de Alta Fidelidad) -->
+                    <div id="navbarLogoFallback" class="hidden w-full h-full items-center justify-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" class="w-10 h-10 select-none">
+                            <defs>
+                                <!-- Degradado para la llama de la antorcha -->
+                                <linearGradient id="logoFlameGrad" x1="0%" y1="100%" x2="0%" y2="0%">
+                                    <stop offset="0%" stop-color="#E74C3C" />
+                                    <stop offset="60%" stop-color="#F39C12" />
+                                    <stop offset="100%" stop-color="#F1C40F" />
+                                </linearGradient>
+                                <!-- Degradado dorado para el mango de la antorcha -->
+                                <linearGradient id="logoGoldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#F1C40F" />
+                                    <stop offset="100%" stop-color="#D4AC0D" />
+                                </linearGradient>
+                                <!-- Patrón de franjas azules diagonales para la Guayana Esequiba (Zona en reclamación) -->
+                                <pattern id="logoBlueStripes" width="3" height="3" patternTransform="rotate(45 0 0)" patternUnits="userSpaceOnUse">
+                                    <line x1="0" y1="0" x2="0" y2="3" stroke="#2980B9" stroke-width="1.0" />
+                                </pattern>
+                            </defs>
+
+                            <!-- Fondo Azul Oscuro del Escudo -->
+                            <circle cx="50" cy="50" r="48" fill="#0b172a" />
+                            
+                            <!-- Borde de estrellas (Arco superior de 7 estrellas) -->
+                            <g fill="#FFFFFF" opacity="0.9">
+                                <polygon points="21,34 22,36 24,36 22,37 23,39 21,38 19,39 20,37 18,36 20,36" />
+                                <polygon points="30,23 31,25 33,25 31,26 32,28 30,27 28,28 29,26 27,25 29,25" />
+                                <polygon points="40,17 41,19 43,17 42,20 44,21 41,21 40,23 39,21 36,21 38,20" />
+                                <polygon points="50,15 51,17 53,15 52,18 54,19 51,19 50,21 49,19 46,19 48,18" />
+                                <polygon points="60,17 61,19 63,17 62,20 64,21 61,21 60,23 59,21 56,21 58,20" />
+                                <polygon points="70,23 71,25 73,25 71,26 72,28 70,27 68,28 69,26 67,25 69,25" />
+                                <polygon points="79,34 80,36 82,36 80,37 81,39 79,38 77,39 78,37 76,36 78,36" />
+                            </g>
+
+                            <!-- Bandera de Venezuela de fondo (Arco tricolor redondeado) -->
+                            <path d="M 12 50 A 38 38 0 0 1 88 50" fill="none" stroke="#F1C40F" stroke-width="6" />
+                            <path d="M 10 50 A 40 40 0 0 1 90 50" fill="none" stroke="#2980B9" stroke-width="6" />
+                            <path d="M 8 50 A 42 42 0 0 1 92 50" fill="none" stroke="#E74C3C" stroke-width="6" />
+
+                            <!-- Escudo de Armas Central (Blanco con contorno azul marino) -->
+                            <path d="M 32 38 C 32 32, 50 28, 50 28 C 50 28, 68 32, 68 38 C 68 55, 50 68, 50 72 C 50 68, 32 55, 32 38 Z" 
+                                  fill="#FFFFFF" stroke="#050a16" stroke-width="1.5" />
+
+                            <!-- Silueta simplificada de Venezuela dentro del Escudo -->
+                            <path d="M 36 48 
+                                     C 38 42, 42 42, 45 44 
+                                     C 46 39, 49 40, 52 41
+                                     C 55 41, 58 39, 62 40
+                                     C 64 40, 66 42, 67 45
+                                     L 65 58
+                                     C 63 60, 60 63, 58 65
+                                     C 56 68, 53 70, 50 69
+                                     C 48 66, 48 62, 46 60
+                                     C 42 59, 38 56, 36 52 Z" 
+                                  fill="#cbd5e1" />
+
+                            <!-- Guayana Esequiba (Zona en reclamación rellena con franjas azules) -->
+                            <path d="M 64 41
+                                     C 66 41, 68 42, 69 44
+                                     C 70 47, 70 51, 68 54
+                                     C 66 57, 64 58, 62 57
+                                     Z" 
+                                  fill="url(#logoBlueStripes)" stroke="#2980B9" stroke-width="0.5" />
+
+                            <!-- Antorcha de la Libertad superpuesta en el centro -->
+                            <!-- Mango de la antorcha -->
+                            <path d="M 47 70 L 49 51 L 51 51 L 53 70 Z" fill="url(#logoGoldGrad)" />
+                            <!-- Copa de la antorcha -->
+                            <path d="M 44 51 C 44 46, 56 41, 56 51 Z" fill="url(#logoGoldGrad)" />
+                            <ellipse cx="50" cy="48" rx="6" ry="1.5" fill="#D4AC0D" />
+                            
+                            <!-- Llama de la Antorcha -->
+                            <!-- Llama Exterior -->
+                            <path d="M 50 28 
+                                     C 54 34, 56 38, 54 44 
+                                     C 52 47, 48 47, 46 44 
+                                     C 44 38, 47 34, 50 28 Z" 
+                                  fill="url(#logoFlameGrad)" />
+                            <!-- Núcleo interno de la Llama -->
+                            <path d="M 50 33 
+                                     C 52 37, 53 39, 52 42 
+                                     C 51 44, 49 44, 48 42 
+                                     C 47 39, 49 37, 50 33 Z" 
+                                  fill="#F1C40F" />
+                        </svg>
+                    </div>
                 </div>
                 <div>
                     <h1 class="text-xs md:text-sm font-bold leading-tight tracking-tight text-white flex items-center gap-1.5">
@@ -225,7 +328,7 @@
                                 <span id="art138_title">Nulidad de Usurpación</span>
                             </div>
                             <p id="art138_text" class="text-[11px] text-slate-400 leading-relaxed">
-                                "Toda autoridad usurpada es ineficaz y sus actos son nulos." Ningún decreto o fallo de entes de facto posee legitimidad legal.
+                                "Toda autoridad usurpada es ineficaz and sus actos son nulos." Ningún decreto o fallo de entes de facto posee legitimidad legal.
                             </p>
                         </div>
 
@@ -463,8 +566,7 @@
                                     <span id="anal_posture2_title">La Postura Institucional</span>
                                 </h5>
                                 <p class="text-xs text-slate-400 leading-relaxed" id="anal_posture2_text">
-                                    Por el contrario, otras autoridades han propuesto interpretaciones distintas. Al no existir una declaratoria formal de falta absoluta por parte de un Tribunal Supremo de Justicia independiente y debidamente legitimado, el debate permanece abierto.
-                                </p>
+                                    Por el contrario, otras autoridades han propuesto interpretaciones distintas. Al no existir una declaratoria formal de falta absoluta por parte de un Tribunal Supremo de Justicia independiente y debidamente legitimado, el debate permanece abierto.</p>
                             </div>
                         </div>
                     </div>
@@ -526,7 +628,7 @@
                                 <p>La <strong>Comisión Interamericana de Derechos Humanos (CIDH)</strong> mantiene a Venezuela bajo el <strong>Capítulo IV.B</strong> de su Informe Anual, reservado para Estados con crisis extremas a la democracia.</p>
                                 <ul class="list-disc pl-4 space-y-1.5 text-slate-400 mt-2">
                                     <li><strong>Consolidación del Régimen Dictatorial:</strong> En su reciente Informe Anual, la CIDH señala textualmente el "cierre del espacio cívico" y la "consolidación del régimen dictatorial".</li>
-                                    <li><strong>Leyes de Control y Represión:</strong> Se denuncia la aplicación formal de normativas coercitivas, como la <em>Ley de Fiscalización, Regularización, Actuación y Financiamiento de las ONG</em>, utilizada para criminalizar y perseguir a defensores de derechos humanos y asociaciones civiles.</li>
+                                    <li><strong>Leyes de Control and Represión:</strong> Se denuncia la aplicación formal de normativas coercitivas, como la <em>Ley de Fiscalización, Regularización, Actuación y Financiamiento de las ONG</em>, utilizada para criminalizar y perseguir a defensores de derechos humanos y asociaciones civiles.</li>
                                     <li><strong>Cifras de Detención y Persecución:</strong> La CIDH resalta los datos proporcionados por organizaciones de la sociedad civil (como el Foro Penal), registrando picos históricos de detenciones políticas arbitrarias cometidas por componentes de la Fuerza Armada Nacional Bolivariana (FANB) y la Dirección General de Contrainteligencia Militar (DGCIM).</li>
                                 </ul>
                             </div>
@@ -548,7 +650,7 @@
                                 <div>
                                     <strong class="text-white">Amnistía Internacional (AI):</strong>
                                     <p class="text-slate-400 mt-1" id="ai_text">
-                                        Amnistía Internacional insiste en que las violaciones a los derechos humanos y el uso de la tortura en centros clandestinos o sedes de inteligencia estatal continúan impunes. Subrayan la urgencia de mantener abierta la investigación en la Corte Penal Internacional (CPI) bajo el caso <em>Venezuela I</em>, dado que el sistema judicial interno es incapaz e indispuesto a impartir justicia.
+                                        Amnistía Internacional insiste en que las violaciones a los derechos humanos y el uso de la tortura en centros clandestinos o sedes de inteligencia estatal continúan impunes. Subrayan la urgencia de mantener abierta la investigación en la Corte Penal Internacional (CPI) bajo el caso <em>Venezuela I</em>, dado que el sistema judicial interno es incapaz e indispuesto a importar justicia.
                                     </p>
                                 </div>
                             </div>
@@ -767,7 +869,7 @@
 
                     <div class="flex items-start gap-2.5 pt-1">
                         <input type="checkbox" id="glob-auth-letter" required class="mt-1 rounded border-slate-700 bg-slate-900 text-venBlue focus:ring-venBlue/50">
-                        <label for="glob-auth-letter" id="lblGlobCheck" class="text-xs text-slate-400 leading-normal">Autorizo el envío formal de esta petición a la delegación de mi distrito legislativo en el Congreso.</label>
+                        <label for="glob-auth-letter" id="lblGlobCheck" class="text-xs text-slate-400 leading-normal">I authorize sending this formal request to my district legislative delegation in Congress.</label>
                     </div>
 
                     <button type="submit" class="w-full bg-gradient-to-r from-venBlue to-cyan-600 hover:from-cyan-500 hover:to-venBlue text-white font-bold py-3.5 rounded-xl text-sm transition-all duration-300 shadow-lg shadow-venBlue/10 hover:shadow-venBlue/20 active:scale-[0.98] flex items-center justify-center gap-2">
@@ -796,7 +898,7 @@
                     </div>
                     <div>
                         <label id="lblMotivations" class="block text-[10px] font-semibold text-slate-400 uppercase tracking-wider mb-1">Tu motivación o enfoque principal *</label>
-                        <select id="ai-focus" class="w-full bg-slate-900/90 border border-slate-800 focus:border-venGold/50 rounded-lg px-3 py-2 text-slate-200 text-xs outline-none transition-all">
+                        <select id="ai-focus" class="w-full bg-slate-900/90 border border-slate-800/50 rounded-lg px-3 py-2 text-slate-200 text-xs outline-none transition-all">
                             <option value="democracia">Defensa de elecciones libres y derechos humanos</option>
                             <option value="petroleo">Preocupación por licencias energéticas y petróleo que sostienen el régimen</option>
                             <option value="humanitario">Atención inmediata a crisis humanitarias y presos políticos</option>
@@ -1159,16 +1261,120 @@
         </div>
     </footer>
 
-    <!-- SCRIPT LOGIC -->
+    <!-- SCRIPT LOGIC USING SECURE PERSISTENT CLOUD CONNECTIONS AND STANDARD SCOPE TO PREVENT REFERENCEERRORS -->
     <script>
+        // Global variables for cloud persistence (hydrated asynchronously)
+        let app = null;
+        let auth = null;
+        let db = null;
+        let user = null;
+        let unsubscribeSignatures = null;
+        let firebaseReady = false;
+
+        // Container of direct dynamic Firestore functions mapping
+        const cloud = {
+            doc: null,
+            setDoc: null,
+            deleteDoc: null,
+            collection: null
+        };
+
+        // App Environment variables
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
+        let firebaseConfig = null;
+        
+        if (typeof __firebase_config !== 'undefined' && __firebase_config) {
+            try {
+                firebaseConfig = JSON.parse(__firebase_config);
+            } catch(e) {
+                console.error("No se pudo parsear el entorno de persistencia remota", e);
+            }
+        }
+
+        // Real-time remote updates listener (Rules 1, 2)
+        async function setupCloudListener(firebaseCollection, firebaseOnSnapshot) {
+            if (!db || !user) return;
+            
+            // Public collection path strict security rule compliant (Rule 1)
+            const publicSignaturesRef = firebaseCollection(db, 'artifacts', appId, 'public', 'data', 'signatures');
+
+            unsubscribeSignatures = firebaseOnSnapshot(publicSignaturesRef, (snapshot) => {
+                let signaturesFromCloud = [];
+                snapshot.forEach(docSnap => {
+                    signaturesFromCloud.push({ id: docSnap.id, ...docSnap.data() });
+                });
+
+                // Pure in-memory sort to prevent complex dynamic indexing needs (Rule 2)
+                signaturesFromCloud.sort((a, b) => b.timestamp - a.timestamp);
+
+                SecureStorage.setSignatures(signaturesFromCloud);
+                refreshLiveSignaturesFeed();
+                updateUIVisuals();
+                
+                if (document.getElementById('adminModal').classList.contains('flex')) {
+                    updateAdminTable();
+                }
+            }, (error) => {
+                console.error("Error crítico en el monitor de firmas en vivo:", error);
+            });
+        }
+
+        // Asynchronous safe custom authentication (Rule 3)
+        async function initCloudAuth(signInWithCustomToken, signInAnonymously) {
+            if (!auth) return;
+            try {
+                if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+                    await signInWithCustomToken(auth, __initial_auth_token);
+                } else {
+                    await signInAnonymously(auth);
+                }
+            } catch (e) {
+                try {
+                    await signInAnonymously(auth);
+                } catch (err) {
+                    console.error("Fallo definitivo de autenticación en la nube:", err);
+                }
+            }
+        }
+
+        // Dynamic asynchronous loader for Firebase modules. 
+        // Prevents Module load crash from breaking local offline features and inline handlers.
+        async function initFirebaseAndCloudDatabase() {
+            if (!firebaseConfig) return;
+            try {
+                // Dynamically importing ES6 module files
+                const firebaseApp = await import("https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js");
+                const firebaseAuth = await import("https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js");
+                const firebaseFirestore = await import("https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js");
+
+                app = firebaseApp.initializeApp(firebaseConfig);
+                auth = firebaseAuth.getAuth(app);
+                db = firebaseFirestore.getFirestore(app);
+
+                cloud.doc = firebaseFirestore.doc;
+                cloud.setDoc = firebaseFirestore.setDoc;
+                cloud.deleteDoc = firebaseFirestore.deleteDoc;
+                cloud.collection = firebaseFirestore.collection;
+
+                firebaseAuth.onAuthStateChanged(auth, (firebaseUser) => {
+                    user = firebaseUser;
+                    if (user) {
+                        setupCloudListener(firebaseFirestore.collection, firebaseFirestore.onSnapshot);
+                    }
+                });
+
+                await initCloudAuth(firebaseAuth.signInWithCustomToken, firebaseAuth.signInAnonymously);
+                firebaseReady = true;
+            } catch (e) {
+                console.error("Error cargando módulos de Firebase dinámicamente:", e);
+            }
+        }
+
         // Global State Configuration
         let currentLang = 'es';
         let currentTab = 'venezuelan';
-        let firebaseReady = false;
 
-        const apiKey = ""; // Gemini API execution key provided natively at runtime
-
-        // Base32 key compatible with Google Authenticator
+        // Base32 key compatible con Google Authenticator
         const TOTP_SECRET = "MZXW6YTBOR2HA2DMMF2G2YZA";
 
         // SECURE ISOLATION LAYER (IIFE Private Storage Module)
@@ -1206,7 +1412,7 @@
                         try {
                             signatures = JSON.parse(saved);
                         } catch(e) {
-                            console.warn("Secure initialization fell back to predefined schema.", e);
+                            console.warn("Fallo de re-hidratación local.", e);
                         }
                     } else {
                         this.sync();
@@ -1214,6 +1420,20 @@
                 },
                 sync: function() {
                     localStorage.setItem('vzv_local_signatures', JSON.stringify(signatures));
+                },
+                isDuplicate: function(identity, email) {
+                    return signatures.some(s => {
+                        const idMatch = (identity && identity !== '-' && s.identity === identity);
+                        const emailMatch = (email && s.email && s.email.toLowerCase().trim() === email.toLowerCase().trim());
+                        return idMatch || emailMatch;
+                    });
+                },
+                setSignatures: function(newList) {
+                    if (newList && newList.length > 0) {
+                        signatures = newList;
+                    } else if (!localStorage.getItem('vzv_local_signatures')) {
+                        this.sync();
+                    }
                 },
                 add: function(sig) {
                     signatures.unshift(sig);
@@ -1321,7 +1541,7 @@
         // Crypto TOTP validator with built-in skew tolerance
         async function verifyTOTP(secretBase32, inputCode) {
             if (!window.crypto || !window.crypto.subtle) {
-                console.error("Subtle API not available.");
+                console.error("Subtle API no disponible.");
                 return false;
             }
             try {
@@ -1538,6 +1758,17 @@
                 };
             }
 
+            // FILTRO DE VALIDACIÓN DE DUPLICADOS EN TIEMPO REAL
+            const emailToCheck = extras.email || null;
+            if (SecureStorage.isDuplicate(identity, emailToCheck)) {
+                showModal(
+                    currentLang === 'es' ? 'Firma ya Registrada' : 'Signature Already Registered',
+                    currentLang === 'es' ? 'Disculpa, esta Cédula de Identidad o Correo Electrónico ya ha sido utilizado para registrar una firma en nuestra iniciativa.' : 'Sorry, this National ID Card or Email Address has already been used to register a signature in our initiative.',
+                    'error'
+                );
+                return;
+            }
+
             const newSignature = {
                 id: crypto.randomUUID ? crypto.randomUUID() : String(Math.random()),
                 name,
@@ -1553,7 +1784,18 @@
         }
 
         async function saveToDatabase(signature) {
+            // Guardado inmediato en memoria local para feedback instantáneo
             SecureStorage.add(signature);
+            
+            // Persistencia directa en base de datos en la nube (Rule 1 & Rule 3 check)
+            if (db && user && cloud.doc && cloud.setDoc) {
+                try {
+                    const sigDocRef = cloud.doc(db, 'artifacts', appId, 'public', 'data', 'signatures', signature.id);
+                    await cloud.setDoc(sigDocRef, signature);
+                } catch(e) {
+                    console.error("Fallo de guardado remoto, respaldado en caché local:", e);
+                }
+            }
             
             refreshLiveSignaturesFeed();
             updateUIVisuals();
@@ -1852,6 +2094,7 @@
             });
         }
 
+        // Exportar a CSV con cabecera de reporte institucional
         function exportSignaturesToCSV() {
             const rawContent = SecureStorage.exportCSV();
             if (!rawContent) {
@@ -1890,6 +2133,15 @@
                 currentLang === 'es' ? 'Eliminar Registro' : 'Delete Record',
                 currentLang === 'es' ? '¿Estás seguro de que deseas eliminar permanentemente esta firma del sistema?' : 'Are you sure you want to permanently delete this signature from the system?',
                 async function() {
+                    // Borrado reactivo remoto (Rule 1)
+                    if (db && user && cloud.doc && cloud.deleteDoc) {
+                        try {
+                            const sigDocRef = cloud.doc(db, 'artifacts', appId, 'public', 'data', 'signatures', id);
+                            await cloud.deleteDoc(sigDocRef);
+                        } catch(e) {
+                            console.error("No se pudo eliminar de la base de datos remota:", e);
+                        }
+                    }
                     SecureStorage.remove(id);
                     updateUIVisuals();
                     updateAdminTable();
@@ -1938,90 +2190,6 @@
         function closeGeneralModal() {
             document.getElementById('generalModal').classList.add('hidden');
             document.getElementById('generalModal').classList.remove('flex');
-        }
-
-        // Gemini AI Congressional Advocacy Letter Generation using Exponential Backoff
-        async function fetchWithRetry(url, options, retries = 5, delay = 1000) {
-            try {
-                const response = await fetch(url, options);
-                if (!response.ok) {
-                    throw new Error(`HTTP error! Status: ${response.status}`);
-                }
-                return await response.json();
-            } catch (error) {
-                if (retries > 0) {
-                    await new Promise(resolve => setTimeout(resolve, delay));
-                    return fetchWithRetry(url, options, retries - 1, delay * 2);
-                } else {
-                    throw error;
-                }
-            }
-        }
-
-        async function generateAICongressionalLetter() {
-            const recipient = document.getElementById('ai-recipient').value.trim();
-            const focus = document.getElementById('ai-focus').value;
-            const textarea = document.getElementById('ai-letter-textarea');
-            const resultBlock = document.getElementById('aiLetterResult');
-            const writeIcon = document.getElementById('ai-write-icon');
-
-            // Trigger Loading State
-            textarea.value = currentLang === 'es' ? "Redactando su correspondencia de amparo formal mediante Gemini Inteligencia Artificial..." : "Drafting your formal congressional request using Gemini Artificial Intelligence...";
-            resultBlock.classList.remove('hidden');
-            writeIcon.classList.add('animate-spin');
-
-            const payload = {
-                contents: [{
-                    parts: [{
-                        text: `Write a formal, highly professional advocacy letter to US lawmakers demanding action for Venezuela. 
-                        Focus on: ${focus === 'democracia' ? 'Defense of free elections, human rights, and rule of law.' : focus === 'petroleo' ? 'Concerns over oil/energy licenses that financially sustain the authoritarian regime.' : 'Addressing the humanitarian crisis and immediately releasing all political prisoners.'}
-                        Recipients: ${recipient || 'US Congressional Representative / Senator'}.
-                        Write the letter in formal English, structured with Date, Salutation, Body Paragraphs, and a professional closing. Keep it clear, impactful, and ready to send.`
-                    }]
-                }],
-                systemInstruction: {
-                    parts: [{ text: "You are a senior constitutional lawyer and diplomat writing on behalf of Venezuelan citizens and global allies." }]
-                }
-            };
-
-            const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
-            const options = {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(payload)
-            };
-
-            try {
-                const result = await fetchWithRetry(url, options);
-                const generatedText = result.candidates?.[0]?.content?.parts?.[0]?.text;
-                if (generatedText) {
-                    textarea.value = generatedText;
-                } else {
-                    throw new Error("No candidates received from Gemini.");
-                }
-            } catch (err) {
-                console.error("Gemini API Error after retries:", err);
-                textarea.value = currentLang === 'es' ? 
-                    "Error de conexión con el núcleo IA de Gemini. Verifique su red y vuelva a intentarlo." : 
-                    "Failed to communicate with the Gemini AI core. Please check your connection and try again.";
-            } finally {
-                writeIcon.classList.remove('animate-spin');
-            }
-        }
-
-        function copyAILetterToClipboard() {
-            const text = document.getElementById('ai-letter-textarea').value;
-            const dummy = document.createElement("textarea");
-            document.body.appendChild(dummy);
-            dummy.value = text;
-            dummy.select();
-            document.execCommand("copy");
-            document.body.removeChild(dummy);
-            showModal(
-                currentLang === 'es' ? 'Texto Copiado' : 'Text Copied',
-                currentLang === 'es' ? 'La carta ha sido copiada al portapapeles.' : 'The advocacy letter was successfully copied to your clipboard.',
-                'success'
-            );
         }
 
         const translations = {
@@ -2093,7 +2261,7 @@
                 anal_art234_title: "Faltas Temporales",
                 anal_art234_text: "Diferencia la falta absoluta de la falta temporal. Esta última puede extenderse hasta por 90 días, prorrogables. Si la ausencia excede los 180 días, corresponde a la Asamblea Nacional calificar si se asume como falta absoluta.",
                 anal_art333_title: "Restablecimiento de la Constitución",
-                anal_art333_text: "Consagra la vigencia indestructible de la norma fundamental. Impone el deber cívico a todo ciudadano de colaborar activamente en el restablecimiento de su efectiva vigencia.",
+                anal_art333_text: "Consagra la vigencia indestructible de la norma fundamental. Impone el deudor cívico a todo ciudadano de colaborar activamente en el restablecimiento de su efectiva vigencia.",
                 anal_art350_title: "Derecho a la Desobediencia",
                 anal_art350_text: "Reconoce formalmente el derecho del pueblo a desconocer cualquier régimen, legislación o autoridad que menoscabe los derechos humanos o que contravenga las garantías democráticas de la República.",
                 anal_debate_title: "El Debate Jurídico Actual",
@@ -2124,12 +2292,12 @@
                 oea_body: `La <strong>Comisión Interamericana de Derechos Humanos (CIDH)</strong> mantiene a Venezuela bajo el <strong>Capítulo IV.B</strong> de su Informe Anual, reservado para Estados con crisis extremas a la democracia.
                 <ul class="list-disc pl-4 space-y-1.5 text-slate-400 mt-2">
                     <li><strong>Consolidación del Régimen Dictatorial:</strong> En su reciente Informe Anual, la CIDH señala textualmente el "cierre del espacio cívico" y la "consolidación del régimen dictatorial".</li>
-                    <li><strong>Leyes de Control y Represión:</strong> Se denuncia la aplicación formal de normativas coercitivas, como la <em>Ley de Fiscalización, Regularización, Actuación y Financiamiento de las ONG</em>, utilizada para criminalizar y perseguir a defensores de derechos humanos y asociaciones civiles.</li>
+                    <li><strong>Leyes de Control and Represión:</strong> Se denuncia la aplicación formal de normativas coercitivas, como la <em>Ley de Fiscalización, Regularización, Actuación y Financiamiento de las ONG</em>, utilizada para criminalizar y perseguir a defensores de derechos humanos y asociaciones civiles.</li>
                     <li><strong>Cifras de Detención y Persecución:</strong> La CIDH resalta los datos proporcionados por organizaciones de la sociedad civil (como el Foro Penal), registrando picos históricos de detenciones políticas arbitrarias cometidas por componentes de la Fuerza Armada Nacional Bolivariana (FANB) y la Dirección General de Contrainteligencia Militar (DGCIM).</li>
                 </ul>`,
                 ongs_title: "Organizaciones No Gubernamentales Globales",
                 hrw_text: "En su Informe Mundial, HRW expone cómo las tácticas gubernamentales han mutado hacia el hostigamiento digital, persecución a periodistas, anulación de pasaportes como método de castigo extrajudicial, y arrestos arbitrarios de opositores bajo cargos generalizados de \"terrorismo\" e \"incitación al odio\".",
-                ai_text: "Amnistía Internacional insiste en que las violaciones a los derechos humanos y el uso de la tortura en centros clandestinos o sedes de inteligencia estatal continúan impunes. Subrayan la urgencia de mantener abierta la investigación en la Corte Penal Internacional (CPI) bajo el caso <em>Venezuela I</em>, dado que el sistema judicial interno es incapaz e indispuesto a impartir justicia.",
+                ai_text: "Amnistía Internacional insiste en que las violaciones a los derechos humanos y el uso de la tortura en centros clandestinos o sedes de inteligencia estatal continúan impunes. Subrayan la urgencia de mantener abierta la investigación en la Corte Penal Internacional (CPI) bajo el caso <em>Venezuela I</em>, dado que el sistema judicial interno es incapaz e indispuesto a importar justicia.",
                 pilar_title_hdr: "Ejes Fundamentales para el Proyecto Institucional",
                 th_pilar: "Pilar de Rescate",
                 th_diag: "Diagnóstico Internacional",
@@ -2138,7 +2306,7 @@
                 p1_diag: "El Poder Judicial está cooptado y sirve como instrumento punitivo del Ejecutivo.",
                 p1_obj: "Devolver la autonomía e imparcialidad al Tribunal Supremo de Justicia y jueces titulares.",
                 p2_title: "Garantía del Espacio Cívico",
-                p2_diag: "Persecución penal y administrativa a defensores de DDHH y ONG.",
+                p2_diag: "Persecución penal y administrativa a defensores de DDHH and ONG.",
                 p2_obj: "Derogación de leyes de control social y fomento de la libertad de asociación y expresión.",
                 p3_title: "Cooperación con la Justicia Internacional",
                 p3_diag: "Incumplimiento sistémico de recomendaciones y bloqueos a la observación internacional.",
@@ -2369,13 +2537,149 @@
             }
         }
 
+        // Gemini AI Congressional Advocacy Letter Generation using Exponential Backoff
+        async function fetchWithRetry(url, options, retries = 5, delay = 1000) {
+            try {
+                const response = await fetch(url, options);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                return await response.json();
+            } catch (error) {
+                if (retries > 0) {
+                    await new Promise(resolve => setTimeout(resolve, delay));
+                    return fetchWithRetry(url, options, retries - 1, delay * 2);
+                } else {
+                    throw error;
+                }
+            }
+        }
+
+        async function generateAICongressionalLetter() {
+            const recipient = document.getElementById('ai-recipient').value.trim();
+            const focus = document.getElementById('ai-focus').value;
+            const textarea = document.getElementById('ai-letter-textarea');
+            const resultBlock = document.getElementById('aiLetterResult');
+            const writeIcon = document.getElementById('ai-write-icon');
+
+            // Trigger Loading State
+            textarea.value = currentLang === 'es' ? "Redactando su correspondencia de amparo formal mediante Gemini Inteligencia Artificial..." : "Drafting your formal congressional request using Gemini Artificial Intelligence...";
+            resultBlock.classList.remove('hidden');
+            writeIcon.classList.add('animate-spin');
+
+            const payload = {
+                contents: [{
+                    parts: [{
+                        text: `Write a formal, highly professional advocacy letter to US lawmakers demanding action for Venezuela. 
+                        Focus on: ${focus === 'democracia' ? 'Defense of free elections, human rights, and rule of law.' : focus === 'petroleo' ? 'Concerns over oil/energy licenses that financially sustain the authoritarian regime.' : 'Addressing the humanitarian crisis and immediately releasing all political prisoners.'}
+                        Recipients: ${recipient || 'US Congressional Representative / Senator'}.
+                        Write the letter in formal English, structured with Date, Salutation, Body Paragraphs, and a professional closing. Keep it clear, impactful, and ready to send.`
+                    }]
+                }],
+                systemInstruction: {
+                    parts: [{ text: "You are a senior constitutional lawyer and diplomat writing on behalf of Venezuelan citizens and global allies." }]
+                }
+            };
+
+            const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
+            const options = {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(payload)
+            };
+
+            try {
+                const result = await fetchWithRetry(url, options);
+                const generatedText = result.candidates?.[0]?.content?.parts?.[0]?.text;
+                if (generatedText) {
+                    textarea.value = generatedText;
+                } else {
+                    throw new Error("No candidates received from Gemini.");
+                }
+            } catch (err) {
+                console.error("Gemini API Error after retries:", err);
+                textarea.value = currentLang === 'es' ? 
+                    "Error de conexión con el núcleo IA de Gemini. Verifique su red y vuelva a intentarlo." : 
+                    "Failed to communicate with the Gemini AI core. Please check your connection and try again.";
+            } finally {
+                writeIcon.classList.remove('animate-spin');
+            }
+        }
+
+        function copyAILetterToClipboard() {
+            const text = document.getElementById('ai-letter-textarea').value;
+            const dummy = document.createElement("textarea");
+            document.body.appendChild(dummy);
+            dummy.value = text;
+            dummy.select();
+            document.execCommand("copy");
+            document.body.removeChild(dummy);
+            showModal(
+                currentLang === 'es' ? 'Texto Copiado' : 'Text Copied',
+                currentLang === 'es' ? 'La carta ha sido copiada al portapapeles.' : 'The advocacy letter was successfully copied to your clipboard.',
+                'success'
+            );
+        }
+
+        // EXPORTACIÓN A WINDOWS GLOBAL CONTEXT (Para evitar ReferenceErrors al usar script type="module")
+        window.toggleLanguage = toggleLanguage;
+        window.switchLeftTab = switchLeftTab;
+        window.switchTab = switchTab;
+        window.openAdminModal = openAdminModal;
+        window.closeAdminModal = closeAdminModal;
+        window.attemptAdminLogin = attemptAdminLogin;
+        window.validateSecondStep = validateSecondStep;
+        window.lockSensitiveDataInstant = lockSensitiveDataInstant;
+        window.adminLogoutTotal = adminLogoutTotal;
+        window.exportSignaturesToCSV = exportSignaturesToCSV;
+        window.deleteSignature = deleteSignature;
+        window.closeGeneralModal = closeGeneralModal;
+        window.generateAICongressionalLetter = generateAICongressionalLetter;
+        window.copyAILetterToClipboard = copyAILetterToClipboard;
+        window.printPhysicalSheet = printPhysicalSheet;
+        window.toggleAccordion = toggleAccordion;
+        window.lookupLegislatorsByZip = lookupLegislatorsByZip;
+        window.loadLegislatorsIntoAIWriter = loadLegislatorsIntoAIWriter;
+        window.handleSignatureSubmit = handleSignatureSubmit;
+        window.toggleSetupQR = toggleSetupQR;
+
+        // Dynamic Firebase Loader.
+        async function initFirebaseAndCloudDatabase() {
+            if (!firebaseConfig) return;
+            try {
+                const firebaseApp = await import("https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js");
+                const firebaseAuth = await import("https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js");
+                const firebaseFirestore = await import("https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js");
+
+                app = firebaseApp.initializeApp(firebaseConfig);
+                auth = firebaseAuth.getAuth(app);
+                db = firebaseFirestore.getFirestore(app);
+
+                cloud.doc = firebaseFirestore.doc;
+                cloud.setDoc = firebaseFirestore.setDoc;
+                cloud.deleteDoc = firebaseFirestore.deleteDoc;
+                cloud.collection = firebaseFirestore.collection;
+
+                firebaseAuth.onAuthStateChanged(auth, (firebaseUser) => {
+                    user = firebaseUser;
+                    if (user) {
+                        setupCloudListener(firebaseFirestore.collection, firebaseFirestore.onSnapshot);
+                    }
+                });
+
+                await initCloudAuth(firebaseAuth.signInWithCustomToken, firebaseAuth.signInAnonymously);
+                firebaseReady = true;
+            } catch (e) {
+                console.error("Error cargando módulos de Firebase dinámicamente:", e);
+            }
+        }
+
         // On Load initialization
-        window.onload = function() {
-            SecureStorage.init();
-            refreshLiveSignaturesFeed();
-            updateUIVisuals();
-            lucide.createIcons();
-        };
+        SecureStorage.init();
+        refreshLiveSignaturesFeed();
+        updateUIVisuals();
+        lucide.createIcons();
+        initFirebaseAndCloudDatabase();
     </script>
 </body>
 </html>

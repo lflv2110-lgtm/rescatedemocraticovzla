@@ -12,9 +12,9 @@
             theme: {
                 extend: {
                     colors: {
-                        venGold: '#F1C40F',
-                        venBlue: '#2980B9',
-                        brandRed: '#E74C3C',
+                        venGold: '#FCD116',
+                        venBlue: '#004B87',
+                        brandRed: '#CE1126',
                         brandDark: '#050a16',
                         brandMedium: '#0d1527',
                         brandLight: '#1e293b',
@@ -24,7 +24,7 @@
         }
     </script>
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Montserrat:wght@700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
     
@@ -86,7 +86,7 @@
 <body class="text-slate-100 min-h-screen flex flex-col antialiased">
 
     <!-- TOP ANNOUNCEMENT BANNER FOR CHANGE.ORG -->
-    <div class="bg-gradient-to-r from-red-600 via-amber-500 to-blue-600 text-white text-xs md:text-sm font-semibold py-2.5 px-4 text-center relative z-50 flex items-center justify-center gap-2 shadow-lg">
+    <div class="bg-gradient-to-r from-brandRed via-amber-500 to-venBlue text-white text-xs md:text-sm font-semibold py-2.5 px-4 text-center relative z-50 flex items-center justify-center gap-2 shadow-lg">
         <span class="flex items-center gap-1.5 animate-pulse">
             <i data-lucide="award" class="w-4 h-4"></i>
             <span id="bannerText">¡Firma también la petición oficial en Change.org!</span>
@@ -104,102 +104,111 @@
             <!-- Brand with PNG Logo masking and premium vector fallback -->
             <div class="flex items-center gap-3">
                 <div class="relative w-12 h-12 flex items-center justify-center rounded-full bg-slate-950/80 shadow-lg border border-venGold/30 overflow-hidden">
-                    <!-- Imagen PNG con mascara circular y recorte de bordes blancos mediante scale -->
-                    <img id="navbarLogoImg" src="Gemini_Generated_Image_h6wo1wh6wo1wh6wo.png" alt="Logo Rescate Democrático" class="w-full h-full object-cover rounded-full scale-[1.08] origin-center" onerror="showNavbarLogoFallback()">
                     
-                    <!-- Logotipo Vectorial de Respaldo Exclusivo (Réplica SVG de Alta Fidelidad) -->
-                    <div id="navbarLogoFallback" class="hidden w-full h-full items-center justify-center">
+                    <!-- Logotipo Vectorial de Respaldo Exclusivo (Réplica SVG de Alta Fidelidad y Nitidez Extrema) -->
+                    <div id="navbarLogoFallback" class="flex w-full h-full items-center justify-center">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" class="w-10 h-10 select-none">
                             <defs>
+                                <!-- Patrón de franjas azules diagonales para la Guayana Esequiba (Zona en reclamación) -->
+                                <pattern id="logoBlueStripes" width="4" height="4" patternTransform="rotate(45 0 0)" patternUnits="userSpaceOnUse">
+                                    <line x1="0" y1="0" x2="0" y2="4" stroke="#004B87" stroke-width="1.5" />
+                                </pattern>
                                 <!-- Degradado para la llama de la antorcha -->
                                 <linearGradient id="logoFlameGrad" x1="0%" y1="100%" x2="0%" y2="0%">
-                                    <stop offset="0%" stop-color="#E74C3C" />
+                                    <stop offset="0%" stop-color="#CE1126" />
                                     <stop offset="60%" stop-color="#F39C12" />
-                                    <stop offset="100%" stop-color="#F1C40F" />
+                                    <stop offset="100%" stop-color="#FCD116" />
                                 </linearGradient>
                                 <!-- Degradado dorado para el mango de la antorcha -->
                                 <linearGradient id="logoGoldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                                    <stop offset="0%" stop-color="#F1C40F" />
+                                    <stop offset="0%" stop-color="#FCD116" />
                                     <stop offset="100%" stop-color="#D4AC0D" />
                                 </linearGradient>
-                                <!-- Patrón de franjas azules diagonales para la Guayana Esequiba (Zona en reclamación) -->
-                                <pattern id="logoBlueStripes" width="3" height="3" patternTransform="rotate(45 0 0)" patternUnits="userSpaceOnUse">
-                                    <line x1="0" y1="0" x2="0" y2="3" stroke="#2980B9" stroke-width="1.0" />
-                                </pattern>
                             </defs>
 
                             <!-- Fondo Azul Oscuro del Escudo -->
-                            <circle cx="50" cy="50" r="48" fill="#0b172a" />
+                            <circle cx="50" cy="50" r="48" fill="#050a16" />
                             
-                            <!-- Borde de estrellas (Arco superior de 7 estrellas) -->
-                            <g fill="#FFFFFF" opacity="0.9">
-                                <polygon points="21,34 22,36 24,36 22,37 23,39 21,38 19,39 20,37 18,36 20,36" />
-                                <polygon points="30,23 31,25 33,25 31,26 32,28 30,27 28,28 29,26 27,25 29,25" />
-                                <polygon points="40,17 41,19 43,17 42,20 44,21 41,21 40,23 39,21 36,21 38,20" />
-                                <polygon points="50,15 51,17 53,15 52,18 54,19 51,19 50,21 49,19 46,19 48,18" />
-                                <polygon points="60,17 61,19 63,17 62,20 64,21 61,21 60,23 59,21 56,21 58,20" />
-                                <polygon points="70,23 71,25 73,25 71,26 72,28 70,27 68,28 69,26 67,25 69,25" />
-                                <polygon points="79,34 80,36 82,36 80,37 81,39 79,38 77,39 78,37 76,36 78,36" />
+                            <!-- Bandera de Venezuela de fondo (Arco tricolor redondeado perimetral) -->
+                            <path d="M 9,50 A 41,41 0 0,1 91,50" fill="none" stroke="#FCD116" stroke-width="4" />
+                            <path d="M 12,50 A 38,38 0 0,1 88,50" fill="none" stroke="#004B87" stroke-width="4" />
+                            <path d="M 15,50 A 35,35 0 0,1 85,50" fill="none" stroke="#CE1126" stroke-width="4" />
+
+                            <!-- Borde de estrellas (Arco superior de 7 estrellas blancas dispuestas sobre la franja azul) -->
+                            <g fill="#FFFFFF" stroke="#004B87" stroke-width="0.3">
+                                <!-- Estrella 1 (210 deg) -->
+                                <polygon points="17.1,29.5 17.7,31.5 19.7,31.5 18.1,32.7 18.7,34.7 17.1,33.5 15.5,34.7 16.1,32.7 14.5,31.5 16.5,31.5" />
+                                <!-- Estrella 2 (230 deg) -->
+                                <polygon points="25.6,19.4 26.2,21.4 28.2,21.4 26.6,22.6 27.2,24.6 25.6,23.4 24.0,24.6 24.6,22.6 23.0,21.4 25.0,21.4" />
+                                <!-- Estrella 3 (250 deg) -->
+                                <polygon points="37.0,12.8 37.6,14.8 39.6,14.8 38.0,16.0 38.6,18.0 37.0,16.8 35.4,18.0 36.0,16.0 34.4,14.8 36.4,14.8" />
+                                <!-- Estrella 4 (270 deg) -->
+                                <polygon points="50.0,10.5 50.6,12.5 52.6,12.5 51.0,13.7 51.6,15.7 50.0,14.5 48.4,15.7 49.0,13.7 47.4,12.5 49.4,12.5" />
+                                <!-- Estrella 5 (290 deg) -->
+                                <polygon points="63.0,12.8 63.6,14.8 65.6,14.8 64.0,16.0 64.6,18.0 63.0,16.8 61.4,18.0 62.0,16.0 60.4,14.8 62.4,14.8" />
+                                <!-- Estrella 6 (310 deg) -->
+                                <polygon points="75.6,19.4 76.2,21.4 78.2,21.4 76.6,22.6 77.2,24.6 75.6,23.4 74.0,24.6 74.6,22.6 73.0,21.4 75.0,21.4" />
+                                <!-- Estrella 7 (330 deg) -->
+                                <polygon points="82.9,29.5 83.5,31.5 85.5,31.5 83.9,32.7 84.5,34.7 82.9,33.5 81.3,34.7 81.9,32.7 80.3,31.5 82.3,31.5" />
                             </g>
 
-                            <!-- Bandera de Venezuela de fondo (Arco tricolor redondeado) -->
-                            <path d="M 12 50 A 38 38 0 0 1 88 50" fill="none" stroke="#F1C40F" stroke-width="6" />
-                            <path d="M 10 50 A 40 40 0 0 1 90 50" fill="none" stroke="#2980B9" stroke-width="6" />
-                            <path d="M 8 50 A 42 42 0 0 1 92 50" fill="none" stroke="#E74C3C" stroke-width="6" />
-
                             <!-- Escudo de Armas Central (Blanco con contorno azul marino) -->
-                            <path d="M 32 38 C 32 32, 50 28, 50 28 C 50 28, 68 32, 68 38 C 68 55, 50 68, 50 72 C 50 68, 32 55, 32 38 Z" 
-                                  fill="#FFFFFF" stroke="#050a16" stroke-width="1.5" />
+                            <path d="M 31 38 C 31 31, 50 26, 50 26 C 50 26, 69 31, 69 38 C 69 56, 50 70, 50 74 C 50 70, 31 56, 31 38 Z" 
+                                  fill="#0a192f" stroke="#004B87" stroke-width="1.5" />
 
-                            <!-- Silueta simplificada de Venezuela dentro del Escudo -->
-                            <path d="M 36 48 
-                                     C 38 42, 42 42, 45 44 
-                                     C 46 39, 49 40, 52 41
-                                     C 55 41, 58 39, 62 40
-                                     C 64 40, 66 42, 67 45
-                                     L 65 58
-                                     C 63 60, 60 63, 58 65
-                                     C 56 68, 53 70, 50 69
-                                     C 48 66, 48 62, 46 60
-                                     C 42 59, 38 56, 36 52 Z" 
-                                  fill="#cbd5e1" />
-
-                            <!-- Guayana Esequiba (Zona en reclamación rellena con franjas azules) -->
-                            <path d="M 64 41
-                                     C 66 41, 68 42, 69 44
-                                     C 70 47, 70 51, 68 54
-                                     C 66 57, 64 58, 62 57
-                                     Z" 
-                                  fill="url(#logoBlueStripes)" stroke="#2980B9" stroke-width="0.5" />
-
-                            <!-- Antorcha de la Libertad superpuesta en el centro -->
+                            <!-- Antorcha de la Libertad nítida superpuesta detrás del mapa -->
                             <!-- Mango de la antorcha -->
-                            <path d="M 47 70 L 49 51 L 51 51 L 53 70 Z" fill="url(#logoGoldGrad)" />
+                            <path d="M 48,72 L 48,52 L 52,51 L 52,72 Z" fill="url(#logoGoldGrad)" />
                             <!-- Copa de la antorcha -->
-                            <path d="M 44 51 C 44 46, 56 41, 56 51 Z" fill="url(#logoGoldGrad)" />
-                            <ellipse cx="50" cy="48" rx="6" ry="1.5" fill="#D4AC0D" />
+                            <path d="M 45,51 C 45,46, 55,46, 55,51 Z" fill="url(#logoGoldGrad)" />
+                            <ellipse cx="50" cy="48" rx="5" ry="1.5" fill="#D4AC0D" />
                             
                             <!-- Llama de la Antorcha -->
-                            <!-- Llama Exterior -->
-                            <path d="M 50 28 
-                                     C 54 34, 56 38, 54 44 
-                                     C 52 47, 48 47, 46 44 
-                                     C 44 38, 47 34, 50 28 Z" 
-                                  fill="url(#logoFlameGrad)" />
-                            <!-- Núcleo interno de la Llama -->
-                            <path d="M 50 33 
-                                     C 52 37, 53 39, 52 42 
-                                     C 51 44, 49 44, 48 42 
-                                     C 47 39, 49 37, 50 33 Z" 
-                                  fill="#F1C40F" />
+                            <path d="M 50,22 C 54,28 56,32 54,38 C 52,41 48,41 46,38 C 44,32 46,28 50,22 Z" fill="url(#logoFlameGrad)" />
+                            <path d="M 50,27 C 52,30 53,32 52,36 C 51,38 49,38 48,36 C 47,32 48,30 50,27 Z" fill="#FCD116" />
+
+                            <!-- SILUETA NÍTIDA Y EXACTA DE VENEZUELA (Integrando la Guayana Esequiba) -->
+                            <path d="M 33,46 
+                                     C 31,48 34,53 36,55 
+                                     C 37,56 39,56 41,54 
+                                     C 42,52 42,46 43,40 
+                                     C 44,36 47,34 49,36 
+                                     C 51,38 51,41 54,42 
+                                     C 57,43 61,43 64,42 
+                                     C 67,41 70,40 73,41 
+                                     C 75,42 77,42 78,43 
+                                     C 79,44 81,45 82,46
+                                     C 84,45 87,46 89,48
+                                     C 91,51 91,55 89,59
+                                     C 87,63 86,66 84,68
+                                     C 82,70 80,71 78,70
+                                     C 76,71 73,73 69,74
+                                     C 65,75 61,80 59,85
+                                     C 57,88 55,86 54,81
+                                     C 53,76 52,72 49,69
+                                     C 46,66 45,63 43,61
+                                     C 41,59 38,57 36,54
+                                     C 34,51 33,48 33,46 Z" 
+                                  fill="#f8fafc" fill-opacity="0.9" stroke="#004B87" stroke-width="1.2" stroke-linejoin="round" />
+
+                            <!-- Guayana Esequiba (Zona en reclamación con franjas diagonales azules rey) -->
+                            <path d="M 78,43 
+                                     C 81,43 83,44 85,46
+                                     C 87,48 89,50 89,52
+                                     C 88,56 86,60 84,63
+                                     C 82,65 80,66 78,66
+                                     C 77,62 76,58 75,55
+                                     Z" 
+                                  fill="url(#logoBlueStripes)" stroke="#004B87" stroke-width="0.8" stroke-dasharray="1,1" />
                         </svg>
                     </div>
+
                 </div>
                 <div>
-                    <h1 class="text-xs md:text-sm font-bold leading-tight tracking-tight text-white flex items-center gap-1.5">
+                    <h1 class="text-xs md:text-sm font-black leading-tight tracking-tight text-white flex items-center gap-1.5">
                         RESCATE DEMOCRÁTICO
                     </h1>
-                    <p class="text-[9px] text-slate-400 tracking-wider font-semibold uppercase">Acción Internacional</p>
+                    <p class="text-[9px] text-slate-400 tracking-wider font-bold uppercase">Venezuela Libre</p>
                 </div>
             </div>
 
@@ -363,7 +372,7 @@
                         Admisibilidad Jurídica Internacional
                     </h3>
                     <p id="legalSub" class="text-xs text-slate-300 leading-relaxed mb-4">
-                        Este documento de manifestación popular y recogida de voluntades está estructurado bajo las normativas vigentes que permiten la presentación formal ante delegaciones legislativas y cortes de derechos humanos:
+                        Este documento de amparo de firmas voluntarias está estructurado bajo normativas que permiten la presentación formal ante delegaciones legislativas y cortes de derechos humanos:
                     </p>
                     
                     <div class="space-y-3">
@@ -375,7 +384,7 @@
                             <i id="legal-arrow" data-lucide="chevron-down" class="w-4 h-4 transition-transform duration-300"></i>
                         </button>
                         <div id="legal-accordion-content" class="hidden p-4 rounded-xl bg-brandDark/90 border border-slate-800 space-y-3 text-xs text-slate-400 leading-normal">
-                            <p><strong>1. Declaración Universal de los Derechos Humanos (ONU) - Art. 19 y 21:</strong> Establece el derecho fundamental de expresión, opinión, y a participar en el gobierno de su país, directamente o por medio de representantes libremente elegidos.</p>
+                            <p><strong>1. Declaración Universal de los Derechos Humanos (ONU) - Art. 19 y 21:</strong> Establece el derecho fundamental de expresión, opinión, y a participar en el de su país, directamente o por medio de representantes libremente elegidos.</p>
                             <p><strong>2. Carta Democrática Interamericana (OEA) - Art. 2, 3 y 6:</strong> Consagra que los pueblos de América tienen derecho a la democracia y sus gobiernos tienen la obligación de promoverla y defenderla, habilitando los canales de participación de la sociedad civil organizada.</p>
                             <p><strong>3. Tratado de Funcionamiento de la Unión Europea - Art. 227:</strong> Cualquier ciudadano de la Unión o residente puede presentar, individualmente o en asociación con otros, una petición al Parlamento Europeo sobre asuntos de competencia institucional.</p>
                             <p><strong>4. Primera Enmienda de la Constitución de los EE. UU. (Cláusula de Petición):</strong> Salvaguarda de forma estricta el derecho de los ciudadanos a solicitar y demandar una reparación de agravios o acciones de su gobierno (First Amendment Right to Petition).</p>
@@ -442,7 +451,7 @@
                             </div>
                             <div>
                                 <h4 id="int_p4_title" class="font-bold text-white mb-1">Canalización de Ayuda Humanitaria Directa:</h4>
-                                <p id="int_p4_text">Coordinar la asistencia internacional a través de la sociedad civil organizada y agencias independientes de la ONU, evitando el uso político y de control social de los recursos humanitarios.</p>
+                                <p id="int_p4_text">Coordinar la asistencia internacional a través de la sociedad civil organizada y agencias independientes de la ONU, avoiding el uso político y de control social de los recursos humanitarios.</p>
                             </div>
                         </div>
                     </div>
@@ -560,13 +569,14 @@
                                 </p>
                             </div>
 
-                            <div class="bg-slate-950/60 p-4 rounded-xl border border-slate-850">
+                            <div class="bg-slate-955/60 p-4 rounded-xl border border-slate-850">
                                 <h5 class="text-xs font-bold text-venBlue uppercase tracking-wide mb-1 flex items-center gap-1.5">
                                     <i data-lucide="landmark" class="w-3.5 h-3.5"></i>
                                     <span id="anal_posture2_title">La Postura Institucional</span>
                                 </h5>
                                 <p class="text-xs text-slate-400 leading-relaxed" id="anal_posture2_text">
-                                    Por el contrario, otras autoridades han propuesto interpretaciones distintas. Al no existir una declaratoria formal de falta absoluta por parte de un Tribunal Supremo de Justicia independiente y debidamente legitimado, el debate permanece abierto.</p>
+                                    Por el contrario, otras autoridades han propuesto interpretaciones distintas. Al no existir una declaratoria formal de falta absoluta por parte de un Tribunal Supremo de Justicia independiente y debidamente legitimado, el debate permanece abierto.
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -679,7 +689,7 @@
                                     </tr>
                                     <tr class="hover:bg-slate-900/10">
                                         <td class="px-4 py-3.5 font-bold text-white border-r border-slate-800" id="p2_title">Garantía del Espacio Cívico</td>
-                                        <td class="px-4 py-3.5 border-r border-slate-800" id="p2_diag">Persecución penal y administrativa a defensores de DDHH y ONG.</td>
+                                        <td class="px-4 py-3.5 border-r border-slate-800" id="p2_diag">Persecución penal y administrativa a defensores de DDHH and ONG.</td>
                                         <td class="px-4 py-3.5" id="p2_obj">Derogación de leyes de control social y fomento de la libertad de asociación y expresión.</td>
                                     </tr>
                                     <tr class="hover:bg-slate-900/10">
@@ -820,59 +830,56 @@
             </div>
 
             <!-- GLOBAL/US CITIZENS FORM -->
-            <div id="form-global" class="hidden bg-gradient-to-b from-brandMedium/40 to-brandDark/50 border border-brandLight/15 rounded-2xl p-6 md:p-8 space-y-6 shadow-xl relative">
-                <div class="absolute -top-3 -right-3 w-12 h-12 flex items-center justify-center rounded-2xl bg-venBlue/10 border border-venBlue/30 text-venBlue font-bold">
-                    🌐
-                </div>
-                <div>
+            <div id="form-global" class="hidden bg-white border border-slate-200 rounded-2xl p-6 shadow-sm space-y-4">
+                <div class="flex items-center justify-between border-b border-slate-100 pb-3">
                     <h3 id="formGlobTitle" class="serif-title text-xl font-bold text-white mb-2">Exigencia al Congreso de EE.UU.</h3>
-                    <p id="formGlobSub" class="text-xs text-slate-400">Si eres aliado internacional o legislador, asiste con tu firma a exigir acciones eficientes contra el autoritarismo.</p>
+                    <span class="text-xs bg-venBlue/10 text-venBlue px-2.5 py-1 rounded-full font-bold">US 🇺🇸</span>
                 </div>
 
                 <form onsubmit="handleSignatureSubmit(event, 'global')" class="space-y-4">
                     <div>
-                        <label id="lblGlobName" class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">Full Name *</label>
-                        <input type="text" id="glob-name" required class="w-full bg-slate-900/80 border border-slate-700/60 focus:border-venBlue/80 focus:ring-1 focus:ring-venBlue/50 rounded-xl px-4 py-3 text-slate-200 text-sm outline-none transition-all" placeholder="John Doe">
+                        <label id="lblGlobName" class="block text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-1">Full Name *</label>
+                        <input type="text" id="glob-name" required class="w-full bg-slate-50 border border-slate-300 focus:border-venBlue rounded-lg px-3 py-2 text-slate-800 text-xs outline-none transition-all" placeholder="John Doe">
                     </div>
 
                     <div class="grid grid-cols-2 gap-4">
                         <div>
-                            <label id="lblGlobCountry" class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">Country / País *</label>
-                            <input type="text" id="glob-country" required class="w-full bg-slate-900/80 border border-slate-700/60 focus:border-venBlue/80 focus:ring-1 focus:ring-venBlue/50 rounded-xl px-4 py-3 text-slate-200 text-sm outline-none transition-all" value="United States">
+                            <label id="lblGlobCountry" class="block text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-1">Country *</label>
+                            <input type="text" id="glob-country" required class="w-full bg-slate-50 border border-slate-300 focus:border-venBlue focus:ring-1 focus:ring-venBlue rounded-lg px-3 py-2 text-slate-800 text-xs outline-none transition-all" value="United States">
                         </div>
                         <div>
-                            <label id="lblGlobZip" class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">ZIP Code (US) *</label>
-                            <input type="text" id="glob-zip" onkeyup="lookupLegislatorsByZip(this.value)" class="w-full bg-slate-900/80 border border-slate-700/60 focus:border-venBlue/80 focus:ring-1 focus:ring-venBlue/50 rounded-xl px-4 py-3 text-slate-200 text-sm outline-none transition-all" placeholder="e.g. 33101">
+                            <label id="lblGlobZip" class="block text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-1">ZIP Code (US) *</label>
+                            <input type="text" id="glob-zip" onkeyup="lookupLegislatorsByZip(this.value)" class="w-full bg-slate-50 border border-slate-300 focus:border-venBlue focus:ring-1 focus:ring-venBlue rounded-lg px-3 py-2 text-slate-800 text-xs outline-none transition-all" placeholder="e.g. 33101">
                         </div>
                     </div>
 
                     <!-- ZIP CODE DYNAMIC LEGISLATORS RESULT -->
-                    <div id="zipResultBlock" class="hidden bg-brandDark/80 border border-brandLight/20 rounded-xl p-3.5 space-y-2">
-                        <div class="flex items-center gap-1.5 text-xs text-venGold font-semibold">
+                    <div id="zipResultBlock" class="hidden bg-slate-50 border border-slate-200 rounded-lg p-3 space-y-2">
+                        <div class="flex items-center gap-1.5 text-xs text-venBlue font-semibold">
                             <i data-lucide="search" class="w-3.5 h-3.5"></i>
                             <span id="zipResultHeader">Legisladores identificados:</span>
                         </div>
-                        <div class="space-y-1 text-xs text-slate-300">
+                        <div class="space-y-1 text-xs text-slate-600">
                             <p class="flex justify-between"><strong>Senadores:</strong> <span id="foundSenators">-</span></p>
                             <p class="flex justify-between"><strong>Representante:</strong> <span id="foundRep">-</span></p>
                         </div>
-                        <button type="button" onclick="loadLegislatorsIntoAIWriter()" class="w-full mt-1.5 py-1.5 px-2 bg-brandMedium/80 hover:bg-brandMedium text-[10px] text-slate-200 border border-slate-700 rounded-lg flex items-center justify-center gap-1 transition-all">
-                            <i data-lucide="sparkles" class="w-3.5 h-3.5 text-venGold"></i>
+                        <button type="button" onclick="loadLegislatorsIntoAIWriter()" class="w-full mt-1 px-2 py-1.5 bg-venBlue/10 hover:bg-venBlue/20 text-venBlue rounded-md text-[10px] font-bold flex items-center justify-center gap-1 transition-all">
+                            <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
                             <span id="btnLoadToAI">Inyectar en Generador de IA</span>
                         </button>
                     </div>
 
                     <div>
-                        <label id="lblGlobEmail" class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">Email Address *</label>
-                        <input type="email" id="glob-email" required class="w-full bg-slate-900/80 border border-slate-700/60 focus:border-venBlue/80 focus:ring-1 focus:ring-venBlue/50 rounded-xl px-4 py-3 text-slate-200 text-sm outline-none transition-all" placeholder="john.doe@example.com">
+                        <label id="lblGlobEmail" class="block text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-1">Email Address *</label>
+                        <input type="email" id="glob-email" required class="w-full bg-slate-50 border border-slate-300 focus:border-venBlue rounded-lg px-3 py-2 text-slate-800 text-xs outline-none transition-all" placeholder="john.doe@example.com">
                     </div>
 
                     <div class="flex items-start gap-2.5 pt-1">
-                        <input type="checkbox" id="glob-auth-letter" required class="mt-1 rounded border-slate-700 bg-slate-900 text-venBlue focus:ring-venBlue/50">
-                        <label for="glob-auth-letter" id="lblGlobCheck" class="text-xs text-slate-400 leading-normal">I authorize sending this formal request to my district legislative delegation in Congress.</label>
+                        <input type="checkbox" id="glob-auth-letter" required class="mt-1 rounded border-slate-300 bg-slate-50 text-venBlue focus:ring-venBlue">
+                        <label for="glob-auth-letter" id="lblGlobCheck" class="text-xs text-slate-500 leading-normal">I authorize sending this formal request to my district legislative delegation in Congress.</label>
                     </div>
 
-                    <button type="submit" class="w-full bg-gradient-to-r from-venBlue to-cyan-600 hover:from-cyan-500 hover:to-venBlue text-white font-bold py-3.5 rounded-xl text-sm transition-all duration-300 shadow-lg shadow-venBlue/10 hover:shadow-venBlue/20 active:scale-[0.98] flex items-center justify-center gap-2">
+                    <button type="submit" class="w-full bg-venBlue hover:bg-blue-800 text-white font-bold py-3 rounded-lg text-xs transition-all shadow-md shadow-venBlue/10 flex items-center justify-center gap-1.5">
                         <i data-lucide="mail-check" class="w-4 h-4"></i>
                         <span id="btnGlobSubmit">Enviar Demanda & Firmar</span>
                     </button>
@@ -880,32 +887,32 @@
             </div>
 
             <!-- AI WRITER BLOCK -->
-            <div class="bg-gradient-to-tr from-brandMedium/30 to-slate-900/60 border border-brandLight/20 rounded-2xl p-6 space-y-4 shadow-xl">
+            <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm space-y-4">
                 <div class="flex items-center gap-2">
-                    <div class="p-2 rounded-lg bg-venGold/15 text-venGold">
+                    <div class="p-2 rounded-lg bg-venGold/15 text-venBlue">
                         <i data-lucide="sparkles" class="w-5 h-5"></i>
                     </div>
                     <div>
-                        <h4 id="aiHeader" class="font-bold text-white text-sm md:text-base">Generador de Cartas de Presión (Gemini IA)</h4>
+                        <h4 id="aiHeader" class="font-bold text-slate-800 text-sm md:text-base">Generador de Cartas de Presión (Gemini IA)</h4>
                         <p id="aiSub" class="text-xs text-slate-400">Genera de forma instantánea una carta formal dirigida a legisladores estadounidenses.</p>
                     </div>
                 </div>
 
                 <div class="space-y-3">
                     <div>
-                        <label id="lblLegislators" class="block text-[10px] font-semibold text-slate-400 uppercase tracking-wider mb-1">Destinatarios (Opcional)</label>
-                        <input type="text" id="ai-recipient" class="w-full bg-slate-900/90 border border-slate-800 focus:border-venGold/50 rounded-lg px-3 py-2 text-slate-200 text-xs outline-none transition-all" placeholder="Sen. Marco Rubio, Sen. Rick Scott...">
+                        <label id="lblLegislators" class="block text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-1">Destinatarios (Opcional)</label>
+                        <input type="text" id="ai-recipient" class="w-full bg-slate-50 border border-slate-300 focus:border-venBlue rounded-lg px-3 py-2 text-slate-800 text-xs outline-none transition-all" placeholder="Sen. Marco Rubio, Sen. Rick Scott...">
                     </div>
                     <div>
-                        <label id="lblMotivations" class="block text-[10px] font-semibold text-slate-400 uppercase tracking-wider mb-1">Tu motivación o enfoque principal *</label>
-                        <select id="ai-focus" class="w-full bg-slate-900/90 border border-slate-800/50 rounded-lg px-3 py-2 text-slate-200 text-xs outline-none transition-all">
+                        <label id="lblMotivations" class="block text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-1">Tu motivación o enfoque principal *</label>
+                        <select id="ai-focus" class="w-full bg-slate-50 border border-slate-300 focus:border-venBlue rounded-lg px-3 py-2 text-slate-800 text-xs outline-none transition-all">
                             <option value="democracia">Defensa de elecciones libres y derechos humanos</option>
                             <option value="petroleo">Preocupación por licencias energéticas y petróleo que sostienen el régimen</option>
                             <option value="humanitario">Atención inmediata a crisis humanitarias y presos políticos</option>
                         </select>
                     </div>
 
-                    <button type="button" onclick="generateAICongressionalLetter()" class="w-full bg-slate-800 hover:bg-slate-700 border border-slate-700 hover:border-venGold/40 text-slate-200 font-semibold py-2 px-3 rounded-xl text-xs flex items-center justify-center gap-1.5 transition-all">
+                    <button type="button" onclick="generateAICongressionalLetter()" class="w-full bg-venBlue hover:bg-blue-800 text-white font-bold py-2.5 px-3 rounded-lg text-xs flex items-center justify-center gap-1.5 transition-all">
                         <i id="ai-write-icon" data-lucide="terminal" class="w-3.5 h-3.5 text-venGold"></i>
                         <span id="btnGenerateAI">Redactar Carta Formal con IA</span>
                     </button>
@@ -913,13 +920,13 @@
 
                 <div id="aiLetterResult" class="hidden space-y-2">
                     <div class="flex justify-between items-center">
-                        <span class="text-[10px] font-bold text-venGold uppercase tracking-wider">Carta redactada con Gemini:</span>
-                        <button type="button" onclick="copyAILetterToClipboard()" class="text-xs text-slate-400 hover:text-slate-200 flex items-center gap-1">
+                        <span class="text-[10px] font-bold text-venBlue uppercase tracking-wider">Carta redactada con Gemini:</span>
+                        <button type="button" onclick="copyAILetterToClipboard()" class="text-xs text-slate-400 hover:text-slate-600 flex items-center gap-1 font-bold">
                             <i data-lucide="copy" class="w-3.5 h-3.5"></i>
                             <span id="lblCopy">Copiar</span>
                         </button>
                     </div>
-                    <textarea id="ai-letter-textarea" rows="8" class="w-full bg-brandDark/85 border border-brandLight/20 rounded-xl p-3 text-slate-300 text-xs font-mono outline-none resize-y leading-relaxed"></textarea>
+                    <textarea id="ai-letter-textarea" rows="8" class="w-full bg-slate-50 border border-slate-200 rounded-lg p-3 text-slate-700 text-xs font-mono outline-none resize-y leading-relaxed"></textarea>
                 </div>
             </div>
 
@@ -927,14 +934,14 @@
     </main>
 
     <!-- ADMIN MODAL -->
-    <div id="adminModal" class="fixed inset-0 z-50 bg-brandDark/90 backdrop-blur-sm hidden items-center justify-center p-4">
-        <div class="bg-brandMedium border border-brandLight/20 w-full max-w-4xl rounded-2xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh]">
+    <div id="adminModal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="bg-white border border-slate-200 w-full max-w-4xl rounded-2xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh]">
             
             <!-- HEADER -->
-            <div class="p-6 border-b border-brandLight/15 flex justify-between items-center bg-brandDark/40">
+            <div class="p-6 border-b border-slate-100 flex justify-between items-center bg-slate-50">
                 <div class="flex items-center gap-2">
-                    <i data-lucide="lock" class="w-5 h-5 text-venGold"></i>
-                    <h3 id="adminModalTitle" class="serif-title text-xl font-bold text-white">Consola de Administración de Firmas</h3>
+                    <i data-lucide="lock" class="w-5 h-5 text-venBlue"></i>
+                    <h3 id="adminModalTitle" class="text-strong-title text-xl text-slate-800">Consola de Administración de Firmas</h3>
                 </div>
                 <button onclick="closeAdminModal()" class="text-slate-400 hover:text-white transition-colors">
                     <i data-lucide="x" class="w-6 h-6"></i>
@@ -943,16 +950,16 @@
 
             <!-- LOGIN SHIELD (STEP 1) -->
             <div id="adminLoginBlock" class="p-8 max-w-md mx-auto w-full text-center space-y-6 my-auto">
-                <div class="mx-auto w-12 h-12 rounded-xl bg-venGold/15 text-venGold flex items-center justify-center">
+                <div class="mx-auto w-12 h-12 rounded-xl bg-venBlue/10 text-venBlue flex items-center justify-center">
                     <i data-lucide="shield-alert" class="w-6 h-6"></i>
                 </div>
                 <div>
-                    <h4 id="adminAuthTitle" class="font-bold text-white text-base">Autenticación de Administrador</h4>
-                    <p id="adminAuthSub" class="text-xs text-slate-400 mt-1">El acceso a las estadísticas consolidadas y moderación de firmas requiere su clave principal.</p>
+                    <h4 id="adminAuthTitle" class="font-bold text-slate-800 text-base">Autenticación de Administrador</h4>
+                    <p id="adminAuthSub" class="text-xs text-slate-500 mt-1">El acceso a las estadísticas consolidadas y moderación de firmas requiere su clave principal.</p>
                 </div>
                 <div class="space-y-4">
                     <input type="password" id="adminPasswordInput" class="w-full bg-slate-900 border border-slate-700/60 focus:border-venGold rounded-xl px-4 py-3 text-slate-100 text-sm text-center outline-none tracking-widest" placeholder="••••••••">
-                    <button onclick="attemptAdminLogin()" class="w-full bg-venGold hover:bg-amber-500 text-brandDark font-bold py-3 rounded-xl text-sm transition-all shadow-md shadow-venGold/10 active:scale-[0.98]">
+                    <button onclick="attemptAdminLogin()" class="w-full bg-venBlue hover:bg-blue-800 text-white font-bold py-3 rounded-xl text-sm transition-all shadow-md active:scale-[0.98]">
                         <span id="btnAdminAuth">Validar Credencial Principal</span>
                     </button>
                 </div>
@@ -963,21 +970,21 @@
                 
                 <!-- KPI CARDS -->
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                    <div class="bg-brandDark/40 border border-slate-800 p-4 rounded-xl text-center">
-                        <p class="text-xs text-slate-400" id="kpiTotalLabel">Total Registrado</p>
-                        <p id="kpiTotalValue" class="text-xl md:text-2xl font-extrabold text-white mt-1">0</p>
+                    <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl text-center">
+                        <p class="text-xs text-slate-500 font-bold" id="kpiTotalLabel">Total Registrado</p>
+                        <p id="kpiTotalValue" class="text-xl md:text-2xl font-black text-slate-800 mt-1">0</p>
                     </div>
-                    <div class="bg-brandDark/40 border border-slate-800 p-4 rounded-xl text-center">
-                        <p class="text-xs text-slate-400" id="kpiVenLabel">Venezolanos</p>
-                        <p id="kpiVenValue" class="text-xl md:text-2xl font-extrabold text-venGold mt-1">0</p>
+                    <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl text-center">
+                        <p class="text-xs text-slate-500 font-bold" id="kpiVenLabel">Venezolanos</p>
+                        <p id="kpiVenValue" class="text-xl md:text-2xl font-black text-venBlue mt-1">0</p>
                     </div>
-                    <div class="bg-brandDark/40 border border-slate-800 p-4 rounded-xl text-center">
-                        <p class="text-xs text-slate-400" id="kpiGlobalLabel">Globales/US</p>
-                        <p id="kpiGlobalValue" class="text-xl md:text-2xl font-extrabold text-venBlue mt-1">0</p>
+                    <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl text-center">
+                        <p class="text-xs text-slate-500 font-bold" id="kpiGlobalLabel">Globales/US</p>
+                        <p id="kpiGlobalValue" class="text-xl md:text-2xl font-black text-brandRed mt-1">0</p>
                     </div>
-                    <div class="bg-brandDark/40 border border-slate-800 p-4 rounded-xl text-center">
-                        <p class="text-xs text-slate-400" id="kpiDiapsoraLabel">Diáspora %</p>
-                        <p id="kpiDiasporaValue" class="text-xl md:text-2xl font-extrabold text-slate-300 mt-1">0%</p>
+                    <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl text-center">
+                        <p class="text-xs text-slate-500 font-bold" id="kpiDiapsoraLabel">Diáspora %</p>
+                        <p id="kpiDiasporaValue" class="text-xl md:text-2xl font-black text-slate-700 mt-1">0%</p>
                     </div>
                 </div>
 
@@ -995,12 +1002,12 @@
                     
                     <!-- Verification code input -->
                     <div id="twoStepForm" class="flex flex-col sm:flex-row items-center gap-2.5 w-full md:w-auto">
-                        <button type="button" onclick="toggleSetupQR()" class="text-xs text-slate-400 hover:text-white underline transition-all py-1 px-2 whitespace-nowrap">
+                        <button type="button" onclick="toggleSetupQR()" class="text-xs text-slate-400 hover:text-white underline transition-all py-1 px-2 whitespace-nowrap font-bold">
                             Configurar Authenticator (Ver QR)
                         </button>
                         <div class="flex items-center gap-2 w-full sm:w-auto">
-                            <input type="text" id="secondFactorInput" class="bg-slate-950 border border-slate-800 focus:border-amber-500 rounded-lg px-3 py-2 text-xs text-slate-100 outline-none w-full sm:w-32 text-center tracking-widest font-mono font-bold" placeholder="000000" maxlength="6">
-                            <button onclick="validateSecondStep()" class="bg-amber-500 hover:bg-amber-400 text-brandDark font-bold px-4 py-2 rounded-lg text-xs whitespace-nowrap transition-all">
+                            <input type="text" id="secondFactorInput" class="bg-white border border-slate-300 focus:border-venBlue rounded-lg px-3 py-2 text-xs text-slate-800 outline-none w-full sm:w-32 text-center tracking-widest font-mono font-bold" placeholder="000000" maxlength="6">
+                            <button onclick="validateSecondStep()" class="bg-venBlue hover:bg-blue-800 text-white font-bold px-4 py-2 rounded-lg text-xs whitespace-nowrap transition-all">
                                 Validar Token
                             </button>
                         </div>
@@ -1012,7 +1019,7 @@
                             <i data-lucide="shield" class="w-4 h-4"></i>
                             <span>NÚCLEO DE DATOS DESBLOQUEADO (2FA VERIFICADO)</span>
                         </div>
-                        <button onclick="lockSensitiveDataInstant()" class="bg-brandRed text-white hover:bg-red-600 px-3 py-1 rounded-lg text-[10px] transition-all">
+                        <button onclick="lockSensitiveDataInstant()" class="bg-brandRed text-white hover:bg-red-700 px-3 py-1 rounded-lg text-[10px] transition-all">
                             Bloquear de Nuevo
                         </button>
                     </div>
@@ -1021,23 +1028,23 @@
                 <!-- SCAN QR EXPANSION PANEL -->
                 <div id="setupQRBlock" class="hidden bg-slate-950/80 border border-slate-800 rounded-2xl p-6 transition-all duration-300">
                     <div class="flex flex-col md:flex-row items-center gap-6">
-                        <div class="bg-white p-2.5 rounded-xl flex items-center justify-center">
-                            <img id="qrImage" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=otpauth%3A%2F%2Ftotp%2FRescate%2520Democr%25C3%25A1tico%3AAdmin%3Fsecret%3DMZXW6YTBOR2HA2DMMF2G2YZA%26issuer%3DRescateDemocratico" alt="MFA QR Code" class="w-36 h-36 border border-slate-200">
+                        <div class="bg-white p-2.5 rounded-xl flex items-center justify-center border border-slate-200">
+                            <img id="qrImage" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=otpauth%3A%2F%2Ftotp%2FRescate%2520Democr%25C3%25A1tico%3AAdmin%3Fsecret%3DMZXW6YTBOR2HA2DMMF2G2YZA%26issuer%3DRescateDemocratico" alt="MFA QR Code" class="w-36 h-36">
                         </div>
                         <div class="space-y-3 flex-1 text-left">
-                            <h5 class="text-sm font-bold text-white flex items-center gap-1.5">
-                                <i data-lucide="help-circle" class="w-4 h-4 text-venGold"></i>
+                            <h5 class="text-sm font-bold text-slate-800 flex items-center gap-1.5">
+                                <i data-lucide="help-circle" class="w-4 h-4 text-venBlue"></i>
                                 ¿Cómo configurar Google Authenticator?
                             </h5>
-                            <ol class="text-xs text-slate-400 list-decimal pl-4 space-y-1">
+                            <ol class="text-xs text-slate-600 list-decimal pl-4 space-y-1">
                                 <li>Descarga la aplicación <strong>Google Authenticator</strong> en tu celular.</li>
                                 <li>Toca el botón <strong>"+"</strong> para añadir una cuenta nueva.</li>
                                 <li>Escanea el código QR de la izquierda o ingresa la llave secreta manualmente.</li>
                                 <li>Ingresa el token dinámico de 6 dígitos generado en la casilla de arriba.</li>
                             </ol>
-                            <div class="bg-brandDark p-3 rounded-xl border border-slate-800 flex items-center justify-between gap-3 text-xs">
-                                <span class="text-[10px] text-slate-500 uppercase tracking-wider font-semibold">Llave Manual:</span>
-                                <code class="font-mono text-venGold select-all font-bold tracking-wider">MZXW6YTBOR2HA2DMMF2G2YZA</code>
+                            <div class="bg-white p-3 rounded-xl border border-slate-200 flex items-center justify-between gap-3 text-xs">
+                                <span class="text-[10px] text-slate-500 uppercase tracking-wider font-bold">Llave Manual:</span>
+                                <code class="font-mono text-venBlue select-all font-bold tracking-wider">MZXW6YTBOR2HA2DMMF2G2YZA</code>
                             </div>
                         </div>
                     </div>
@@ -1045,33 +1052,33 @@
 
                 <!-- CHARTS AND ANALYTICS -->
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="bg-brandDark/25 border border-brandLight/15 p-4 rounded-xl">
-                        <h4 id="chartVenHeader" class="text-xs font-bold uppercase tracking-wider text-venGold mb-4">Firmas por Estado de Venezuela (Top 5)</h4>
+                    <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl">
+                        <h4 id="chartVenHeader" class="text-xs font-bold uppercase tracking-wider text-venBlue mb-4">Firmas por Estado de Venezuela (Top 5)</h4>
                         <div id="venStatesChart" class="space-y-3">
-                            <p class="text-xs text-slate-500 italic">No hay suficientes registros nacionales para generar el gráfico.</p>
+                            <p class="text-xs text-slate-400 italic">No hay suficientes registros nacionales para generar el gráfico.</p>
                         </div>
                     </div>
-                    <div class="bg-brandDark/25 border border-brandLight/15 p-4 rounded-xl">
-                        <h4 id="chartGlobHeader" class="text-xs font-bold uppercase tracking-wider text-venBlue mb-4">Firmas Internacionales por País (Top 5)</h4>
+                    <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl">
+                        <h4 id="chartGlobHeader" class="text-xs font-bold uppercase tracking-wider text-brandRed mb-4">Firmas Internacionales por País (Top 5)</h4>
                         <div id="globCountriesChart" class="space-y-3">
-                            <p class="text-xs text-slate-500 italic">No hay suficientes registros internacionales para generar el gráfico.</p>
+                            <p class="text-xs text-slate-400 italic">No hay suficientes registros internacionales para generar el gráfico.</p>
                         </div>
                     </div>
                 </div>
 
                 <!-- CONTROL LIST AND MODERATION -->
-                <div class="bg-brandDark/30 border border-brandLight/15 rounded-xl overflow-hidden">
-                    <div class="p-4 border-b border-slate-800 bg-brandDark/50 flex flex-col sm:flex-row justify-between items-center gap-3">
+                <div class="bg-slate-50 border border-slate-200 rounded-xl overflow-hidden">
+                    <div class="p-4 border-b border-slate-200 bg-slate-100 flex flex-col sm:flex-row justify-between items-center gap-3">
                         <div class="relative w-full sm:w-72">
-                            <input type="text" id="adminSearch" oninput="filterAdminSignatures(this.value)" class="w-full bg-slate-900 border border-slate-700/80 rounded-lg pl-8 pr-3 py-1.5 text-xs text-slate-200 outline-none focus:border-venGold" placeholder="Buscar por nombre, cédula o región...">
-                            <i data-lucide="search" class="w-3.5 h-3.5 text-slate-500 absolute left-2.5 top-1/2 -translate-y-1/2"></i>
+                            <input type="text" id="adminSearch" oninput="filterAdminSignatures(this.value)" class="w-full bg-white border border-slate-300 rounded-lg pl-8 pr-3 py-1.5 text-xs text-slate-800 outline-none focus:border-venBlue" placeholder="Buscar por nombre, cédula o región...">
+                            <i data-lucide="search" class="w-3.5 h-3.5 text-slate-400 absolute left-2.5 top-1/2 -translate-y-1/2"></i>
                         </div>
                         <div class="flex items-center gap-2 w-full sm:w-auto">
-                            <button onclick="exportSignaturesToCSV()" class="flex-1 sm:flex-initial bg-brandLight/30 hover:bg-brandLight/50 border border-brandLight/40 text-slate-200 px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center justify-center gap-1.5 transition-all">
-                                <i data-lucide="download" class="w-3.5 h-3.5"></i>
+                            <button onclick="exportSignaturesToCSV()" class="flex-1 sm:flex-initial bg-white hover:bg-slate-50 border border-slate-350 text-slate-700 px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center justify-center gap-1.5 transition-all">
+                                <i data-lucide="download" class="w-3.5 h-3.5 text-slate-500"></i>
                                 <span id="btnExportCSV">Exportar Datos (.CSV)</span>
                             </button>
-                            <button onclick="adminLogoutTotal()" class="flex-1 sm:flex-initial bg-brandRed/20 hover:bg-brandRed border border-brandRed/30 hover:border-brandRed text-slate-200 hover:text-white px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center justify-center gap-1.5 transition-all">
+                            <button onclick="adminLogoutTotal()" class="flex-1 sm:flex-initial bg-brandRed/10 hover:bg-brandRed border border-brandRed/20 hover:border-brandRed text-brandRed hover:text-white px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center justify-center gap-1.5 transition-all">
                                 <i data-lucide="power" class="w-3.5 h-3.5"></i>
                                 <span>Cerrar Sesión</span>
                             </button>
@@ -1079,8 +1086,8 @@
                     </div>
 
                     <div class="overflow-x-auto">
-                        <table class="w-full text-left text-xs text-slate-300">
-                            <thead class="bg-brandDark/60 text-slate-400 uppercase tracking-wider border-b border-slate-800 text-[10px]">
+                        <table class="w-full text-left text-xs text-slate-600">
+                            <thead class="bg-slate-100 text-slate-500 uppercase tracking-wider border-b border-slate-200 text-[10px]">
                                 <tr>
                                     <th class="px-4 py-3" id="thName">Nombre / Info</th>
                                     <th class="px-4 py-3" id="thIdentity">Identidad / Cédula</th>
@@ -1089,7 +1096,7 @@
                                     <th class="px-4 py-3" id="thActions">Acciones</th>
                                 </tr>
                             </thead>
-                            <tbody id="adminTableBody" class="divide-y divide-slate-800/80">
+                            <tbody id="adminTableBody" class="divide-y divide-slate-200 bg-white">
                                 <!-- Loaded dynamically -->
                             </tbody>
                         </table>
@@ -1101,17 +1108,17 @@
     </div>
 
     <!-- GENERAL DIALOG MODAL -->
-    <div id="generalModal" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-sm hidden items-center justify-center p-4">
-        <div class="bg-brandMedium border border-brandLight/20 w-full max-w-md rounded-2xl p-6 shadow-2xl text-center space-y-4 relative overflow-hidden">
+    <div id="generalModal" class="fixed inset-0 z-50 bg-slate-900/80 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="bg-white border border-slate-200 w-full max-w-md rounded-2xl p-6 shadow-2xl text-center space-y-4 relative overflow-hidden">
             
-            <!-- VENEZUELAN FAMILY ABRAZO -->
+            <!-- VENEZUELAN FAMILY ABRAZO (SVG Vectorial) -->
             <div id="modalFamilyIllustration" class="hidden justify-center my-2">
-                <svg viewBox="0 0 200 200" class="w-48 h-48 drop-shadow-2xl animate-fade-in" xmlns="http://www.w3.org/2000/svg">
+                <svg viewBox="0 0 200 200" class="w-48 h-48 drop-shadow-md animate-fade-in" xmlns="http://www.w3.org/2000/svg">
                     <defs>
                         <linearGradient id="venGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" stop-color="#F1C40F" />
-                            <stop offset="50%" stop-color="#2980B9" />
-                            <stop offset="100%" stop-color="#E74C3C" />
+                            <stop offset="0%" stop-color="#FCD116" />
+                            <stop offset="50%" stop-color="#004B87" />
+                            <stop offset="100%" stop-color="#CE1126" />
                         </linearGradient>
                         <linearGradient id="skinLight" x1="0%" y1="0%" x2="0%" y2="100%">
                             <stop offset="0%" stop-color="#FADBD8" />
@@ -1135,24 +1142,24 @@
                         <polygon points="150,49 152,53 156,53 153,55 154,59 150,57 146,59 147,55 144,53 148,53" />
                     </g>
                     
-                    <path d="M 60,165 C 60,115 85,105 100,105 C 100,120 90,140 90,165 Z" fill="#2980B9" />
+                    <path d="M 60,165 C 60,115 85,105 100,105 C 100,120 90,140 90,165 Z" fill="#004B87" />
                     <circle cx="75" cy="90" r="17" fill="url(#skinDark)" />
                     <path d="M 58,90 C 58,70 92,70 92,90 C 85,82 65,82 58,90 Z" fill="#1B263B" />
                     
-                    <path d="M 140,165 C 140,115 115,105 100,105 C 100,120 110,140 110,165 Z" fill="#E74C3C" />
+                    <path d="M 140,165 C 140,115 115,105 100,105 C 100,120 110,140 110,165 Z" fill="#CE1126" />
                     <circle cx="125" cy="90" r="16" fill="url(#skinLight)" />
                     <path d="M 109,90 C 109,72 141,72 141,90 C 141,105 135,105 135,95 Z" fill="#78281F" />
                     
-                    <path d="M 100,165 C 82,165 82,130 100,130 C 118,130 118,165 100,165 Z" fill="#F1C40F" />
+                    <path d="M 100,165 C 82,165 82,130 100,130 C 118,130 118,165 100,165 Z" fill="#FCD116" />
                     <circle cx="100" cy="113" r="11" fill="url(#skinLight)" />
                     <path d="M 89,113 C 89,98 111,98 111,113 C 105,107 95,107 89,113 Z" fill="#D35400" />
                     
                     <path d="M 62,118 Q 100,125 120,132" stroke="#1A5276" stroke-width="7" stroke-linecap="round" fill="none" />
                     <path d="M 138,118 Q 100,125 80,132" stroke="#943126" stroke-width="7" stroke-linecap="round" fill="none" />
                     
-                    <path d="M 65,55 C 60,43 40,43 40,61 C 40,80 65,98 65,98 C 65,98 90,80 90,61 C 90,43 70,43 65,55 Z" fill="#F1C40F" transform="rotate(-15 65 65)" />
-                    <path d="M 135,55 C 130,43 110,43 110,61 C 110,80 135,98 135,98 C 135,98 160,80 160,61 C 160,43 140,43 135,55 Z" fill="#2980B9" transform="rotate(15 135 65)" />
-                    <path d="M 100,65 C 97,59 88,59 88,69 C 88,79 100,89 100,89 C 100,89 112,79 112,69 C 112,59 103,59 100,65 Z" fill="#E74C3C" />
+                    <path d="M 65,55 C 60,43 40,43 40,61 C 40,80 65,98 65,98 C 65,98 90,80 90,61 C 90,43 70,43 65,55 Z" fill="#FCD116" transform="rotate(-15 65 65)" />
+                    <path d="M 135,55 C 130,43 110,43 110,61 C 110,80 135,98 135,98 C 135,98 160,80 160,61 C 160,43 140,43 135,55 Z" fill="#004B87" transform="rotate(15 135 65)" />
+                    <path d="M 100,65 C 97,59 88,59 88,69 C 88,79 100,89 100,89 C 100,89 112,79 112,69 C 112,59 103,59 100,65 Z" fill="#CE1126" />
                 </svg>
             </div>
 
@@ -1161,37 +1168,37 @@
             </div>
             
             <div class="space-y-1">
-                <h3 id="modalTitle" class="serif-title text-lg md:text-xl font-bold text-white">Título del Mensaje</h3>
-                <p id="modalBody" class="text-xs md:text-sm text-slate-300 leading-relaxed">Este es el cuerpo del mensaje.</p>
+                <h3 id="modalTitle" class="serif-title text-lg md:text-xl font-bold text-slate-800">Título del Mensaje</h3>
+                <p id="modalBody" class="text-xs md:text-sm text-slate-500 leading-relaxed">Este es el cuerpo del mensaje.</p>
             </div>
 
-            <div id="modalCampaignBlock" class="hidden p-3 rounded-xl bg-slate-900/50 border border-slate-800 flex flex-col gap-2">
-                <p class="text-[11px] text-slate-400" id="modalCampaignMsg">¡Multiplica tu voz! Firma también la iniciativa pública en la plataforma internacional:</p>
-                <a href="https://c.org/CnYPpHDT6L" target="_blank" rel="noopener noreferrer" class="w-full bg-red-600 hover:bg-red-500 text-white font-bold py-2 px-3 rounded-lg text-xs flex items-center justify-center gap-1.5 transition-all">
+            <div id="modalCampaignBlock" class="hidden p-3 rounded-xl bg-slate-50 border border-slate-200 flex flex-col gap-2">
+                <p class="text-[11px] text-slate-500" id="modalCampaignMsg">¡Multiplica tu voz! Firma también la iniciativa pública en la plataforma internacional:</p>
+                <a href="https://c.org/CnYPpHDT6L" target="_blank" rel="noopener noreferrer" class="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-3 rounded-lg text-xs flex items-center justify-center gap-1.5 transition-all">
                     <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
                     <span>Firmar Petición en Change.org</span>
                 </a>
             </div>
 
-            <button onclick="closeGeneralModal()" class="w-full bg-brandLight hover:bg-slate-600 text-white font-semibold py-2.5 rounded-xl text-xs md:text-sm transition-all">
+            <button onclick="closeGeneralModal()" class="w-full bg-slate-200 hover:bg-slate-300 text-slate-700 font-semibold py-2.5 rounded-xl text-xs md:text-sm transition-all">
                 <span id="btnModalClose">Aceptar</span>
             </button>
         </div>
     </div>
 
     <!-- CUSTOM CONFIRMATION MODAL -->
-    <div id="customConfirmModal" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-sm hidden items-center justify-center p-4">
-        <div class="bg-brandMedium border border-brandLight/20 w-full max-w-sm rounded-2xl p-6 shadow-2xl text-center space-y-4">
-            <div class="mx-auto w-12 h-12 rounded-full flex items-center justify-center bg-amber-500/10 text-amber-500 border border-amber-500/30">
+    <div id="customConfirmModal" class="fixed inset-0 z-50 bg-slate-900/80 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="bg-white border border-slate-200 w-full max-w-sm rounded-2xl p-6 shadow-2xl text-center space-y-4">
+            <div class="mx-auto w-12 h-12 rounded-full flex items-center justify-center bg-amber-100 text-amber-600 border border-amber-200">
                 <i data-lucide="help-circle" class="w-6 h-6"></i>
             </div>
             <div class="space-y-1">
-                <h3 id="confirmTitle" class="serif-title text-lg font-bold text-white">¿Estás seguro?</h3>
-                <p id="confirmBody" class="text-xs text-slate-300 leading-relaxed">Confirma si deseas continuar con esta acción.</p>
+                <h3 id="confirmTitle" class="serif-title text-lg font-bold text-slate-800">¿Estás seguro?</h3>
+                <p id="confirmBody" class="text-xs text-slate-500 leading-relaxed">Confirma si deseas continuar con esta acción.</p>
             </div>
             <div class="flex gap-3">
-                <button id="btnConfirmCancel" class="flex-1 bg-brandLight hover:bg-slate-700 text-white py-2.5 rounded-xl text-xs font-semibold transition-all">Cancelar</button>
-                <button id="btnConfirmProceed" class="flex-1 bg-amber-500 hover:bg-amber-400 text-brandDark py-2.5 rounded-xl text-xs font-bold transition-all">Continuar</button>
+                <button id="btnConfirmCancel" class="flex-1 bg-slate-100 hover:bg-slate-200 text-slate-700 py-2.5 rounded-xl text-xs font-semibold transition-all">Cancelar</button>
+                <button id="btnConfirmProceed" class="flex-1 bg-venBlue hover:bg-blue-800 text-white py-2.5 rounded-xl text-xs font-bold transition-all">Continuar</button>
             </div>
         </div>
     </div>
@@ -1243,20 +1250,20 @@
     </div>
 
     <!-- FOOTER -->
-    <footer class="bg-brandDark border-t border-brandMedium/50 px-4 py-8 mt-12">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
-            <div>
-                <p class="text-sm font-semibold text-slate-400">RESCATE DEMOCRÁTICO</p>
-                <p id="footerDisclaimer" class="text-xs text-slate-500 mt-1 max-w-xl">
+    <footer class="bg-brandDark border-t border-slate-800 px-4 py-12">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6 text-center md:text-left">
+            <div class="space-y-2">
+                <p class="text-sm font-bold text-slate-200 tracking-wider">RESCATE DEMOCRÁTICO VENEZUELA</p>
+                <p id="footerDisclaimer" class="text-xs text-slate-400 max-w-xl leading-relaxed">
                     Este es un portal democrático, no afiliado a partidos específicos, que persigue defender los Derechos Humanos y el principio de soberanía popular.
                 </p>
             </div>
-            <div class="flex flex-col items-center md:items-end gap-2.5">
-                <a href="https://c.org/CnYPpHDT6L" target="_blank" rel="noopener noreferrer" class="text-xs text-red-400 hover:text-red-300 font-semibold flex items-center gap-1 transition-colors">
-                    <i data-lucide="heart" class="w-3.5 h-3.5 text-brandRed animate-pulse"></i>
+            <div class="flex flex-col items-center md:items-end gap-3 text-xs text-slate-400">
+                <a href="https://c.org/CnYPpHDT6L" target="_blank" rel="noopener noreferrer" class="text-xs text-brandRed hover:text-red-400 font-bold flex items-center gap-1 transition-colors">
+                    <i data-lucide="heart" class="w-3.5 h-3.5 animate-pulse"></i>
                     <span>Iniciativa de Change.org</span>
                 </a>
-                <p class="text-[10px] text-slate-600">© 2026 Rescate Democrático. Todos los derechos reservados.</p>
+                <p class="text-[10px] text-slate-500">© 2026 Rescate Democrático. Todos los derechos reservados.</p>
             </div>
         </div>
     </footer>
@@ -1342,7 +1349,6 @@
         async function initFirebaseAndCloudDatabase() {
             if (!firebaseConfig) return;
             try {
-                // Dynamically importing ES6 module files
                 const firebaseApp = await import("https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js");
                 const firebaseAuth = await import("https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js");
                 const firebaseFirestore = await import("https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js");
@@ -1373,6 +1379,7 @@
         // Global State Configuration
         let currentLang = 'es';
         let currentTab = 'venezuelan';
+        const apiKey = ""; // Gemini API execution key provided natively at runtime
 
         // Base32 key compatible con Google Authenticator
         const TOTP_SECRET = "MZXW6YTBOR2HA2DMMF2G2YZA";
@@ -1885,12 +1892,12 @@
                     const pct = Math.round((val / maxVal) * 100);
                     return `
                         <div>
-                            <div class="flex justify-between text-xs text-slate-300 mb-1">
+                            <div class="flex justify-between text-xs text-slate-700 mb-1">
                                 <span class="font-medium">${label}</span>
-                                <span class="font-bold text-venBlue">${val} firmas</span>
+                                <span class="font-bold text-brandRed">${val} firmas</span>
                             </div>
                             <div class="w-full bg-slate-900 h-2.5 rounded-full overflow-hidden border border-slate-800">
-                                <div class="bg-venBlue h-full rounded-full transition-all duration-500" style="width: ${pct}%"></div>
+                                <div class="bg-brandRed h-full rounded-full transition-all duration-500" style="width: ${pct}%"></div>
                             </div>
                         </div>
                     `;
@@ -1912,7 +1919,7 @@
             container.innerHTML = feedData.map(sig => {
                 const dateStr = new Date(sig.timestamp).toLocaleDateString();
                 const icon = sig.type === 'venezuelan' ? '🇻🇪' : '🌐';
-                const pillColor = sig.type === 'venezuelan' ? 'text-venGold border-venGold/20 bg-venGold/5' : 'text-venBlue border-venBlue/20 bg-venBlue/5';
+                const pillColor = sig.type === 'venezuelan' ? 'text-venGold border-venGold/20 bg-venGold/5' : 'text-brandRed border-brandRed/20 bg-brandRed/5';
                 
                 return `
                     <div class="p-4 rounded-xl bg-brandDark/50 border border-brandLight/10 hover:border-brandLight/20 transition-all duration-200">
@@ -2027,11 +2034,11 @@
             if (SecureStorage.isSecondaryAuth()) {
                 tsForm.classList.add('hidden');
                 tsSuccess.classList.remove('hidden');
-                tsBadgeIcon.className = "p-3 rounded-xl bg-emerald-500/10 text-emerald-400";
+                tsBadgeIcon.className = "p-3 rounded-xl bg-emerald-100 text-emerald-600";
             } else {
                 tsForm.classList.remove('hidden');
                 tsSuccess.classList.add('hidden');
-                tsBadgeIcon.className = "p-3 rounded-xl bg-amber-500/10 text-amber-500";
+                tsBadgeIcon.className = "p-3 rounded-xl bg-amber-100 text-amber-600";
             }
             lucide.createIcons();
         }
@@ -2049,28 +2056,28 @@
 
             list.forEach(sig => {
                 const tr = document.createElement('tr');
-                tr.className = "hover:bg-slate-900/40 transition-colors border-b border-slate-800/50";
+                tr.className = "hover:bg-slate-50 transition-colors border-b border-slate-200";
                 tr.setAttribute('data-id', sig.id);
 
                 tr.innerHTML = `
                     <td class="px-4 py-3">
-                        <p class="font-bold text-white text-xs">${sig.name}</p>
+                        <p class="font-bold text-slate-800 text-xs">${sig.name}</p>
                         <p class="text-[10px] text-slate-400 mt-0.5 truncate max-w-[180px]" title="${sig.comment}">${sig.comment}</p>
                     </td>
                     <td class="px-4 py-3 font-mono text-xs">
-                        <span class="flex items-center gap-1.5 ${!sig.isMasked ? 'text-emerald-400 font-semibold' : 'text-slate-500'}">
+                        <span class="flex items-center gap-1.5 ${!sig.isMasked ? 'text-emerald-600 font-semibold' : 'text-slate-400'}">
                             <i data-lucide="${!sig.isMasked ? 'eye' : 'eye-off'}" class="w-3.5 h-3.5 opacity-75"></i>
                             ${sig.identity}
                         </span>
                     </td>
                     <td class="px-4 py-3">
-                        <span class="px-2 py-0.5 rounded-full text-[9px] font-bold ${sig.type === 'venezuelan' ? 'bg-venGold/10 text-venGold border border-venGold/20' : 'bg-venBlue/10 text-venBlue border border-venBlue/20'}">
+                        <span class="px-2 py-0.5 rounded-full text-[9px] font-bold ${sig.type === 'venezuelan' ? 'bg-venBlue/10 text-venBlue border border-venBlue/20' : 'bg-brandRed/10 text-brandRed border border-brandRed/20'}">
                             ${sig.type.toUpperCase()}
                         </span>
                     </td>
-                    <td class="px-4 py-3 text-slate-400 text-xs">${sig.location}</td>
+                    <td class="px-4 py-3 text-slate-500 text-xs">${sig.location}</td>
                     <td class="px-4 py-3">
-                        <button onclick="deleteSignature('${sig.id}')" class="text-slate-500 hover:text-brandRed p-1 rounded hover:bg-red-950/20 transition-all" title="Eliminar Registro">
+                        <button onclick="deleteSignature('${sig.id}')" class="text-slate-400 hover:text-brandRed p-1 rounded hover:bg-red-50 transition-all" title="Eliminar Registro">
                             <i data-lucide="trash-2" class="w-4 h-4"></i>
                         </button>
                     </td>
@@ -2168,13 +2175,13 @@
             }
 
             if (type === 'success') {
-                mIconContainer.className = "mx-auto w-12 h-12 rounded-full flex items-center justify-center bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 animate-bounce";
+                mIconContainer.className = "mx-auto w-12 h-12 rounded-full flex items-center justify-center bg-emerald-100 text-emerald-600 border border-emerald-200 animate-bounce";
                 mIcon.setAttribute('data-lucide', 'check-circle-2');
                 const mFamilyIllustration = document.getElementById('modalFamilyIllustration');
                 mFamilyIllustration.classList.remove('hidden');
                 mFamilyIllustration.classList.add('flex');
             } else {
-                mIconContainer.className = "mx-auto w-12 h-12 rounded-full flex items-center justify-center bg-red-500/15 text-red-500 border border-red-500/30 animate-pulse";
+                mIconContainer.className = "mx-auto w-12 h-12 rounded-full flex items-center justify-center bg-red-100 text-red-600 border border-red-200 animate-pulse";
                 mIcon.setAttribute('data-lucide', 'alert-circle');
                 const mFamilyIllustration = document.getElementById('modalFamilyIllustration');
                 mFamilyIllustration.classList.add('hidden');
@@ -2245,7 +2252,7 @@
                 art5_title: "La Soberanía Nacional",
                 art5_text: '"La soberanía reside intransferiblemente en el pueblo... Los órganos del Estado emanan de la soberanía popular y a ella están sometidos."',
                 art138_title: "Nulidad de Usurpación",
-                art138_text: '"Toda autoridad usurpada es ineficaz y sus actos son nulos." Ningún decreto o fallo de entes de facto posee legitimidad legal.',
+                art138_text: '"Toda autoridad usurpada es ineficaz and sus actos son nulos." Ningún decreto o fallo de entes de facto posee legitimidad legal.',
                 art333_title: "Garantía de Vigencia",
                 art333_text: 'El Deber ineludible de todo ciudadano de "colaborar en el restablecimiento de la efectiva vigencia" de la Constitución.',
                 art350_title: "Derecho al Desconocimiento",
@@ -2253,7 +2260,7 @@
                 lblLeftTab1: "Manifiesto Cívico",
                 lblLeftTab2: "Análisis de Sucesión",
 
-                anal_main_title: "Análisis Constitucional: El Debate sobre la Sucesión Presidencial y la Vigencia del Orden Democrático en Venezuela",
+                anal_main_title: "Análisis Constitucional: Sucesión Presidencial y la Vigencia del Orden Democrático",
                 anal_main_sub: "Una perspectiva jurídica y doctrinaria fundamental para comprender el amparo del Estado de Derecho y las ausencias presidenciales.",
                 anal_normative_title: "Marco Normativo Fundamental",
                 anal_art233_title: "Faltas Absolutas",
@@ -2274,7 +2281,7 @@
                 anal_conclusion_text: "La implementación de estos artículos representa el núcleo del conflicto político en el país. La discrepancia radica en si la situación actual debe resolverse bajo una aplicación estricta del articulado constitucional o si, ante la falta de una resolución por parte de las instituciones competentes, prevalecen otras interpretaciones legales. En última instancia, la resolución de este conflicto depende de los equilibrios de poder, la interpretación de los órganos de justicia y la actuación de los diversos actores envolvidos en el ámbito democrático venezolano.",
                 
                 advPhysTitle: "¿Recolectas firmas en físico?",
-                advPhysSub: "Descarga nuestra planilla oficial para recolectar firmas manualmente sin necesidad de internet.",
+                advPhysSub: "Download our official sheet to collect signatures manually without needing an internet connection.",
                 advPhysBtn: "Descargar Planilla Física (PDF)",
 
                 // Dynamic translated elements for Tab 3 (HR Reports)
@@ -2318,9 +2325,9 @@
             },
             en: {
                 bannerText: "Sign the official petition on Change.org too!",
-                heroBadge: "GLOBAL ADVOCACY INITIATIVE",
-                heroTitle: "Democratic Rescue: We Demand Free Elections and Effective International Action for Venezuela",
-                heroSubtitle: "A sovereign manifesto addressed to the United Nations, OAS, European Union, US Congress and democratic nations of the world to restore the Rule of Law.",
+                heroBadge: "GLOBAL COALITION FOR THE REPUBLIC",
+                heroTitle: "FOR A FREE, DEMOCRATIC AND JUST VENEZUELA",
+                heroSubtitle: "United for the restoration of the Rule of Law and Liberty. A sovereign manifesto addressed to the United Nations, OAS, European Union, and the United States Congress.",
                 statVenLabel: "Venezuelans",
                 statUSLabel: "Global Allies",
                 statTotalLabel: "Total Signatures",
@@ -2364,7 +2371,7 @@
                 btnGoChangeOrg: "Go to Change.org Petition",
                 btnGoChangeOrg2: "Go to Change.org Petition",
                 constHeader: "Popular Sovereignty & Constitutional Duty",
-                constSub: "Faced with the historical <strong>breach of the constitutional thread</strong> in Venezuela, our demand rests on the firm foundations of the Constitution (C.R.B.V.), which obligates citizens to defend the Republic:",
+                constSub: "Faced with the historical breach of the constitutional thread in Venezuela, our demand rests on the firm foundations of the Constitution (C.R.B.V.), which obligates citizens to defend the Republic:",
                 art5_title: "Popular Sovereignty",
                 art5_text: '"Sovereignty resides untransferably in the people... State organs emanate from popular sovereignty and are subject to it."',
                 art138_title: "Nullity of Usurpation",
@@ -2376,7 +2383,7 @@
                 lblLeftTab1: "Civic Manifesto",
                 lblLeftTab2: "Succession Analysis",
 
-                anal_main_title: "Constitutional Analysis: The Debate on Presidential Succession and the Validity of the Democratic Order in Venezuela",
+                anal_main_title: "Constitutional Analysis: Presidential Succession and Rule of Law Validity",
                 anal_main_sub: "A fundamental legal and doctrinal perspective to understand the protection of the Rule of Law and presidential absences.",
                 anal_normative_title: "Fundamental Normative Framework",
                 anal_art233_title: "Absolute Absences",
@@ -2518,168 +2525,4 @@
             if (currentLang === 'es') {
                 selectFocus.options[0].text = "Defensa de elecciones libres y derechos humanos";
                 selectFocus.options[1].text = "Preocupación por licencias energéticas y petróleo que sostienen el régimen";
-                selectFocus.options[2].text = "Atención inmediata a crisis humanitarias y presos políticos";
-            } else {
-                selectFocus.options[0].text = "Defense of free elections & Human Rights";
-                selectFocus.options[1].text = "Oil licenses & energy deals preserving the regime";
-                selectFocus.options[2].text = "Immediate action for human crises & political prisoners";
-            }
-        }
-
-        function toggleLocationFields(type) {
-            const locType = document.getElementById('ven-location-type').value;
-            const regionInput = document.getElementById('ven-region');
-            
-            if (locType === 'fuera') {
-                regionInput.placeholder = currentLang === 'es' ? "País / Ciudad (Ej. Madrid, España)" : "Country / City (e.g., Miami, US)";
-            } else {
-                regionInput.placeholder = currentLang === 'es' ? "Estado de Venezuela (Ej. Zulia)" : "State of Venezuela (e.g., Zulia)";
-            }
-        }
-
-        // Gemini AI Congressional Advocacy Letter Generation using Exponential Backoff
-        async function fetchWithRetry(url, options, retries = 5, delay = 1000) {
-            try {
-                const response = await fetch(url, options);
-                if (!response.ok) {
-                    throw new Error(`HTTP error! Status: ${response.status}`);
-                }
-                return await response.json();
-            } catch (error) {
-                if (retries > 0) {
-                    await new Promise(resolve => setTimeout(resolve, delay));
-                    return fetchWithRetry(url, options, retries - 1, delay * 2);
-                } else {
-                    throw error;
-                }
-            }
-        }
-
-        async function generateAICongressionalLetter() {
-            const recipient = document.getElementById('ai-recipient').value.trim();
-            const focus = document.getElementById('ai-focus').value;
-            const textarea = document.getElementById('ai-letter-textarea');
-            const resultBlock = document.getElementById('aiLetterResult');
-            const writeIcon = document.getElementById('ai-write-icon');
-
-            // Trigger Loading State
-            textarea.value = currentLang === 'es' ? "Redactando su correspondencia de amparo formal mediante Gemini Inteligencia Artificial..." : "Drafting your formal congressional request using Gemini Artificial Intelligence...";
-            resultBlock.classList.remove('hidden');
-            writeIcon.classList.add('animate-spin');
-
-            const payload = {
-                contents: [{
-                    parts: [{
-                        text: `Write a formal, highly professional advocacy letter to US lawmakers demanding action for Venezuela. 
-                        Focus on: ${focus === 'democracia' ? 'Defense of free elections, human rights, and rule of law.' : focus === 'petroleo' ? 'Concerns over oil/energy licenses that financially sustain the authoritarian regime.' : 'Addressing the humanitarian crisis and immediately releasing all political prisoners.'}
-                        Recipients: ${recipient || 'US Congressional Representative / Senator'}.
-                        Write the letter in formal English, structured with Date, Salutation, Body Paragraphs, and a professional closing. Keep it clear, impactful, and ready to send.`
-                    }]
-                }],
-                systemInstruction: {
-                    parts: [{ text: "You are a senior constitutional lawyer and diplomat writing on behalf of Venezuelan citizens and global allies." }]
-                }
-            };
-
-            const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
-            const options = {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(payload)
-            };
-
-            try {
-                const result = await fetchWithRetry(url, options);
-                const generatedText = result.candidates?.[0]?.content?.parts?.[0]?.text;
-                if (generatedText) {
-                    textarea.value = generatedText;
-                } else {
-                    throw new Error("No candidates received from Gemini.");
-                }
-            } catch (err) {
-                console.error("Gemini API Error after retries:", err);
-                textarea.value = currentLang === 'es' ? 
-                    "Error de conexión con el núcleo IA de Gemini. Verifique su red y vuelva a intentarlo." : 
-                    "Failed to communicate with the Gemini AI core. Please check your connection and try again.";
-            } finally {
-                writeIcon.classList.remove('animate-spin');
-            }
-        }
-
-        function copyAILetterToClipboard() {
-            const text = document.getElementById('ai-letter-textarea').value;
-            const dummy = document.createElement("textarea");
-            document.body.appendChild(dummy);
-            dummy.value = text;
-            dummy.select();
-            document.execCommand("copy");
-            document.body.removeChild(dummy);
-            showModal(
-                currentLang === 'es' ? 'Texto Copiado' : 'Text Copied',
-                currentLang === 'es' ? 'La carta ha sido copiada al portapapeles.' : 'The advocacy letter was successfully copied to your clipboard.',
-                'success'
-            );
-        }
-
-        // EXPORTACIÓN A WINDOWS GLOBAL CONTEXT (Para evitar ReferenceErrors al usar script type="module")
-        window.toggleLanguage = toggleLanguage;
-        window.switchLeftTab = switchLeftTab;
-        window.switchTab = switchTab;
-        window.openAdminModal = openAdminModal;
-        window.closeAdminModal = closeAdminModal;
-        window.attemptAdminLogin = attemptAdminLogin;
-        window.validateSecondStep = validateSecondStep;
-        window.lockSensitiveDataInstant = lockSensitiveDataInstant;
-        window.adminLogoutTotal = adminLogoutTotal;
-        window.exportSignaturesToCSV = exportSignaturesToCSV;
-        window.deleteSignature = deleteSignature;
-        window.closeGeneralModal = closeGeneralModal;
-        window.generateAICongressionalLetter = generateAICongressionalLetter;
-        window.copyAILetterToClipboard = copyAILetterToClipboard;
-        window.printPhysicalSheet = printPhysicalSheet;
-        window.toggleAccordion = toggleAccordion;
-        window.lookupLegislatorsByZip = lookupLegislatorsByZip;
-        window.loadLegislatorsIntoAIWriter = loadLegislatorsIntoAIWriter;
-        window.handleSignatureSubmit = handleSignatureSubmit;
-        window.toggleSetupQR = toggleSetupQR;
-
-        // Dynamic Firebase Loader.
-        async function initFirebaseAndCloudDatabase() {
-            if (!firebaseConfig) return;
-            try {
-                const firebaseApp = await import("https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js");
-                const firebaseAuth = await import("https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js");
-                const firebaseFirestore = await import("https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js");
-
-                app = firebaseApp.initializeApp(firebaseConfig);
-                auth = firebaseAuth.getAuth(app);
-                db = firebaseFirestore.getFirestore(app);
-
-                cloud.doc = firebaseFirestore.doc;
-                cloud.setDoc = firebaseFirestore.setDoc;
-                cloud.deleteDoc = firebaseFirestore.deleteDoc;
-                cloud.collection = firebaseFirestore.collection;
-
-                firebaseAuth.onAuthStateChanged(auth, (firebaseUser) => {
-                    user = firebaseUser;
-                    if (user) {
-                        setupCloudListener(firebaseFirestore.collection, firebaseFirestore.onSnapshot);
-                    }
-                });
-
-                await initCloudAuth(firebaseAuth.signInWithCustomToken, firebaseAuth.signInAnonymously);
-                firebaseReady = true;
-            } catch (e) {
-                console.error("Error cargando módulos de Firebase dinámicamente:", e);
-            }
-        }
-
-        // On Load initialization
-        SecureStorage.init();
-        refreshLiveSignaturesFeed();
-        updateUIVisuals();
-        lucide.createIcons();
-        initFirebaseAndCloudDatabase();
-    </script>
-</body>
-</html>
+                selectFocus.options[2].text = "Atención inmediata a crisis humanitarias

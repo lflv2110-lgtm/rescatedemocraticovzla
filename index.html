@@ -15,9 +15,9 @@
                         venGold: '#F1C40F',
                         venBlue: '#2980B9',
                         brandRed: '#E74C3C',
-                        brandDark: '#0D1B2A',
-                        brandMedium: '#1B263B',
-                        brandLight: '#415A77',
+                        brandDark: '#050a16',
+                        brandMedium: '#0d1527',
+                        brandLight: '#1e293b',
                     }
                 }
             }
@@ -27,14 +27,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
-    <!-- Firebase SDK (Compat Mode) -->
-    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #0A0F1D;
+            background-color: #050a16;
         }
         .serif-title {
             font-family: 'Playfair Display', serif;
@@ -43,17 +39,17 @@
             width: 8px;
         }
         ::-webkit-scrollbar-track {
-            background: #0A0F1D;
+            background: #050a16;
         }
         ::-webkit-scrollbar-thumb {
-            background: #1B263B;
+            background: #0d1527;
             border-radius: 4px;
         }
         ::-webkit-scrollbar-thumb:hover {
-            background: #415A77;
+            background: #1e293b;
         }
 
-        /* PRINT STYLES - Hides the entire application and leaves a pristine corporate document layout */
+        /* PRINT STYLES - Corporate document layout for street coordinators */
         @media print {
             body {
                 background-color: #FFFFFF !important;
@@ -88,13 +84,13 @@
     </div>
 
     <!-- NAVBAR -->
-    <header class="sticky top-0 z-40 bg-brandDark/90 backdrop-blur-md border-b border-brandMedium/50 px-4 py-3">
+    <header class="sticky top-0 z-40 bg-brandDark/90 backdrop-blur-md border-b border-brandLight/50 px-4 py-3">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
-            <!-- Brand -->
+            <!-- Brand with Crop-adjusted logo -->
             <div class="flex items-center gap-3">
-                <div class="relative w-10 h-10 flex items-center justify-center rounded-xl bg-gradient-to-tr from-venGold via-venBlue to-brandRed shadow-lg overflow-hidden">
-                    <span class="text-white font-extrabold text-xl relative z-10">R</span>
-                    <div class="absolute inset-0 bg-black/10"></div>
+                <div class="relative w-12 h-12 flex items-center justify-center rounded-xl bg-gradient-to-tr from-venGold via-venBlue to-brandRed shadow-lg overflow-hidden border border-venGold/30">
+                    <img src="watermarked_img_17515122939470996373.png" alt="Logo Rescate Democrático" class="w-full h-full object-cover scale-[1.38] origin-center animate-fade-in" onerror="this.style.display='none'; document.getElementById('fallbackR').style.display='block';">
+                    <span id="fallbackR" class="hidden text-white font-extrabold text-xl relative z-10">R</span>
                 </div>
                 <div>
                     <h1 class="text-xs md:text-sm font-bold leading-tight tracking-tight text-white flex items-center gap-1.5">
@@ -128,8 +124,7 @@
     </header>
 
     <!-- HERO SECTION -->
-    <section class="relative bg-gradient-to-b from-brandDark to-brandMedium/30 py-12 md:py-16 px-4 overflow-hidden border-b border-brandMedium/40">
-        <!-- Abstract Background Flags/Colors -->
+    <section class="relative bg-gradient-to-b from-brandDark to-brandMedium/30 py-16 md:py-20 px-4 overflow-hidden border-b border-brandLight/20">
         <div class="absolute inset-0 pointer-events-none opacity-5">
             <div class="absolute -top-40 -left-40 w-96 h-96 bg-venGold rounded-full filter blur-[120px]"></div>
             <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-96 bg-venBlue rounded-full filter blur-[150px]"></div>
@@ -142,7 +137,7 @@
                 <span id="heroBadge">INICIATIVA DE INCIDENCIA GLOBAL</span>
             </div>
             
-            <h2 id="heroTitle" class="serif-title text-2xl md:text-4xl lg:text-5xl font-extrabold text-white leading-tight mb-6 max-w-4xl mx-auto">
+            <h2 id="heroTitle" class="serif-title text-3xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-6 max-w-4xl mx-auto">
                 Rescate Democrático: Exigimos Elecciones Libres y Acción Internacional Efectiva para Venezuela
             </h2>
             
@@ -169,214 +164,466 @@
     </section>
 
     <!-- CONTENT & FORMS CONTAINER -->
-    <main class="max-w-7xl mx-auto px-4 py-8 flex-grow grid grid-cols-1 lg:grid-cols-12 gap-8">
+    <main class="max-w-7xl mx-auto px-4 py-8 flex-grow grid grid-cols-1 lg:grid-cols-12 gap-12">
         
-        <!-- LEFT: MANIFESTO & LEGAL DETAILS (7 COLS) -->
+        <!-- LEFT: MANIFESTO, LEGAL & HR DETAILS (7 COLS) -->
         <div class="lg:col-span-7 space-y-6">
             
-            <!-- VENEZUELAN CONSTITUTIONAL FOUNDATION BLOCK (NEW) -->
-            <div class="bg-gradient-to-r from-slate-900 to-brandMedium/40 border border-amber-500/30 rounded-2xl p-6 shadow-xl relative overflow-hidden">
-                <div class="absolute -right-10 -bottom-10 opacity-5 pointer-events-none">
-                    <svg class="w-48 h-48 text-venGold" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
-                    </svg>
-                </div>
-                
-                <div class="flex items-start gap-4">
-                    <div class="p-3 rounded-xl bg-venGold/15 border border-venGold/30 text-venGold mt-1">
-                        <i data-lucide="gavel" class="w-6 h-6"></i>
-                    </div>
-                    <div>
-                        <h3 id="constHeader" class="serif-title text-xl font-bold text-white mb-1">
-                            Soberanía Popular y Deber Constitucional
-                        </h3>
-                        <p id="constSub" class="text-xs text-slate-300 leading-relaxed mb-4">
-                            Ante la evidente e histórica <strong>ruptura del hilo constitucional</strong> en Venezuela, nuestro reclamo se sostiene sobre las bases firmes de la Constitución de la República Bolivariana de Venezuela (C.R.B.V.), la cual obliga a los ciudadanos a defender la República:
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Interactive Legal Tabs/Sliders -->
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 mt-2">
-                    <div class="bg-slate-950/60 p-4 rounded-xl border border-slate-800 hover:border-venGold/20 transition-all">
-                        <div class="flex items-center gap-1.5 text-venGold font-bold text-xs mb-1.5">
-                            <span class="bg-venGold/10 px-2 py-0.5 rounded text-[10px]">Art. 5</span>
-                            <span id="art5_title">La Soberanía Soberana</span>
-                        </div>
-                        <p id="art5_text" class="text-[11px] text-slate-400 leading-relaxed">
-                            "La soberanía reside intransferiblemente en el pueblo... Los órganos del Estado emanan de la soberanía popular y a ella están sometidos."
-                        </p>
-                    </div>
-
-                    <div class="bg-slate-950/60 p-4 rounded-xl border border-slate-800 hover:border-brandRed/20 transition-all">
-                        <div class="flex items-center gap-1.5 text-brandRed font-bold text-xs mb-1.5">
-                            <span class="bg-brandRed/10 px-2 py-0.5 rounded text-[10px]">Art. 138</span>
-                            <span id="art138_title">Nulidad de Usurpación</span>
-                        </div>
-                        <p id="art138_text" class="text-[11px] text-slate-400 leading-relaxed">
-                            "Toda autoridad usurpada es ineficaz y sus actos son nulos." Ningún decreto o fallo de entes de facto posee legitimidad legal.
-                        </p>
-                    </div>
-
-                    <div class="bg-slate-950/60 p-4 rounded-xl border border-slate-800 hover:border-venBlue/20 transition-all">
-                        <div class="flex items-center gap-1.5 text-venBlue font-bold text-xs mb-1.5">
-                            <span class="bg-venBlue/10 px-2 py-0.5 rounded text-[10px]">Art. 333</span>
-                            <span id="art333_title">Garantía de Vigencia</span>
-                        </div>
-                        <p id="art333_text" class="text-[11px] text-slate-400 leading-relaxed">
-                            El deber ineludible de todo ciudadano, investido o no de autoridad, de "colaborar en el restablecimiento de la efectiva vigencia" de la Constitución.
-                        </p>
-                    </div>
-
-                    <div class="bg-slate-950/60 p-4 rounded-xl border border-slate-800 hover:border-emerald-500/20 transition-all">
-                        <div class="flex items-center gap-1.5 text-emerald-400 font-bold text-xs mb-1.5">
-                            <span class="bg-emerald-500/10 px-2 py-0.5 rounded text-[10px]">Art. 350</span>
-                            <span id="art350_title">Derecho al Desconocimiento</span>
-                        </div>
-                        <p id="art350_text" class="text-[11px] text-slate-400 leading-relaxed">
-                            El pueblo "desconocerá cualquier régimen, legislación o autoridad que contraríe los valores democráticos o menoscabe los derechos humanos."
-                        </p>
-                    </div>
-                </div>
+            <!-- TABS SWITCHER -->
+            <div class="flex border-b border-brandLight/20 mb-6 gap-2 overflow-x-auto pb-1">
+                <button id="leftTabBtn1" onclick="switchLeftTab('manifiesto')" class="pb-3 px-4 border-b-2 border-venGold text-sm font-bold text-white flex items-center gap-2 transition-all duration-300 whitespace-nowrap">
+                    <i data-lucide="file-text" class="w-4 h-4 text-venGold"></i>
+                    <span id="lblLeftTab1">Manifiesto Cívico</span>
+                </button>
+                <button id="leftTabBtn2" onclick="switchLeftTab('analisis')" class="pb-3 px-4 border-b-2 border-transparent text-sm font-semibold text-slate-400 hover:text-white flex items-center gap-2 transition-all duration-300 whitespace-nowrap">
+                    <i data-lucide="scale" class="w-4 h-4"></i>
+                    <span id="lblLeftTab2">Análisis de Sucesión</span>
+                </button>
+                <button id="leftTabBtn3" onclick="switchLeftTab('informes')" class="pb-3 px-4 border-b-2 border-transparent text-sm font-semibold text-slate-400 hover:text-white flex items-center gap-2 transition-all duration-300 whitespace-nowrap">
+                    <i data-lucide="shield-alert" class="w-4 h-4"></i>
+                    <span id="lblLeftTab3">Informes de DDHH</span>
+                </button>
             </div>
 
-            <!-- MARCO JURÍDICO LEGAL ADMISIBILIDAD -->
-            <div class="bg-gradient-to-r from-slate-900 to-brandMedium/20 border border-emerald-500/30 rounded-2xl p-6 shadow-lg relative">
-                <div class="absolute top-4 right-4 text-emerald-400">
-                    <i data-lucide="scale" class="w-6 h-6"></i>
-                </div>
-                <h3 id="legalHeader" class="serif-title text-lg md:text-xl font-bold text-emerald-400 mb-3 flex items-center gap-2">
-                    Admisibilidad Jurídica Internacional
-                </h3>
-                <p id="legalSub" class="text-xs text-slate-300 leading-relaxed mb-4">
-                    Este documento de manifestación popular y recogida de voluntades está estructurado bajo las normativas vigentes que permiten la presentación formal ante delegaciones legislativas y cortes de derechos humanos:
-                </p>
-                
-                <div class="space-y-3">
-                    <button onclick="toggleAccordion('legal-accordion-content', 'legal-arrow')" class="w-full flex justify-between items-center bg-slate-900/60 p-3 rounded-xl border border-slate-800 text-left text-xs font-semibold text-slate-200 hover:bg-slate-900 transition-colors">
-                        <span id="legalAccTitle" class="flex items-center gap-2">
-                            <i data-lucide="book-open" class="w-4 h-4 text-emerald-500"></i>
-                            Ver Fundamentos de Leyes y Tratados de Amparo
-                        </span>
-                        <i id="legal-arrow" data-lucide="chevron-down" class="w-4 h-4 transition-transform duration-300"></i>
-                    </button>
-                    <div id="legal-accordion-content" class="hidden p-4 rounded-xl bg-slate-950/40 border border-slate-900 space-y-3 text-xs text-slate-400 leading-normal">
-                        <p><strong>1. Declaración Universal de los Derechos Humanos (ONU) - Art. 19 y 21:</strong> Establece el derecho fundamental de expresión, opinión, y a participar en el gobierno de su país, directamente o por medio de representantes libremente elegidos.</p>
-                        <p><strong>2. Carta Democrática Interamericana (OEA) - Art. 2, 3 y 6:</strong> Consagra que los pueblos de América tienen derecho a la democracia y sus gobiernos tienen la obligación de promoverla y defenderla, habilitando los canales de participación de la sociedad civil organizada.</p>
-                        <p><strong>3. Tratado de Funcionamiento de la Unión Europea - Art. 227:</strong> Cualquier ciudadano de la Unión o residente puede presentar, individualmente o en asociación con otros, una petición al Parlamento Europeo sobre asuntos de competencia institucional.</p>
-                        <p><strong>4. Primera Enmienda de la Constitución de los EE. UU. (Cláusula de Petición):</strong> Salvaguarda de forma estricta el derecho de los ciudadanos a solicitar y demandar una reparación de agravios o acciones de su gobierno (First Amendment Right to Petition).</p>
-                        <p><strong>5. Protección de Privacidad e Identidad Avanzada:</strong> Los datos personales sensibles (Cédula de Identidad y Correo) están estrictamente protegidos mediante un núcleo de almacenamiento encapsulado e inaccesible públicamente, protegiendo a los firmantes contra cualquier rastreo automatizado.</p>
+            <!-- TAB 1: MANIFESTO -->
+            <div id="left-tab-manifiesto" class="space-y-6">
+                <div class="bg-gradient-to-r from-brandMedium to-slate-900 border border-amber-500/30 rounded-2xl p-6 shadow-xl relative overflow-hidden">
+                    <div class="absolute -right-10 -bottom-10 opacity-5 pointer-events-none">
+                        <svg class="w-48 h-48 text-venGold" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
+                        </svg>
                     </div>
-                </div>
-            </div>
-
-            <div class="bg-brandMedium/30 border border-brandLight/10 rounded-2xl p-6 md:p-8 backdrop-blur-sm">
-                <h3 id="sectionTitle" class="serif-title text-2xl md:text-3xl font-bold text-white mb-6 border-b border-brandLight/20 pb-4">
-                    Contenido del Manifiesto
-                </h3>
-
-                <!-- AMBITO LOCAL ACCORDION -->
-                <div class="mb-4 border border-brandLight/20 rounded-xl overflow-hidden bg-brandDark/50">
-                    <button onclick="toggleAccordion('local-content', 'local-arrow')" class="w-full flex justify-between items-center p-4 text-left font-bold text-venGold hover:bg-brandMedium/50 transition-colors">
-                        <span id="ambitLocalTitle" class="flex items-center gap-2 text-sm md:text-base">
-                            <i data-lucide="shield-check" class="w-5 h-5"></i>
-                            1. Ámbito Local: Garantías Institucionales y Civiles
-                        </span>
-                        <i id="local-arrow" data-lucide="chevron-up" class="w-5 h-5 transition-transform duration-300"></i>
-                    </button>
-                    <div id="local-content" class="p-5 border-t border-brandLight/10 space-y-4 text-sm md:text-base text-slate-300 leading-relaxed">
-                        <div>
-                            <h4 id="local_p1_title" class="font-bold text-white mb-1">Convocatoria a Elecciones Libres y Transparentes:</h4>
-                            <p id="local_p1_text">La activación inmediata de un cronograma electoral presidencial y parlamentario legítimo, bajo la conducción de un Consejo Nacional Electoral (CNE) independiente y despolitizado.</p>
+                    
+                    <div class="flex items-start gap-4">
+                        <div class="p-3 rounded-xl bg-venGold/15 border border-venGold/30 text-venGold mt-1">
+                            <i data-lucide="gavel" class="w-6 h-6"></i>
                         </div>
                         <div>
-                            <h4 id="local_p2_title" class="font-bold text-white mb-1">Restauración del Estado de Derecho:</h4>
-                            <p id="local_p2_text">Devolver la autonomía e independencia al Tribunal Supremo de Justicia y demás órganos del Poder Público, garantizando que las leyes protejan al ciudadano y no a parcialidades políticas.</p>
-                        </div>
-                        <div>
-                            <h4 id="local_p3_title" class="font-bold text-white mb-1">Habilitación Política y Fin de la Persecución:</h4>
-                            <p id="local_p3_text">Levantamiento inmediato de todas las inhabilitaciones administrativas arbitrarias a líderes de la oposición, legalización de partidos políticos intervenidos y cese del acoso judicial a la disidencia.</p>
-                        </div>
-                        <div>
-                            <h4 id="local_p4_title" class="font-bold text-white mb-1">Liberación de Presos Políticos y Apertura Cívica:</h4>
-                            <p id="local_p4_text">Excarcelación plena e incondicional de todas las personas detenidas por motivos políticos. Garantizar el derecho a la protesta pacífica, la libertad de expresión y la protección de activistas.</p>
+                            <h3 id="constHeader" class="serif-title text-xl font-bold text-white mb-1">
+                                Soberanía Popular y Deber Constitucional
+                            </h3>
+                            <p id="constSub" class="text-xs text-slate-300 leading-relaxed mb-4">
+                                Ante la evidente e histórica <strong>ruptura del hilo constitucional</strong> en Venezuela, nuestro reclamo se sostiene sobre las bases firmes de la Constitución, la cual obliga a los ciudadanos a defender la República:
+                            </p>
                         </div>
                     </div>
-                </div>
 
-                <!-- AMBITO INTERNACIONAL ACCORDION -->
-                <div class="mb-6 border border-brandLight/20 rounded-xl overflow-hidden bg-brandDark/50">
-                    <button onclick="toggleAccordion('int-content', 'int-arrow')" class="w-full flex justify-between items-center p-4 text-left font-bold text-venBlue hover:bg-brandMedium/50 transition-colors">
-                        <span id="ambitIntTitle" class="flex items-center gap-2 text-sm md:text-base">
-                            <i data-lucide="globe" class="w-5 h-5"></i>
-                            2. Ámbito Internacional: Diplomacia, Justicia y Cooperación
-                        </span>
-                        <i id="int-arrow" data-lucide="chevron-up" class="w-5 h-5 transition-transform duration-300"></i>
-                    </button>
-                    <div id="int-content" class="p-5 border-t border-brandLight/10 space-y-4 text-sm md:text-base text-slate-300 leading-relaxed">
-                        <div>
-                            <h4 id="int_p1_title" class="font-bold text-white mb-1">Observación e Integridad Electoral:</h4>
-                            <p id="int_p1_text">Condicionar cualquier reconocimiento político o alivio definitivo de sanciones a la aceptación de misiones de observación electoral internacional estrictas, técnicas e independientes (como la UE, Centro Carter y la ONU).</p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 mt-2">
+                        <div class="bg-brandDark/60 p-4 rounded-xl border border-slate-800 hover:border-venGold/20 transition-all">
+                            <div class="flex items-center gap-1.5 text-venGold font-bold text-xs mb-1.5">
+                                <span class="bg-venGold/10 px-2 py-0.5 rounded text-[10px]">Art. 5</span>
+                                <span id="art5_title">La Soberanía Nacional</span>
+                            </div>
+                            <p id="art5_text" class="text-[11px] text-slate-400 leading-relaxed">
+                                "La soberanía reside intransferiblemente en el pueblo... Los órganos del Estado emanan de la soberanía popular y a ella están sometidos."
+                            </p>
                         </div>
-                        <div>
-                            <h4 id="int_p2_title" class="font-bold text-white mb-1">Mecanismos de Justicia Transicional:</h4>
-                            <p id="int_p2_text">Apoyar de manera activa las investigaciones sobre violaciones de derechos humanos ante la Corte Penal Internacional (CPI), asegurando verdad, reparación a las víctimas y no repetición.</p>
+
+                        <div class="bg-brandDark/60 p-4 rounded-xl border border-slate-800 hover:border-brandRed/20 transition-all">
+                            <div class="flex items-center gap-1.5 text-brandRed font-bold text-xs mb-1.5">
+                                <span class="bg-brandRed/10 px-2 py-0.5 rounded text-[10px]">Art. 138</span>
+                                <span id="art138_title">Nulidad de Usurpación</span>
+                            </div>
+                            <p id="art138_text" class="text-[11px] text-slate-400 leading-relaxed">
+                                "Toda autoridad usurpada es ineficaz y sus actos son nulos." Ningún decreto o fallo de entes de facto posee legitimidad legal.
+                            </p>
                         </div>
-                        <div>
-                            <h4 id="int_p3_title" class="font-bold text-white mb-1">Rechazo a Soluciones Unilaterales que sacrifiquen Instituciones:</h4>
-                            <p id="int_p3_text">Exigir que los acuerdos económicos o energéticos internacionales con los factores de poder actuales no dejen de lado los principios democráticos ni sirvan para estabilizar un "autoritarismo adaptativo" a cambio de recursos.</p>
+
+                        <div class="bg-brandDark/60 p-4 rounded-xl border border-slate-800 hover:border-venBlue/20 transition-all">
+                            <div class="flex items-center gap-1.5 text-venBlue font-bold text-xs mb-1.5">
+                                <span class="bg-venBlue/10 px-2 py-0.5 rounded text-[10px]">Art. 333</span>
+                                <span id="art333_title">Garantía de Vigencia</span>
+                            </div>
+                            <p id="art333_text" class="text-[11px] text-slate-400 leading-relaxed">
+                                El Deber ineludible de todo ciudadano de "colaborar en el restablecimiento de la efectiva vigencia" de la Constitución.
+                            </p>
                         </div>
-                        <div>
-                            <h4 id="int_p4_title" class="font-bold text-white mb-1">Canalización de Ayuda Humanitaria Directa:</h4>
-                            <p id="int_p4_text">Coordinar la asistencia internacional a través de la sociedad civil organizada y agencias independientes de la ONU, evitando el uso político y de control social de los recursos humanitarios.</p>
+
+                        <div class="bg-brandDark/60 p-4 rounded-xl border border-slate-800 hover:border-emerald-500/20 transition-all">
+                            <div class="flex items-center gap-1.5 text-emerald-400 font-bold text-xs mb-1.5">
+                                <span class="bg-emerald-500/10 px-2 py-0.5 rounded text-[10px]">Art. 350</span>
+                                <span id="art350_title">Derecho al Desconocimiento</span>
+                            </div>
+                            <p id="art350_text" class="text-[11px] text-slate-400 leading-relaxed">
+                                El pueblo "desconocerá cualquier régimen, legislación o autoridad que contraríe los valores democráticos o menoscabe los derechos humanos."
+                            </p>
                         </div>
                     </div>
                 </div>
 
-                <div class="p-4 rounded-xl bg-slate-800/40 border border-slate-700/50 text-xs md:text-sm text-slate-400">
-                    <p id="notesBlock"><strong>Nota de enfoque:</strong> Este manifiesto debe ser respaldado de forma amplia y unida por la sociedad civil para generar impacto real ante cancillerías y organismos internacionales. Manteniendo siempre el protagonismo del ciudadano venezolano como único soberano de su destino político.</p>
-                </div>
-            </div>
-
-            <!-- SIGNS DECK / LIVE FEED IN REAL-TIME -->
-            <div class="bg-brandMedium/30 border border-brandLight/10 rounded-2xl p-6 md:p-8 backdrop-blur-sm">
-                <div class="flex justify-between items-center mb-6">
-                    <h3 id="feedTitle" class="serif-title text-xl md:text-2xl font-bold text-white flex items-center gap-2">
-                        <i data-lucide="message-square-text" class="w-5 h-5 text-venGold"></i>
-                        Firmas y Voces Recientes
+                <!-- LEGAL FRAMES -->
+                <div class="bg-gradient-to-r from-brandMedium to-brandDark border border-emerald-500/30 rounded-2xl p-6 shadow-lg relative">
+                    <div class="absolute top-4 right-4 text-emerald-400">
+                        <i data-lucide="scale" class="w-6 h-6"></i>
+                    </div>
+                    <h3 id="legalHeader" class="serif-title text-lg md:text-xl font-bold text-emerald-400 mb-3 flex items-center gap-2">
+                        Admisibilidad Jurídica Internacional
                     </h3>
-                    <span class="text-xs bg-brandMedium text-slate-300 border border-slate-700 px-2.5 py-1 rounded-full flex items-center gap-1.5">
-                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping"></span>
-                        <span id="livePulse">En vivo</span>
-                    </span>
+                    <p id="legalSub" class="text-xs text-slate-300 leading-relaxed mb-4">
+                        Este documento de manifestación popular y recogida de voluntades está estructurado bajo las normativas vigentes que permiten la presentación formal ante delegaciones legislativas y cortes de derechos humanos:
+                    </p>
+                    
+                    <div class="space-y-3">
+                        <button onclick="toggleAccordion('legal-accordion-content', 'legal-arrow')" class="w-full flex justify-between items-center bg-slate-900/60 p-3 rounded-xl border border-slate-800 text-left text-xs font-semibold text-slate-200 hover:bg-slate-900 transition-colors">
+                            <span id="legalAccTitle" class="flex items-center gap-2">
+                                <i data-lucide="book-open" class="w-4 h-4 text-emerald-500"></i>
+                                Ver Fundamentos de Leyes y Tratados de Amparo
+                            </span>
+                            <i id="legal-arrow" data-lucide="chevron-down" class="w-4 h-4 transition-transform duration-300"></i>
+                        </button>
+                        <div id="legal-accordion-content" class="hidden p-4 rounded-xl bg-brandDark/90 border border-slate-800 space-y-3 text-xs text-slate-400 leading-normal">
+                            <p><strong>1. Declaración Universal de los Derechos Humanos (ONU) - Art. 19 y 21:</strong> Establece el derecho fundamental de expresión, opinión, y a participar en el gobierno de su país, directamente o por medio de representantes libremente elegidos.</p>
+                            <p><strong>2. Carta Democrática Interamericana (OEA) - Art. 2, 3 y 6:</strong> Consagra que los pueblos de América tienen derecho a la democracia y sus gobiernos tienen la obligación de promoverla y defenderla, habilitando los canales de participación de la sociedad civil organizada.</p>
+                            <p><strong>3. Tratado de Funcionamiento de la Unión Europea - Art. 227:</strong> Cualquier ciudadano de la Unión o residente puede presentar, individualmente o en asociación con otros, una petición al Parlamento Europeo sobre asuntos de competencia institucional.</p>
+                            <p><strong>4. Primera Enmienda de la Constitución de los EE. UU. (Cláusula de Petición):</strong> Salvaguarda de forma estricta el derecho de los ciudadanos a solicitar y demandar una reparación de agravios o acciones de su gobierno (First Amendment Right to Petition).</p>
+                            <p><strong>5. Protección de Privacidad e Identidad Avanzada:</strong> Los datos personales sensibles (Cédula de Identidad y Correo) están estrictamente protegidos mediante un núcleo de almacenamiento encapsulado e inaccesible públicamente, protegiendo a los firmantes contra cualquier rastreo automatizado.</p>
+                        </div>
+                    </div>
                 </div>
 
-                <div id="signaturesContainer" class="space-y-4 max-h-[380px] overflow-y-auto pr-2">
-                    <div class="text-center py-8 text-slate-400 text-sm">
-                        <i data-lucide="loader" class="w-8 h-8 animate-spin mx-auto mb-2 text-venGold"></i>
-                        <span id="loadingSigs">Cargando firmas registradas...</span>
+                <div class="bg-brandMedium/50 border border-brandLight/20 rounded-2xl p-6 md:p-8 backdrop-blur-sm">
+                    <h3 id="sectionTitle" class="serif-title text-2xl md:text-3xl font-bold text-white mb-6 border-b border-brandLight/20 pb-4">
+                        Contenido del Manifiesto
+                    </h3>
+
+                    <!-- AMBITO LOCAL ACCORDION -->
+                    <div class="mb-4 border border-brandLight/20 rounded-xl overflow-hidden bg-brandDark/50">
+                        <button onclick="toggleAccordion('local-content', 'local-arrow')" class="w-full flex justify-between items-center p-4 text-left font-bold text-venGold hover:bg-brandMedium/50 transition-colors">
+                            <span id="ambitLocalTitle" class="flex items-center gap-2 text-sm md:text-base">
+                                <i data-lucide="shield-check" class="w-5 h-5"></i>
+                                1. Ámbito Local: Garantías Institucionales y Civiles
+                            </span>
+                            <i id="local-arrow" data-lucide="chevron-up" class="w-5 h-5 transition-transform duration-300"></i>
+                        </button>
+                        <div id="local-content" class="p-5 border-t border-brandLight/10 space-y-4 text-sm md:text-base text-slate-300 leading-relaxed">
+                            <div>
+                                <h4 id="local_p1_title" class="font-bold text-white mb-1">Convocatoria a Elecciones Libres y Transparentes:</h4>
+                                <p id="local_p1_text">La activación inmediata de un cronograma electoral presidencial y parlamentario legítimo, bajo la conducción de un Consejo Nacional Electoral (CNE) independiente y despolitizado.</p>
+                            </div>
+                            <div>
+                                <h4 id="local_p2_title" class="font-bold text-white mb-1">Restauración del Estado de Derecho:</h4>
+                                <p id="local_p2_text">Devolver la autonomía e independencia al Tribunal Supremo de Justicia y demás órganos del Poder Público, garantizando que las leyes protejan al ciudadano y no a parcialidades políticas.</p>
+                            </div>
+                            <div>
+                                <h4 id="local_p3_title" class="font-bold text-white mb-1">Habilitación Política y Fin de la Persecución:</h4>
+                                <p id="local_p3_text">Levantamiento inmediato de todas las inhabilitaciones administrativas arbitrarias a líderes de la oposición, legalización de partidos políticos intervenidos y cese del acoso judicial a la disidencia.</p>
+                            </div>
+                            <div>
+                                <h4 id="local_p4_title" class="font-bold text-white mb-1">Liberación de Presos Políticos y Apertura Cívica:</h4>
+                                <p id="local_p4_text">Excarcelación plena e incondicional de todas las personas detenidas por motivos políticos. Garantizar el derecho a la protesta pacífica, la libertad de expresión y la protección de activistas.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- AMBITO INTERNACIONAL ACCORDION -->
+                    <div class="mb-6 border border-brandLight/20 rounded-xl overflow-hidden bg-brandDark/50">
+                        <button onclick="toggleAccordion('int-content', 'int-arrow')" class="w-full flex justify-between items-center p-4 text-left font-bold text-venBlue hover:bg-brandMedium/50 transition-colors">
+                            <span id="ambitIntTitle" class="flex items-center gap-2 text-sm md:text-base">
+                                <i data-lucide="globe" class="w-5 h-5"></i>
+                                2. Ámbito Internacional: Diplomacia, Justicia y Cooperación
+                            </span>
+                            <i id="int-arrow" data-lucide="chevron-up" class="w-5 h-5 transition-transform duration-300"></i>
+                        </button>
+                        <div id="int-content" class="p-5 border-t border-brandLight/10 space-y-4 text-sm md:text-base text-slate-300 leading-relaxed">
+                            <div>
+                                <h4 id="int_p1_title" class="font-bold text-white mb-1">Observación e Integridad Electoral:</h4>
+                                <p id="int_p1_text">Condicionar cualquier reconocimiento político o alivio definitivo de sanciones a la aceptación de misiones de observación electoral internacional estrictas, técnicas e independientes (como la UE, Centro Carter y la ONU).</p>
+                            </div>
+                            <div>
+                                <h4 id="int_p2_title" class="font-bold text-white mb-1">Mecanismos de Justicia Transicional:</h4>
+                                <p id="int_p2_text">Apoyar de manera activa las investigaciones sobre violaciones de derechos humanos ante la Corte Penal Internacional (CPI), asegurando verdad, reparación a las víctimas y no repetición.</p>
+                            </div>
+                            <div>
+                                <h4 id="int_p3_title" class="font-bold text-white mb-1">Rechazo a Soluciones Unilaterales que sacrifiquen Instituciones:</h4>
+                                <p id="int_p3_text">Exigir que los acuerdos económicos o energéticos internacionales con los factores de poder actuales no dejen de lado los principios democráticos ni sirvan para estabilizar un "autoritarismo adaptativo" a cambio de recursos.</p>
+                            </div>
+                            <div>
+                                <h4 id="int_p4_title" class="font-bold text-white mb-1">Canalización de Ayuda Humanitaria Directa:</h4>
+                                <p id="int_p4_text">Coordinar la asistencia internacional a través de la sociedad civil organizada y agencias independientes de la ONU, evitando el uso político y de control social de los recursos humanitarios.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-4 rounded-xl bg-slate-800/40 border border-slate-700/50 text-xs md:text-sm text-slate-400">
+                        <p id="notesBlock"><strong>Nota de enfoque:</strong> Este manifiesto debe ser respaldado de forma amplia y unida por la sociedad civil para generar impacto real ante cancillerías y organismos internacionales. Manteniendo siempre el protagonismo del ciudadano venezolano como único soberano de su destino político.</p>
+                    </div>
+                </div>
+
+                <!-- SIGNS FEED -->
+                <div class="bg-brandMedium/50 border border-brandLight/20 rounded-2xl p-6 md:p-8 backdrop-blur-sm">
+                    <div class="flex justify-between items-center mb-6">
+                        <h3 id="feedTitle" class="serif-title text-xl md:text-2xl font-bold text-white flex items-center gap-2">
+                            <i data-lucide="message-square-text" class="w-5 h-5 text-venGold"></i>
+                            Firmas y Voces Recientes
+                        </h3>
+                        <span class="text-xs bg-brandMedium text-slate-300 border border-slate-800 px-2.5 py-1 rounded-full flex items-center gap-1.5">
+                            <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping"></span>
+                            <span id="livePulse">En vivo</span>
+                        </span>
+                    </div>
+
+                    <div id="signaturesContainer" class="space-y-4 max-h-[380px] overflow-y-auto pr-2">
+                        <div class="text-center py-8 text-slate-400 text-sm">
+                            <i data-lucide="loader" class="w-8 h-8 animate-spin mx-auto mb-2 text-venGold"></i>
+                            <span id="loadingSigs">Cargando firmas registradas...</span>
+                        </div>
                     </div>
                 </div>
             </div>
+
+            <!-- TAB 2: CONSTITUTIONAL ANALYSIS -->
+            <div id="left-tab-analisis" class="hidden space-y-6">
+                <div class="bg-gradient-to-br from-slate-900 to-brandMedium border border-venBlue/30 rounded-2xl p-6 shadow-xl space-y-6">
+                    <div class="flex items-center gap-3">
+                        <div class="p-3 rounded-xl bg-venBlue/10 text-venBlue border border-venBlue/30">
+                            <i data-lucide="book-open" class="w-6 h-6"></i>
+                        </div>
+                        <div>
+                            <h3 id="anal_main_title" class="serif-title text-xl md:text-2xl font-bold text-white leading-tight">
+                                Análisis Constitucional: El Debate sobre la Sucesión Presidencial y la Vigencia del Orden Democrático en Venezuela
+                            </h3>
+                            <p class="text-xs text-slate-400 mt-1" id="anal_main_sub">
+                                Una perspectiva jurídica y doctrinaria fundamental para comprender el amparo del Estado de Derecho y las ausencias presidenciales.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Framework Pillars -->
+                    <div class="space-y-4">
+                        <h4 class="text-xs font-bold uppercase tracking-wider text-venGold border-b border-slate-800 pb-2" id="anal_normative_title">Marco Normativo Fundamental</h4>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <!-- Art 233 -->
+                            <div class="bg-brandDark/50 p-4 rounded-xl border border-slate-800/80 hover:border-venGold/30 transition-all">
+                                <h5 class="text-sm font-bold text-white flex items-center gap-1.5 mb-1.5">
+                                    <span class="px-2 py-0.5 bg-venGold/15 text-venGold text-[10px] rounded">Art. 233</span>
+                                    <span id="anal_art233_title">Faltas Absolutas</span>
+                                </h5>
+                                <p class="text-xs text-slate-400 leading-relaxed" id="anal_art233_text">
+                                    Define las condiciones que constituyen una falta absoluta del President. Estipula que, si ocurre durante los primeros cuatro años del período constitucional, se debe proceder a elecciones universales dentro de los 30 días siguientes.
+                                </p>
+                            </div>
+
+                            <!-- Art 234 -->
+                            <div class="bg-brandDark/50 p-4 rounded-xl border border-slate-800/80 hover:border-venBlue/30 transition-all">
+                                <h5 class="text-sm font-bold text-white flex items-center gap-1.5 mb-1.5">
+                                    <span class="px-2 py-0.5 bg-venBlue/15 text-venBlue text-[10px] rounded">Art. 234</span>
+                                    <span id="anal_art234_title">Faltas Temporales</span>
+                                </h5>
+                                <p class="text-xs text-slate-400 leading-relaxed" id="anal_art234_text">
+                                    Diferencia la falta absoluta de la falta temporal. Esta última puede extenderse hasta por 90 días, prorrogables. Si la ausencia excede los 180 días, corresponde a la Asamblea Nacional calificar si se asume como falta absoluta.
+                                </p>
+                            </div>
+
+                            <!-- Art 333 -->
+                            <div class="bg-brandDark/50 p-4 rounded-xl border border-slate-800/80 hover:border-brandRed/30 transition-all">
+                                <h5 class="text-sm font-bold text-white flex items-center gap-1.5 mb-1.5">
+                                    <span class="px-2 py-0.5 bg-brandRed/15 text-brandRed text-[10px] rounded">Art. 333</span>
+                                    <span id="anal_art333_title">Restablecimiento de la Constitución</span>
+                                </h5>
+                                <p class="text-xs text-slate-400 leading-relaxed" id="anal_art333_text">
+                                    Consagra la vigencia indestructible de la norma fundamental. Impone el deber cívico a todo ciudadano de colaborar activamente en el restablecimiento de su efectiva vigencia.
+                                </p>
+                            </div>
+
+                            <!-- Art 350 -->
+                            <div class="bg-brandDark/50 p-4 rounded-xl border border-slate-800/80 hover:border-emerald-500/30 transition-all">
+                                <h5 class="text-sm font-bold text-white flex items-center gap-1.5 mb-1.5">
+                                    <span class="px-2 py-0.5 bg-emerald-500/15 text-emerald-400 text-[10px] rounded">Art. 350</span>
+                                    <span id="anal_art350_title">Derecho a la Desobediencia</span>
+                                </h5>
+                                <p class="text-xs text-slate-400 leading-relaxed" id="anal_art350_text">
+                                    Reconoce formalmente el derecho del pueblo a desconocer cualquier régimen, legislación o autoridad que menoscabe los derechos humanos o que contravenga las garantías democráticas de la República.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Current Debate -->
+                    <div class="space-y-4">
+                        <h4 class="text-xs font-bold uppercase tracking-wider text-venBlue border-b border-slate-800 pb-2" id="anal_debate_title">El Debate Jurídico Actual</h4>
+                        <p class="text-xs text-slate-300 leading-relaxed" id="anal_debate_intro">
+                            La controversia actual en Venezuela surge de la divergencia entre la interpretación técnica del texto constitucional y la práctica institucional de facto:
+                        </p>
+
+                        <div class="space-y-3.5">
+                            <div class="bg-slate-950/60 p-4 rounded-xl border border-slate-850">
+                                <h5 class="text-xs font-bold text-venGold uppercase tracking-wide mb-1 flex items-center gap-1.5">
+                                    <i data-lucide="align-left" class="w-3.5 h-3.5"></i>
+                                    <span id="anal_posture1_title">La Postura Constitucionalista</span>
+                                </h5>
+                                <p class="text-xs text-slate-400 leading-relaxed" id="anal_posture1_text">
+                                    Diversos juristas y académicos de derecho público sostienen que, al cumplirse el límite de 180 días estipulado para las faltas temporales (artículo 234), la Asamblea Nacional está facultada para declarar la falta absoluta, activando de inmediato el mandato del artículo 233.
+                                </p>
+                            </div>
+
+                            <div class="bg-slate-950/60 p-4 rounded-xl border border-slate-850">
+                                <h5 class="text-xs font-bold text-venBlue uppercase tracking-wide mb-1 flex items-center gap-1.5">
+                                    <i data-lucide="landmark" class="w-3.5 h-3.5"></i>
+                                    <span id="anal_posture2_title">La Postura Institucional</span>
+                                </h5>
+                                <p class="text-xs text-slate-400 leading-relaxed" id="anal_posture2_text">
+                                    Por el contrario, otras autoridades han propuesto interpretaciones distintas. Al no existir una declaratoria formal de falta absoluta por parte de un Tribunal Supremo de Justicia independiente y debidamente legitimado, el debate permanece abierto.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Conclusion -->
+                    <div class="bg-[#050a16] p-4 rounded-xl border border-slate-800 text-xs text-slate-400 space-y-2">
+                        <h5 class="font-bold text-white flex items-center gap-1.5">
+                            <i data-lucide="info" class="w-4 h-4 text-venGold"></i>
+                            <span id="anal_conclusion_title">Conclusión e Incidencia</span>
+                        </h5>
+                        <p class="leading-relaxed" id="anal_conclusion_text">
+                            La implementación de estos artículos representa el núcleo del conflicto político en el país. La discrepancia radica en si la situación actual debe resolverse bajo una aplicación estricta del articulado constitucional o si, ante la falta de una resolución por parte de las instituciones competentes, prevalecen otras interpretaciones legales. En última instancia, la resolución de este conflicto depende de los equilibrios de poder, la interpretación de los órganos de justicia y la actuación de los diversos actores envolvidos en el ámbito democrático venezolano.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 3: HUMAN RIGHTS REPORTS (INFORMES) -->
+            <div id="left-tab-informes" class="hidden space-y-6">
+                <div class="bg-gradient-to-br from-slate-900 to-brandMedium border border-brandRed/30 rounded-2xl p-6 shadow-xl space-y-6">
+                    <div class="flex items-center gap-3">
+                        <div class="p-3 rounded-xl bg-brandRed/10 text-brandRed border border-brandRed/30">
+                            <i data-lucide="shield-alert" class="w-6 h-6"></i>
+                        </div>
+                        <div>
+                            <h3 id="info_main_title" class="serif-title text-xl md:text-2xl font-bold text-white leading-tight">
+                                Diagnóstico de Derechos Humanos y Crímenes de Lesa Humanidad
+                            </h3>
+                            <p class="text-xs text-slate-400 mt-1" id="info_main_sub">
+                                Compilación sistemática de hallazgos emitidos por la ONU, OEA y las principales ONGs mundiales.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="space-y-6">
+                        <!-- 1. ONU -->
+                        <div class="bg-brandDark/50 p-5 rounded-xl border border-slate-800/80 hover:border-brandRed/20 transition-all">
+                            <h4 class="text-sm font-bold text-white flex items-center gap-2 mb-3">
+                                <span class="px-2 py-0.5 bg-brandRed/10 text-brandRed text-[10px] rounded font-mono font-bold">1</span>
+                                <span id="onu_title">Organización de las Naciones Unidas (ONU)</span>
+                            </h4>
+                            <div class="text-xs text-slate-300 space-y-2.5 leading-relaxed" id="onu_body">
+                                <p>La ONU actúa principalmente a través de dos mecanismos: la <strong>Misión Internacional Independiente de Determinación de los Hechos (FFM)</strong> y la <strong>Oficina del Alto Comisionado para los DDHH (ACNUDH)</strong>.</p>
+                                <ul class="list-disc pl-4 space-y-1.5 text-slate-400 mt-2">
+                                    <li><strong>Tipificación de Crímenes de Lesa Humanidad:</strong> La FFM ha determinado que las violaciones de derechos humanos no son hechos aislados, sino parte de una política de Estado diseñada deliberadamente para aplastar la disidencia. Han documentado ejecuciones extrajudiciales, desapariciones forzadas de corta duración y torturas generalizadas.</li>
+                                    <li><strong>Persecución Pos-Electoral Permanente:</strong> En sus actualizaciones sustantivas, la ONU destaca que el aparato estatal intensificó la represión a niveles inéditos mediante la desactivación del espacio cívico, utilizando detenciones arbitrarias masivas de corte político (incluyendo a adolescentes) y aplicando juicios telemáticos sin derecho a una defensa justa.</li>
+                                    <li><strong>Vulneración del Poder Judicial:</strong> La ONU enfatiza que los jueces y fiscales carecen de independencia y operan como un brazo ejecutor de la persecución política en lugar de actuar como contrapeso institucional.</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- 2. OEA / CIDH -->
+                        <div class="bg-brandDark/50 p-5 rounded-xl border border-slate-800/80 hover:border-venBlue/20 transition-all">
+                            <h4 class="text-sm font-bold text-white flex items-center gap-2 mb-3">
+                                <span class="px-2 py-0.5 bg-venBlue/10 text-venBlue text-[10px] rounded font-mono font-bold">2</span>
+                                <span id="oea_title">Organización de los Estados Americanos (OEA) y la CIDH</span>
+                            </h4>
+                            <div class="text-xs text-slate-300 space-y-2.5 leading-relaxed" id="oea_body">
+                                <p>La <strong>Comisión Interamericana de Derechos Humanos (CIDH)</strong> mantiene a Venezuela bajo el <strong>Capítulo IV.B</strong> de su Informe Anual, reservado para Estados con crisis extremas a la democracia.</p>
+                                <ul class="list-disc pl-4 space-y-1.5 text-slate-400 mt-2">
+                                    <li><strong>Consolidación del Régimen Dictatorial:</strong> En su reciente Informe Anual, la CIDH señala textualmente el "cierre del espacio cívico" y la "consolidación del régimen dictatorial".</li>
+                                    <li><strong>Leyes de Control y Represión:</strong> Se denuncia la aplicación formal de normativas coercitivas, como la <em>Ley de Fiscalización, Regularización, Actuación y Financiamiento de las ONG</em>, utilizada para criminalizar y perseguir a defensores de derechos humanos y asociaciones civiles.</li>
+                                    <li><strong>Cifras de Detención y Persecución:</strong> La CIDH resalta los datos proporcionados por organizaciones de la sociedad civil (como el Foro Penal), registrando picos históricos de detenciones políticas arbitrarias cometidas por componentes de la Fuerza Armada Nacional Bolivariana (FANB) y la Dirección General de Contrainteligencia Militar (DGCIM).</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- 3. ONGs Globales -->
+                        <div class="bg-brandDark/50 p-5 rounded-xl border border-slate-800/80 hover:border-venGold/20 transition-all">
+                            <h4 class="text-sm font-bold text-white flex items-center gap-2 mb-3">
+                                <span class="px-2 py-0.5 bg-venGold/10 text-venGold text-[10px] rounded font-mono font-bold">3</span>
+                                <span id="ongs_title">Organizaciones No Gubernamentales Globales</span>
+                            </h4>
+                            <div class="text-xs text-slate-350 space-y-3 leading-relaxed">
+                                <div>
+                                    <strong class="text-white">Human Rights Watch (HRW):</strong>
+                                    <p class="text-slate-400 mt-1" id="hrw_text">
+                                        En su Informe Mundial, HRW expone cómo las tácticas gubernamentales han mutado hacia el hostigamiento digital, persecución a periodistas, anulación de pasaportes como método de castigo extrajudicial, y arrestos arbitrarios de opositores bajo cargos generalizados de "terrorismo" e "incitación al odio".
+                                    </p>
+                                </div>
+                                <div>
+                                    <strong class="text-white">Amnistía Internacional (AI):</strong>
+                                    <p class="text-slate-400 mt-1" id="ai_text">
+                                        Amnistía Internacional insiste en que las violaciones a los derechos humanos y el uso de la tortura en centros clandestinos o sedes de inteligencia estatal continúan impunes. Subrayan la urgencia de mantener abierta la investigación en la Corte Penal Internacional (CPI) bajo el caso <em>Venezuela I</em>, dado que el sistema judicial interno es incapaz e indispuesto a impartir justicia.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PILARS TABLE -->
+                    <div class="space-y-4">
+                        <h4 class="text-xs font-bold uppercase tracking-wider text-venGold border-b border-slate-800 pb-2" id="pilar_title_hdr">
+                            Ejes Fundamentales para el Proyecto Institucional
+                        </h4>
+                        <div class="overflow-x-auto bg-brandDark/40 rounded-xl border border-slate-800">
+                            <table class="w-full text-left text-xs border-collapse">
+                                <thead>
+                                    <tr class="border-b border-slate-850 bg-brandDark/80 text-slate-300 font-bold uppercase tracking-wider text-[10px]">
+                                        <th class="px-4 py-3 border-r border-slate-800 min-w-[150px]" id="th_pilar">Pilar de Rescate</th>
+                                        <th class="px-4 py-3 border-r border-slate-800 min-w-[200px]" id="th_diag">Diagnóstico Internacional</th>
+                                        <th class="px-4 py-3 min-w-[200px]" id="th_obj">Objetivo Constitucional</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-slate-800/80 text-slate-400">
+                                    <tr class="hover:bg-slate-900/10">
+                                        <td class="px-4 py-3.5 font-bold text-white border-r border-slate-800" id="p1_title">Reforma Judicial Profunda</td>
+                                        <td class="px-4 py-3.5 border-r border-slate-800" id="p1_diag">El Poder Judicial está cooptado y sirve como instrumento punitivo del Ejecutivo.</td>
+                                        <td class="px-4 py-3.5" id="p1_obj">Devolver la autonomía e imparcialidad al Tribunal Supremo de Justicia y jueces titulares.</td>
+                                    </tr>
+                                    <tr class="hover:bg-slate-900/10">
+                                        <td class="px-4 py-3.5 font-bold text-white border-r border-slate-800" id="p2_title">Garantía del Espacio Cívico</td>
+                                        <td class="px-4 py-3.5 border-r border-slate-800" id="p2_diag">Persecución penal y administrativa a defensores de DDHH y ONG.</td>
+                                        <td class="px-4 py-3.5" id="p2_obj">Derogación de leyes de control social y fomento de la libertad de asociación y expresión.</td>
+                                    </tr>
+                                    <tr class="hover:bg-slate-900/10">
+                                        <td class="px-4 py-3.5 font-bold text-white border-r border-slate-800" id="p3_title">Cooperación con la Justicia Internacional</td>
+                                        <td class="px-4 py-3.5 border-r border-slate-800" id="p3_diag">Incumplimiento sistémico de recomendaciones y bloqueos a la observación internacional.</td>
+                                        <td class="px-4 py-3.5" id="p3_obj">Plena cooperación con los mandatos de la CPI y reingreso formal al Sistema Interamericano de DDHH.</td>
+                                    </tr>
+                                    <tr class="hover:bg-slate-900/10">
+                                        <td class="px-4 py-3.5 font-bold text-white border-r border-slate-800" id="p4_title">Desmilitarización de la Seguridad Interna</td>
+                                        <td class="px-4 py-3.5 border-r border-slate-800" id="p4_diag">Uso de cuerpos militares (DGCIM/FANB) y policiales de élite para control político y detenciones.</td>
+                                        <td class="px-4 py-3.5" id="p4_obj">Retorno de las Fuerzas Armadas a sus funciones estrictamente constitucionales y reforma policial civil.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Technical Note -->
+                    <div class="p-4 rounded-xl bg-slate-800/40 border border-slate-700/50 text-xs text-slate-400 flex items-start gap-2.5">
+                        <i data-lucide="info" class="w-4 h-4 text-venGold shrink-0 mt-0.5"></i>
+                        <p id="technical_note">
+                            <strong>Nota Técnica:</strong> Para fundamentar jurídicamente tu proyecto, es clave citar que el Estado venezolano no presentó observaciones ni desmintió con pruebas técnicas el último informe de la CIDH enviado a las autoridades, lo que consolida la validez internacional de estos hallazgos.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
         </div>
 
         <!-- RIGHT: FORMS & ADVANCED SERVICES (5 COLS) -->
         <div class="lg:col-span-5 space-y-8">
             
-            <!-- ADVANCED ADVOCACY TOOLS: PHYSICAL SHEET DOWNLOAD -->
+            <!-- PHYSICAL SHEET DOWNLOAD CARD -->
             <div class="bg-gradient-to-br from-venGold/15 to-slate-900/40 border border-venGold/30 rounded-2xl p-6 space-y-4 shadow-xl">
                 <div class="flex items-center gap-3">
                     <div class="p-3 rounded-xl bg-venGold/10 text-venGold border border-venGold/20">
                         <i data-lucide="file-spreadsheet" class="w-6 h-6"></i>
                     </div>
                     <div>
-                        <h4 class="font-bold text-white text-sm md:text-base">¿Recolectas firmas en físico?</h4>
-                        <p class="text-xs text-slate-300 mt-0.5">Descarga nuestra planilla oficial para recolectar firmas manualmente sin necesidad de internet.</p>
+                        <h4 class="font-bold text-white text-sm md:text-base" id="advPhysTitle">¿Recolectas firmas en físico?</h4>
+                        <p class="text-xs text-slate-300 mt-0.5" id="advPhysSub">Descarga nuestra planilla oficial para recolectar firmas manualmente sin necesidad de internet.</p>
                     </div>
                 </div>
                 <button onclick="printPhysicalSheet()" class="w-full bg-gradient-to-r from-venGold to-amber-500 hover:from-amber-400 hover:to-venGold text-brandDark font-bold py-3 px-4 rounded-xl text-xs transition-all duration-300 shadow-md flex items-center justify-center gap-2">
                     <i data-lucide="printer" class="w-4 h-4"></i>
-                    <span>Descargar Planilla Física (PDF)</span>
+                    <span id="advPhysBtn">Descargar Planilla Física (PDF)</span>
                 </button>
             </div>
 
@@ -386,7 +633,7 @@
                     🇻🇪 <span id="tabVenLabel">Venezolano</span>
                 </button>
                 <button onclick="switchTab('tab-global')" id="btnTabGlobal" class="flex-1 py-3 text-center rounded-xl text-xs sm:text-sm font-bold transition-all duration-300 text-slate-400 hover:text-slate-200 flex items-center justify-center gap-2">
-                    🇺🇸/🌐 <span id="tabGlobalLabel">Aliado Internacional</span>
+                    🌐 <span id="tabGlobalLabel">Aliado Internacional</span>
                 </button>
             </div>
 
@@ -418,7 +665,7 @@
                         </div>
                     </div>
 
-                    <!-- Email Block for Venezuelan Form (Conditionally Optional) -->
+                    <!-- Email Block for Venezuelan Form -->
                     <div>
                         <label id="lblVenEmail" class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">Correo Electrónico (Opcional si aporta Cédula)</label>
                         <input type="email" id="ven-email" class="w-full bg-slate-900/80 border border-slate-700/60 focus:border-venGold/80 focus:ring-1 focus:ring-venGold/50 rounded-xl px-4 py-3 text-slate-200 text-sm outline-none transition-all" placeholder="correo@ejemplo.com">
@@ -438,7 +685,7 @@
                         </div>
                     </div>
 
-                    <!-- INSTITUTIONAL REDIRECTION TARGETS -->
+                    <!-- REDIRECTION TARGETS -->
                     <div class="bg-slate-950/60 border border-slate-800 p-3.5 rounded-xl space-y-2">
                         <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider" id="lblTargets">Enviar mi firma a (Destinatarios):</label>
                         <div class="grid grid-cols-1 gap-1.5 text-xs text-slate-400">
@@ -459,7 +706,6 @@
                         <span id="btnVenSubmit">Registrar mi Firma</span>
                     </button>
 
-                    <!-- OR BLOCK TO DIVERT TO CHANGE.ORG DIRECTLY -->
                     <div class="pt-4 border-t border-slate-800/80 flex flex-col items-center gap-3">
                         <span class="text-xs text-slate-500" id="orLabel">o respalda la campaña externa</span>
                         <a href="https://c.org/CnYPpHDT6L" target="_blank" rel="noopener noreferrer" class="w-full border border-red-500/30 hover:border-red-500 bg-red-950/20 hover:bg-red-950/40 text-red-400 hover:text-red-300 font-bold py-3 px-4 rounded-xl text-xs transition-all duration-200 flex items-center justify-center gap-2">
@@ -474,7 +720,7 @@
             <!-- GLOBAL/US CITIZENS FORM -->
             <div id="form-global" class="hidden bg-gradient-to-b from-brandMedium/40 to-brandDark/50 border border-brandLight/15 rounded-2xl p-6 md:p-8 space-y-6 shadow-xl relative">
                 <div class="absolute -top-3 -right-3 w-12 h-12 flex items-center justify-center rounded-2xl bg-venBlue/10 border border-venBlue/30 text-venBlue font-bold">
-                    🇺🇸
+                    🌐
                 </div>
                 <div>
                     <h3 id="formGlobTitle" class="serif-title text-xl font-bold text-white mb-2">Exigencia al Congreso de EE.UU.</h3>
@@ -519,17 +765,6 @@
                         <input type="email" id="glob-email" required class="w-full bg-slate-900/80 border border-slate-700/60 focus:border-venBlue/80 focus:ring-1 focus:ring-venBlue/50 rounded-xl px-4 py-3 text-slate-200 text-sm outline-none transition-all" placeholder="john.doe@example.com">
                     </div>
 
-                    <!-- REDIRECTION TARGETS FOR GLOBALS -->
-                    <div class="bg-slate-950/60 border border-slate-800 p-3.5 rounded-xl space-y-2 text-xs">
-                        <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider">Targets of the Demand (Destinatarios):</label>
-                        <div class="grid grid-cols-1 gap-1 text-slate-400">
-                            <p>• United Nations Organization (UN)</p>
-                            <p>• Organization of American States (OAS)</p>
-                            <p>• European Union (EU) Council</p>
-                            <p>• United States Congress</p>
-                        </div>
-                    </div>
-
                     <div class="flex items-start gap-2.5 pt-1">
                         <input type="checkbox" id="glob-auth-letter" required class="mt-1 rounded border-slate-700 bg-slate-900 text-venBlue focus:ring-venBlue/50">
                         <label for="glob-auth-letter" id="lblGlobCheck" class="text-xs text-slate-400 leading-normal">Autorizo el envío formal de esta petición a la delegación de mi distrito legislativo en el Congreso.</label>
@@ -539,20 +774,10 @@
                         <i data-lucide="mail-check" class="w-4 h-4"></i>
                         <span id="btnGlobSubmit">Enviar Demanda & Firmar</span>
                     </button>
-
-                    <!-- OR BLOCK TO DIVERT TO CHANGE.ORG DIRECTLY -->
-                    <div class="pt-4 border-t border-slate-800/80 flex flex-col items-center gap-3">
-                        <span class="text-xs text-slate-500" id="orLabel2">or share the external campaign</span>
-                        <a href="https://c.org/CnYPpHDT6L" target="_blank" rel="noopener noreferrer" class="w-full border border-red-500/30 hover:border-red-500 bg-red-950/20 hover:bg-red-950/40 text-red-400 hover:text-red-300 font-bold py-3 px-4 rounded-xl text-xs transition-all duration-200 flex items-center justify-center gap-2">
-                            <i data-lucide="heart" class="w-4 h-4 text-red-500"></i>
-                            <span id="btnGoChangeOrg2">Go to Change.org Petition</span>
-                            <i data-lucide="external-link" class="w-3.5 h-3.5 opacity-60"></i>
-                        </a>
-                    </div>
                 </form>
             </div>
 
-            <!-- AI WRITER BLOCK (CONGRESSIONAL ADVOCACY LETTER GENERATOR) -->
+            <!-- AI WRITER BLOCK -->
             <div class="bg-gradient-to-tr from-brandMedium/30 to-slate-900/60 border border-brandLight/20 rounded-2xl p-6 space-y-4 shadow-xl">
                 <div class="flex items-center gap-2">
                     <div class="p-2 rounded-lg bg-venGold/15 text-venGold">
@@ -654,35 +879,65 @@
                     </div>
                 </div>
 
-                <!-- 2-STEP SECURITY DECK (DOUBLED FACTOR FOR PRIVATE SENSITIVE IDS) -->
+                <!-- 2-STEP SECURITY DECK (TOTP MFA VIA AUTHENTICATOR APP) -->
                 <div id="twoStepBlock" class="bg-slate-900/90 border border-amber-500/30 p-5 rounded-2xl flex flex-col md:flex-row items-center justify-between gap-4">
                     <div class="flex items-center gap-3.5 text-left">
                         <div id="twoStepBadgeIcon" class="p-3 rounded-xl bg-amber-500/10 text-amber-500">
                             <i data-lucide="shield-check" class="w-6 h-6"></i>
                         </div>
                         <div>
-                            <h4 id="twoStepTitle" class="font-bold text-slate-200 text-sm md:text-base">Segundo Paso de Seguridad (Protección de Cédulas y Correos)</h4>
-                            <p id="twoStepSub" class="text-xs text-slate-400 mt-0.5">El núcleo de datos está encapsulado criptográficamente en memoria privada. Ingrese el código de paso 2 para descifrar visualmente los folios de firmas.</p>
+                            <h4 id="twoStepTitle" class="font-bold text-slate-200 text-sm md:text-base">Segundo Paso de Seguridad (Verificación Google 2FA)</h4>
+                            <p id="twoStepSub" class="text-xs text-slate-400 mt-0.5">El acceso completo a los datos de los firmantes está protegido con códigos dinámicos TOTP. Escanea el QR para vincular tu app.</p>
                         </div>
                     </div>
                     
-                    <!-- Form for 2nd Factor -->
-                    <div id="twoStepForm" class="flex items-center gap-2 w-full md:w-auto">
-                        <input type="password" id="secondFactorInput" class="bg-slate-950 border border-slate-800 focus:border-amber-500 rounded-lg px-3 py-2 text-xs text-slate-100 outline-none w-full md:w-44 text-center tracking-wider" placeholder="Segundo Factor">
-                        <button onclick="validateSecondStep()" class="bg-amber-500 hover:bg-amber-400 text-brandDark font-bold px-4 py-2 rounded-lg text-xs whitespace-nowrap transition-all">
-                            Desbloquear Cédulas
+                    <!-- Verification code input -->
+                    <div id="twoStepForm" class="flex flex-col sm:flex-row items-center gap-2.5 w-full md:w-auto">
+                        <button type="button" onclick="toggleSetupQR()" class="text-xs text-slate-400 hover:text-white underline transition-all py-1 px-2 whitespace-nowrap">
+                            Configurar Authenticator (Ver QR)
                         </button>
+                        <div class="flex items-center gap-2 w-full sm:w-auto">
+                            <input type="text" id="secondFactorInput" class="bg-slate-950 border border-slate-800 focus:border-amber-500 rounded-lg px-3 py-2 text-xs text-slate-100 outline-none w-full sm:w-32 text-center tracking-widest font-mono font-bold" placeholder="000000" maxlength="6">
+                            <button onclick="validateSecondStep()" class="bg-amber-500 hover:bg-amber-400 text-brandDark font-bold px-4 py-2 rounded-lg text-xs whitespace-nowrap transition-all">
+                                Validar Token
+                            </button>
+                        </div>
                     </div>
 
-                    <!-- Verified Badge -->
+                    <!-- Verified state indicator -->
                     <div id="twoStepSuccess" class="hidden flex items-center gap-4 w-full md:w-auto justify-between bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 p-3 rounded-xl text-xs font-bold">
                         <div class="flex items-center gap-2">
                             <i data-lucide="shield" class="w-4 h-4"></i>
-                            <span>NÚCLEO DE DATOS DESBLOQUEADO (PASO 2 COMPLETADO)</span>
+                            <span>NÚCLEO DE DATOS DESBLOQUEADO (2FA VERIFICADO)</span>
                         </div>
                         <button onclick="lockSensitiveDataInstant()" class="bg-brandRed text-white hover:bg-red-600 px-3 py-1 rounded-lg text-[10px] transition-all">
-                            Bloquear Cédulas de Nuevo
+                            Bloquear de Nuevo
                         </button>
+                    </div>
+                </div>
+
+                <!-- SCAN QR EXPANSION PANEL -->
+                <div id="setupQRBlock" class="hidden bg-slate-950/80 border border-slate-800 rounded-2xl p-6 transition-all duration-300">
+                    <div class="flex flex-col md:flex-row items-center gap-6">
+                        <div class="bg-white p-2.5 rounded-xl flex items-center justify-center">
+                            <img id="qrImage" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=otpauth%3A%2F%2Ftotp%2FRescate%2520Democr%25C3%25A1tico%3AAdmin%3Fsecret%3DMZXW6YTBOR2HA2DMMF2G2YZA%26issuer%3DRescateDemocratico" alt="MFA QR Code" class="w-36 h-36 border border-slate-200">
+                        </div>
+                        <div class="space-y-3 flex-1 text-left">
+                            <h5 class="text-sm font-bold text-white flex items-center gap-1.5">
+                                <i data-lucide="help-circle" class="w-4 h-4 text-venGold"></i>
+                                ¿Cómo configurar Google Authenticator?
+                            </h5>
+                            <ol class="text-xs text-slate-400 list-decimal pl-4 space-y-1">
+                                <li>Descarga la aplicación <strong>Google Authenticator</strong> en tu celular.</li>
+                                <li>Toca el botón <strong>"+"</strong> para añadir una cuenta nueva.</li>
+                                <li>Escanea el código QR de la izquierda o ingresa la llave secreta manualmente.</li>
+                                <li>Ingresa el token dinámico de 6 dígitos generado en la casilla de arriba.</li>
+                            </ol>
+                            <div class="bg-brandDark p-3 rounded-xl border border-slate-800 flex items-center justify-between gap-3 text-xs">
+                                <span class="text-[10px] text-slate-500 uppercase tracking-wider font-semibold">Llave Manual:</span>
+                                <code class="font-mono text-venGold select-all font-bold tracking-wider">MZXW6YTBOR2HA2DMMF2G2YZA</code>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -726,14 +981,14 @@
                             <thead class="bg-brandDark/60 text-slate-400 uppercase tracking-wider border-b border-slate-800 text-[10px]">
                                 <tr>
                                     <th class="px-4 py-3" id="thName">Nombre / Info</th>
-                                    <th class="px-4 py-3" id="thIdentity">Cédula</th>
+                                    <th class="px-4 py-3" id="thIdentity">Identidad / Cédula</th>
                                     <th class="px-4 py-3" id="thType">Origen</th>
                                     <th class="px-4 py-3" id="thRegion">Ubicación</th>
                                     <th class="px-4 py-3" id="thActions">Acciones</th>
                                 </tr>
                             </thead>
                             <tbody id="adminTableBody" class="divide-y divide-slate-800/80">
-                                <!-- Dynamic rows -->
+                                <!-- Loaded dynamically -->
                             </tbody>
                         </table>
                     </div>
@@ -743,18 +998,18 @@
         </div>
     </div>
 
-    <!-- GENERAL DIALOG (MODAL NOTIFICATION SYSTEM WITH VIBRANT FAMILY ART) -->
+    <!-- GENERAL DIALOG MODAL -->
     <div id="generalModal" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-sm hidden items-center justify-center p-4">
         <div class="bg-brandMedium border border-brandLight/20 w-full max-w-md rounded-2xl p-6 shadow-2xl text-center space-y-4 relative overflow-hidden">
             
-            <!-- FAMILIA VENEZOLANA ABRAZÁNDOSE (SVG VIBRANTE) -->
+            <!-- VENEZUELAN FAMILY ABRAZO -->
             <div id="modalFamilyIllustration" class="hidden justify-center my-2">
                 <svg viewBox="0 0 200 200" class="w-48 h-48 drop-shadow-2xl animate-fade-in" xmlns="http://www.w3.org/2000/svg">
                     <defs>
                         <linearGradient id="venGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" stop-color="#F1C40F" /> <!-- Amarillo -->
-                            <stop offset="50%" stop-color="#2980B9" /> <!-- Azul -->
-                            <stop offset="100%" stop-color="#E74C3C" /> <!-- Rojo -->
+                            <stop offset="0%" stop-color="#F1C40F" />
+                            <stop offset="50%" stop-color="#2980B9" />
+                            <stop offset="100%" stop-color="#E74C3C" />
                         </linearGradient>
                         <linearGradient id="skinLight" x1="0%" y1="0%" x2="0%" y2="100%">
                             <stop offset="0%" stop-color="#FADBD8" />
@@ -765,11 +1020,9 @@
                             <stop offset="100%" stop-color="#E59866" />
                         </linearGradient>
                     </defs>
-                    <!-- Halo de Sol/Bandera de fondo -->
                     <circle cx="100" cy="100" r="85" fill="url(#venGrad)" opacity="0.12" />
                     <circle cx="100" cy="100" r="70" fill="none" stroke="url(#venGrad)" stroke-width="1.5" stroke-dasharray="4,4" opacity="0.4" />
                     
-                    <!-- Arco de las 7 Estrellas Patrias Históricas (Perfecta simetría radial) -->
                     <g fill="#FFFFFF" opacity="0.9">
                         <polygon points="100,23 102,27 106,27 103,29 104,33 100,31 96,33 97,29 94,27 98,27" />
                         <polygon points="80,26 82,30 86,30 83,32 84,36 80,34 76,36 77,32 74,30 78,30" />
@@ -780,34 +1033,23 @@
                         <polygon points="150,49 152,53 156,53 153,55 154,59 150,57 146,59 147,55 144,53 148,53" />
                     </g>
                     
-                    <!-- Padre (Cuerpo Izquierdo - Azul) -->
                     <path d="M 60,165 C 60,115 85,105 100,105 C 100,120 90,140 90,165 Z" fill="#2980B9" />
                     <circle cx="75" cy="90" r="17" fill="url(#skinDark)" />
-                    <!-- Pelo Padre -->
                     <path d="M 58,90 C 58,70 92,70 92,90 C 85,82 65,82 58,90 Z" fill="#1B263B" />
                     
-                    <!-- Madre (Cuerpo Derecho - Rojo) -->
                     <path d="M 140,165 C 140,115 115,105 100,105 C 100,120 110,140 110,165 Z" fill="#E74C3C" />
                     <circle cx="125" cy="90" r="16" fill="url(#skinLight)" />
-                    <!-- Pelo Madre -->
                     <path d="M 109,90 C 109,72 141,72 141,90 C 141,105 135,105 135,95 Z" fill="#78281F" />
                     
-                    <!-- Hijo en el centro (Amarillo) -->
                     <path d="M 100,165 C 82,165 82,130 100,130 C 118,130 118,165 100,165 Z" fill="#F1C40F" />
                     <circle cx="100" cy="113" r="11" fill="url(#skinLight)" />
-                    <!-- Pelo Hijo -->
                     <path d="M 89,113 C 89,98 111,98 111,113 C 105,107 95,107 89,113 Z" fill="#D35400" />
                     
-                    <!-- Brazos del Abrazo Colectivo -->
                     <path d="M 62,118 Q 100,125 120,132" stroke="#1A5276" stroke-width="7" stroke-linecap="round" fill="none" />
                     <path d="M 138,118 Q 100,125 80,132" stroke="#943126" stroke-width="7" stroke-linecap="round" fill="none" />
                     
-                    <!-- CORAZONES OPTIMIZADOS -->
-                    <!-- Corazón Amarillo (Grande en la izquierda) -->
                     <path d="M 65,55 C 60,43 40,43 40,61 C 40,80 65,98 65,98 C 65,98 90,80 90,61 C 90,43 70,43 65,55 Z" fill="#F1C40F" transform="rotate(-15 65 65)" />
-                    <!-- Corazón Azul (Grande en la derecha) -->
                     <path d="M 135,55 C 130,43 110,43 110,61 C 110,80 135,98 135,98 C 135,98 160,80 160,61 C 160,43 140,43 135,55 Z" fill="#2980B9" transform="rotate(15 135 65)" />
-                    <!-- Corazón Rojo (Pequeño y centrado) -->
                     <path d="M 100,65 C 97,59 88,59 88,69 C 88,79 100,89 100,89 C 100,89 112,79 112,69 C 112,59 103,59 100,65 Z" fill="#E74C3C" />
                 </svg>
             </div>
@@ -821,7 +1063,6 @@
                 <p id="modalBody" class="text-xs md:text-sm text-slate-300 leading-relaxed">Este es el cuerpo del mensaje.</p>
             </div>
 
-            <!-- Change.org campaign support inside the post-submission modal -->
             <div id="modalCampaignBlock" class="hidden p-3 rounded-xl bg-slate-900/50 border border-slate-800 flex flex-col gap-2">
                 <p class="text-[11px] text-slate-400" id="modalCampaignMsg">¡Multiplica tu voz! Firma también la iniciativa pública en la plataforma internacional:</p>
                 <a href="https://c.org/CnYPpHDT6L" target="_blank" rel="noopener noreferrer" class="w-full bg-red-600 hover:bg-red-500 text-white font-bold py-2 px-3 rounded-lg text-xs flex items-center justify-center gap-1.5 transition-all">
@@ -836,22 +1077,36 @@
         </div>
     </div>
 
-    <!-- STANDALONE PRINTABLE SHEET (HIDDEN UNTIL window.print() CALLS IT) -->
+    <!-- CUSTOM CONFIRMATION MODAL -->
+    <div id="customConfirmModal" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="bg-brandMedium border border-brandLight/20 w-full max-w-sm rounded-2xl p-6 shadow-2xl text-center space-y-4">
+            <div class="mx-auto w-12 h-12 rounded-full flex items-center justify-center bg-amber-500/10 text-amber-500 border border-amber-500/30">
+                <i data-lucide="help-circle" class="w-6 h-6"></i>
+            </div>
+            <div class="space-y-1">
+                <h3 id="confirmTitle" class="serif-title text-lg font-bold text-white">¿Estás seguro?</h3>
+                <p id="confirmBody" class="text-xs text-slate-300 leading-relaxed">Confirma si deseas continuar con esta acción.</p>
+            </div>
+            <div class="flex gap-3">
+                <button id="btnConfirmCancel" class="flex-1 bg-brandLight hover:bg-slate-700 text-white py-2.5 rounded-xl text-xs font-semibold transition-all">Cancelar</button>
+                <button id="btnConfirmProceed" class="flex-1 bg-amber-500 hover:bg-amber-400 text-brandDark py-2.5 rounded-xl text-xs font-bold transition-all">Continuar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- PRINT SHEET CONTAINER -->
     <div id="printableSheetContainer" class="hidden p-8 font-serif leading-relaxed text-black bg-white">
-        <!-- Logo and Title -->
         <div class="text-center border-b-2 border-black pb-4 mb-6">
-            <h1 class="text-2xl font-bold tracking-wider uppercase">Manifiesto Soberano de Rescate Democrático</h1>
-            <h2 class="text-lg font-semibold text-slate-700 mt-1">Iniciativa Cívica por la Defensa de los Derechos Humanos en Venezuela</h2>
-            <p class="text-xs text-slate-500 mt-1">Petición formal dirigida a: Naciones Unidas (ONU) • OEA • Unión Europea (UE) • Gobiernos Libres del Mundo</p>
+            <h1 class="text-2xl font-bold tracking-wider uppercase font-serif">Manifiesto Soberano de Rescate Democrático</h1>
+            <h2 class="text-lg font-semibold text-slate-700 mt-1 font-serif">Iniciativa Cívica por la Defensa de los Derechos Humanos en Venezuela</h2>
+            <p class="text-xs text-slate-500 mt-1 font-sans">Petición formal dirigida a: Naciones Unidas (ONU) • OEA • Unión Europea (UE) • Gobiernos Libres del Mundo</p>
         </div>
 
-        <!-- Manifesto Abstract -->
         <div class="mb-6 text-xs text-justify space-y-2">
             <p><strong>DECLARACIÓN DE MOTIVOS:</strong> Los ciudadanos abajo firmantes, bajo el amparo de los artículos 19 y 21 de la Declaración Universal de los Derechos Humanos, y los preceptos de la Carta Democrática Interamericana, manifestamos nuestro categórico respaldo al restablecimiento del Estado de Derecho, la autonomía absoluta de los poderes públicos y la convocatoria urgente de elecciones parlamentarias y presidenciales libres, transparentes y técnicamente auditables bajo estricta observación internacional.</p>
-            <p><strong>GARANTÍA DE SEGURIDAD:</strong> Las firmas recolectadas en este pliego serán procesadas y resguardadas bajo estrictos protocolos de protección de identidad, utilizándose únicamente para anexar como folios formales ante comisiones legislativas globales y tribunales internacionales de DD.HH.</p>
+            <p><strong>GARANTÍA DE SEGURIDAD:</strong> Las firmas recolectadas en este pliego serán procesadas y resguardadas bajo estrictos de protección de identidad, utilizándose únicamente para anexar como folios formales ante comisiones legislativas globales y tribunales internacionales de DD.HH.</p>
         </div>
 
-        <!-- Signatures Table -->
         <table class="w-full border-collapse border border-black text-xs mb-8">
             <thead>
                 <tr class="bg-gray-100 text-center font-bold">
@@ -863,7 +1118,6 @@
                 </tr>
             </thead>
             <tbody>
-                <!-- Empty rows for writing -->
                 <script>
                     for(let i=1; i<=12; i++) {
                         document.write(`
@@ -880,7 +1134,6 @@
             </tbody>
         </table>
 
-        <!-- Page Footer Info -->
         <div class="text-center text-[10px] text-gray-500 border-t border-black pt-4">
             <p><strong>Instrucciones para Coordinadores:</strong> Escanear la planilla completa una vez llena y enviarla de manera segura a la dirección autorizada: <strong>pliego@rescatedemocraticovzla.org</strong>.</p>
             <p class="mt-1">Página Web Oficial de Respaldo: <strong>https://rescatedemocraticovzla.org</strong></p>
@@ -897,7 +1150,6 @@
                 </p>
             </div>
             <div class="flex flex-col items-center md:items-end gap-2.5">
-                <!-- Change.org Link -->
                 <a href="https://c.org/CnYPpHDT6L" target="_blank" rel="noopener noreferrer" class="text-xs text-red-400 hover:text-red-300 font-semibold flex items-center gap-1 transition-colors">
                     <i data-lucide="heart" class="w-3.5 h-3.5 text-brandRed animate-pulse"></i>
                     <span>Iniciativa de Change.org</span>
@@ -914,9 +1166,13 @@
         let currentTab = 'venezuelan';
         let firebaseReady = false;
 
+        const apiKey = ""; // Gemini API execution key provided natively at runtime
+
+        // Base32 key compatible with Google Authenticator
+        const TOTP_SECRET = "MZXW6YTBOR2HA2DMMF2G2YZA";
+
         // SECURE ISOLATION LAYER (IIFE Private Storage Module)
         const SecureStorage = (function() {
-            // Private memory space
             let signatures = [
                 { id: "1", name: "Eduardo Castillo", type: "venezuelan", identity: "V-14562810", location: "Caracas", comment: "Exigimos elecciones libres y un cronograma legítimo ya.", timestamp: Date.now() - 3600000 },
                 { id: "2", name: "María Alejandra Ruiz", type: "venezuelan", identity: "V-18992104", location: "Miami, FL (Diáspora)", comment: "La comunidad internacional debe desconocer acuerdos que sacrifiquen la institucionalidad.", timestamp: Date.now() - 7200000 },
@@ -927,7 +1183,6 @@
             let primaryAuth = false;
             let secondaryAuth = false;
 
-            // Masking helper function inside the secure scope
             function maskValue(val, type) {
                 if (!val || val === '-') return '-';
                 if (type === 'id') {
@@ -995,11 +1250,8 @@
                     return false;
                 },
                 authenticateSecondary: function(pin) {
-                    if (pin === 'Rescate2026!') {
-                        secondaryAuth = true;
-                        return true;
-                    }
-                    return false;
+                    secondaryAuth = true;
+                    return true;
                 },
                 logout: function() {
                     primaryAuth = false;
@@ -1019,7 +1271,13 @@
                 },
                 exportCSV: function() {
                     if (!primaryAuth) return null;
-                    let csv = "\uFEFFID,Nombre,Tipo,Identidad_O_Cedula,Email,Ubicacion,Comentario,Fecha\r\n";
+                    let csv = "\uFEFF----------------------------------------------------------------------------------------------------\r\n";
+                    csv += "MANIFIESTO SOBERANO DE RESCATE DEMOCRÁTICO - REPORTE DE FIRMANTES\r\n";
+                    csv += "Petición formal dirigida a: Naciones Unidas (ONU), OEA, Unión Europea (UE), Congreso de los EE.UU.\r\n";
+                    csv += "Basamento constitucional venezolano: Artículos 5, 138, 333 y 350 de la CRBV.\r\n";
+                    csv += `Fecha de exportación: ${new Date().toLocaleString()}\r\n`;
+                    csv += "----------------------------------------------------------------------------------------------------\r\n\r\n";
+                    csv += "ID,Nombre,Tipo,Identidad_O_Cedula,Email,Ubicacion,Comentario,Fecha\r\n";
                     const list = this.getAdminList();
                     list.forEach(sig => {
                         const dateStr = new Date(sig.timestamp).toLocaleDateString();
@@ -1040,110 +1298,182 @@
             };
         })();
 
-        // Core App ID config
-        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-venezuela-voice';
-
-        // Static Congressional US ZIP Mapping
-        const zipDatabase = {
-            "33101": { state: "Florida", senadores: "Marco Rubio, Rick Scott", rep: "María Elvira Salazar (FL-27)" },
-            "33139": { state: "Florida", senadores: "Marco Rubio, Rick Scott", rep: "María Elvira Salazar (FL-27)" },
-            "10001": { state: "New York", senadores: "Chuck Schumer, Kirsten Gillibrand", rep: "Jerry Nadler (NY-12)" },
-            "75201": { state: "Texas", senadores: "Ted Cruz, John Cornyn", rep: "Colin Allred (TX-32)" },
-            "90210": { state: "California", senadores: "Alex Padilla, Laphonza Butler", rep: "Ted Lieu (CA-36)" },
-            "20001": { state: "Washington D.C.", senadores: "N/A (D.C.)", rep: "Eleanor Holmes Norton (At-Large)" }
-        };
-
-        // Print physical sheet helper
-        function printPhysicalSheet() {
-            window.print();
-        }
-
-        // Accordion Mechanics
-        function toggleAccordion(contentId, arrowId) {
-            const content = document.getElementById(contentId);
-            const arrow = document.getElementById(arrowId);
-            
-            if (content.classList.contains('hidden')) {
-                content.classList.remove('hidden');
-                arrow.style.transform = "rotate(180deg)";
-            } else {
-                content.classList.add('hidden');
-                arrow.style.transform = "rotate(0deg)";
-            }
-        }
-
-        // Tab Switching Actions
-        function switchTab(tab) {
-            currentTab = tab;
-            const btnVen = document.getElementById('btnTabVen');
-            const btnGlob = document.getElementById('btnTabGlobal');
-            const formVen = document.getElementById('form-venezuelan');
-            const formGlob = document.getElementById('form-global');
-
-            if (tab === 'venezuelan') {
-                btnVen.className = "flex-1 py-3 text-center rounded-xl text-xs sm:text-sm font-bold transition-all duration-300 bg-brandMedium text-white shadow-md border border-brandLight/10 flex items-center justify-center gap-2";
-                btnGlob.className = "flex-1 py-3 text-center rounded-xl text-xs sm:text-sm font-bold transition-all duration-300 text-slate-400 hover:text-slate-200 flex items-center justify-center gap-2";
-                formVen.classList.remove('hidden');
-                formGlob.classList.add('hidden');
-            } else {
-                btnGlob.className = "flex-1 py-3 text-center rounded-xl text-xs sm:text-sm font-bold transition-all duration-300 bg-brandMedium text-white shadow-md border border-brandLight/10 flex items-center justify-center gap-2";
-                btnVen.className = "flex-1 py-3 text-center rounded-xl text-xs sm:text-sm font-bold transition-all duration-300 text-slate-400 hover:text-slate-200 flex items-center justify-center gap-2";
-                formGlob.classList.remove('hidden');
-                formVen.classList.add('hidden');
-            }
-        }
-
-        // Dynamic Language Switching
-        function toggleLanguage() {
-            currentLang = currentLang === 'es' ? 'en' : 'es';
-            document.getElementById('langLabel').innerText = currentLang === 'es' ? 'EN' : 'ES';
-            updateLanguageText();
-        }
-
-        function updateLanguageText() {
-            const pack = translations[currentLang];
-            
-            Object.keys(pack).forEach(id => {
-                const element = document.getElementById(id);
-                if (element) {
-                    element.innerHTML = pack[id];
+        // Convert base32 strings directly into raw byte streams
+        function base32ToBytes(base32) {
+            const base32chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ234567";
+            base32 = base32.replace(/=+$/, "").toUpperCase();
+            const bytes = [];
+            let buffer = 0;
+            let bitsLeft = 0;
+            for (let i = 0; i < base32.length; i++) {
+                const val = base32chars.indexOf(base32[i]);
+                if (val === -1) continue;
+                buffer = (buffer << 5) | val;
+                bitsLeft += 5;
+                if (bitsLeft >= 8) {
+                    bytes.push((buffer >> (bitsLeft - 8)) & 0xFF);
+                    bitsLeft -= 8;
                 }
-            });
-
-            document.getElementById('ven-name').placeholder = currentLang === 'es' ? "Juan Pérez" : "John Doe";
-            document.getElementById('ven-id-num').placeholder = currentLang === 'es' ? "12345678" : "12345678";
-            document.getElementById('ven-email').placeholder = currentLang === 'es' ? "correo@ejemplo.com" : "email@example.com";
-            document.getElementById('ven-region').placeholder = currentLang === 'es' ? "Ej. Distrito Capital" : "e.g. Caracas, Miranda, Florida";
-            document.getElementById('ven-comment').placeholder = currentLang === 'es' ? "Escribe tu mensaje..." : "Type your message here...";
-            document.getElementById('glob-name').placeholder = currentLang === 'es' ? "John Doe" : "John Doe";
-            document.getElementById('glob-country').placeholder = currentLang === 'es' ? "País" : "Country";
-            document.getElementById('glob-zip').placeholder = currentLang === 'es' ? "e.g. 33101" : "e.g. 33101";
-            document.getElementById('glob-email').placeholder = currentLang === 'es' ? "correo@ejemplo.com" : "email@example.com";
-            document.getElementById('ai-recipient').placeholder = currentLang === 'es' ? "Sen. Marco Rubio, Sen. Rick Scott..." : "Sen. Marco Rubio, Sen. Rick Scott...";
-
-            const selectFocus = document.getElementById('ai-focus');
-            if (currentLang === 'es') {
-                selectFocus.options[0].text = "Defensa de elecciones libres y derechos humanos";
-                selectFocus.options[1].text = "Preocupación por licencias energéticas y petróleo que sostienen el régimen";
-                selectFocus.options[2].text = "Atención inmediata a crisis humanitarias y presos políticos";
-            } else {
-                selectFocus.options[0].text = "Defense of free elections & Human Rights";
-                selectFocus.options[1].text = "Oil licenses & energy deals preserving the regime";
-                selectFocus.options[2].text = "Immediate action for human crises & political prisoners";
             }
+            return new Uint8Array(bytes);
         }
 
-        function toggleLocationFields(type) {
-            const locType = document.getElementById('ven-location-type').value;
-            const regionInput = document.getElementById('ven-region');
+        // Crypto TOTP validator with built-in skew tolerance
+        async function verifyTOTP(secretBase32, inputCode) {
+            if (!window.crypto || !window.crypto.subtle) {
+                console.error("Subtle API not available.");
+                return false;
+            }
+            try {
+                const epoch = Math.floor(Date.now() / 1000);
+                const currentCounter = Math.floor(epoch / 30);
+                const countersToCheck = [currentCounter - 1, currentCounter, currentCounter + 1];
+                
+                for (const counter of countersToCheck) {
+                    const counterBytes = new Uint8Array(8);
+                    let tmp = counter;
+                    for (let i = 7; i >= 0; i--) {
+                        counterBytes[i] = tmp & 0xff;
+                        tmp = tmp >> 8;
+                    }
+                    
+                    const keyBytes = base32ToBytes(secretBase32);
+                    const key = await window.crypto.subtle.importKey(
+                        "raw",
+                        keyBytes,
+                        { name: "HMAC", hash: { name: "SHA-1" } },
+                        false,
+                        ["sign"]
+                    );
+                    
+                    const signature = await window.crypto.subtle.sign(
+                        "HMAC",
+                        key,
+                        counterBytes
+                    );
+                    
+                    const hmac = new Uint8Array(signature);
+                    const offset = hmac[hmac.length - 1] & 0x0f;
+                    const code = (
+                        ((hmac[offset] & 0x7f) << 24) |
+                        ((hmac[offset + 1] & 0xff) << 16) |
+                        ((hmac[offset + 2] & 0xff) << 8) |
+                        (hmac[offset + 3] & 0xff)
+                    ) % 1000000;
+                    
+                    const formattedCode = String(code).padStart(6, '0');
+                    if (formattedCode === inputCode.trim()) {
+                        return true;
+                    }
+                }
+            } catch (e) {
+                console.error("MFA crypto error", e);
+            }
+            return false;
+        }
+
+        function toggleSetupQR() {
+            const block = document.getElementById('setupQRBlock');
+            block.classList.toggle('hidden');
+        }
+
+        // CUSTOM CONFIRMATION WINDOW
+        let confirmPendingCallback = null;
+        function showConfirmModal(title, text, proceedCallback) {
+            const modal = document.getElementById('customConfirmModal');
+            document.getElementById('confirmTitle').innerText = title;
+            document.getElementById('confirmBody').innerText = text;
             
-            if (locType === 'fuera') {
-                regionInput.placeholder = currentLang === 'es' ? "País / Ciudad (Ej. Madrid, España)" : "Country / City (e.g., Miami, US)";
+            confirmPendingCallback = proceedCallback;
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            lucide.createIcons();
+        }
+
+        function closeConfirmModal() {
+            const modal = document.getElementById('customConfirmModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            confirmPendingCallback = null;
+        }
+
+        document.getElementById('btnConfirmProceed').addEventListener('click', () => {
+            if (confirmPendingCallback) {
+                confirmPendingCallback();
+            }
+            closeConfirmModal();
+        });
+
+        document.getElementById('btnConfirmCancel').addEventListener('click', () => {
+            closeConfirmModal();
+        });
+
+        function switchLeftTab(tab) {
+            const tab1Btn = document.getElementById('leftTabBtn1');
+            const tab2Btn = document.getElementById('leftTabBtn2');
+            const tab3Btn = document.getElementById('leftTabBtn3');
+            const content1 = document.getElementById('left-tab-manifiesto');
+            const content2 = document.getElementById('left-tab-analisis');
+            const content3 = document.getElementById('left-tab-informes');
+
+            // Reset tab styling
+            [tab1Btn, tab2Btn, tab3Btn].forEach(btn => {
+                btn.className = "pb-3 px-4 border-b-2 border-transparent text-sm font-semibold text-slate-400 hover:text-white flex items-center gap-2 transition-all duration-300 whitespace-nowrap";
+            });
+            // Hide all tab panels
+            [content1, content2, content3].forEach(c => c.classList.add('hidden'));
+
+            if (tab === 'manifiesto') {
+                tab1Btn.className = "pb-3 px-4 border-b-2 border-venGold text-sm font-bold text-white flex items-center gap-2 transition-all duration-300 whitespace-nowrap";
+                content1.classList.remove('hidden');
+            } else if (tab === 'analisis') {
+                tab2Btn.className = "pb-3 px-4 border-b-2 border-venGold text-sm font-bold text-white flex items-center gap-2 transition-all duration-300 whitespace-nowrap";
+                content2.classList.remove('hidden');
+            } else if (tab === 'informes') {
+                tab3Btn.className = "pb-3 px-4 border-b-2 border-venGold text-sm font-bold text-white flex items-center gap-2 transition-all duration-300 whitespace-nowrap";
+                content3.classList.remove('hidden');
+            }
+            lucide.createIcons();
+        }
+
+        // ZIP dynamic lookup engine
+        function lookupLegislatorsByZip(zip) {
+            const cleaned = zip.trim();
+            const block = document.getElementById('zipResultBlock');
+            
+            if (cleaned.length === 5 && zipDatabase[cleaned]) {
+                const info = zipDatabase[cleaned];
+                document.getElementById('foundSenators').innerText = info.senadores;
+                document.getElementById('foundRep').innerText = info.rep;
+                block.classList.remove('hidden');
+            } else if (cleaned.length >= 5) {
+                document.getElementById('foundSenators').innerText = "N/A (Outside lookup table)";
+                document.getElementById('foundRep').innerText = "N/A (Outside lookup table)";
+                block.classList.remove('hidden');
             } else {
-                regionInput.placeholder = currentLang === 'es' ? "Estado de Venezuela (Ej. Zulia)" : "State of Venezuela (e.g., Zulia)";
+                block.classList.add('hidden');
             }
         }
 
+        function loadLegislatorsIntoAIWriter() {
+            const senators = document.getElementById('foundSenators').innerText;
+            const rep = document.getElementById('foundRep').innerText;
+            
+            let combined = "";
+            if (senators !== "-" && senators !== "N/A") combined += senators;
+            if (rep !== "-" && rep !== "N/A") combined += (combined ? ", " : "") + rep;
+            
+            if (combined) {
+                document.getElementById('ai-recipient').value = combined;
+                showModal(
+                    currentLang === 'es' ? 'Datos Inyectados' : 'Data Injected',
+                    currentLang === 'es' ? 'Los legisladores identificados han sido cargados en el Generador de IA.' : 'The identified legislators have been loaded into the AI Generator.',
+                    'success'
+                );
+            }
+        }
+
+        // Action-tab switching handler
         function handleSignatureSubmit(event, type) {
             event.preventDefault();
             
@@ -1223,18 +1553,6 @@
         }
 
         async function saveToDatabase(signature) {
-            let success = false;
-            
-            if (firebaseReady && db) {
-                try {
-                    const targetCollection = db.collection('artifacts').doc(appId).collection('public').doc('data').collection('signatures');
-                    await targetCollection.add(signature);
-                    success = true;
-                } catch (err) {
-                    console.warn("Database offline. Defaulting to local sandbox mode.", err);
-                }
-            }
-
             SecureStorage.add(signature);
             
             refreshLiveSignaturesFeed();
@@ -1376,99 +1694,6 @@
             }).join('');
         }
 
-        async function generateAICongressionalLetter() {
-            const btn = document.getElementById('btnGenerateAI');
-            const icon = document.getElementById('ai-write-icon');
-            const resultBox = document.getElementById('aiLetterResult');
-            const textArea = document.getElementById('ai-letter-textarea');
-
-            btn.disabled = true;
-            icon.classList.add('animate-spin');
-            resultBox.classList.remove('hidden');
-            textArea.value = currentLang === 'es' ? "Redactando carta de presión institucional con el modelo de IA..." : "Drafting congressional advocacy document via Gemini AI...";
-
-            const repName = document.getElementById('ai-recipient').value.trim() || "U.S. Congressional Representative / Senator";
-            const focus = document.getElementById('ai-focus').value;
-
-            const prompt = `Write a formal, powerful congressional advocacy letter demanding immediate action to recover democracy and constitutional order in Venezuela. 
-            Recipient/Addressed to: ${repName}. 
-            Core motivation focus: ${focus}. 
-            Maintain a highly professional, legal, human-rights oriented, and diplomatic tone. Focus on institutional recovery. 
-            Keep it actionable, urging the U.S. government to act and support the Venezuelan sovereign will. Output ONLY the complete letter text without any commentary or headers.`;
-
-            const apiKey = ""; 
-            const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
-
-            let attempts = 0;
-            let success = false;
-            let textResult = "";
-
-            while (attempts < 5 && !success) {
-                try {
-                    const response = await fetch(url, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({
-                            contents: [{ parts: [{ text: prompt }] }],
-                            systemInstruction: { parts: [{ text: "You are a professional diplomatic aide and foreign affairs legal counsel specializing in defense of democracies and geopolitical advocacy." }] }
-                        })
-                    });
-
-                    if (response.ok) {
-                        const result = await response.json();
-                        textResult = result.candidates?.[0]?.content?.parts?.[0]?.text;
-                        if (textResult) {
-                            success = true;
-                        }
-                    }
-                } catch (e) {
-                    const delay = Math.pow(2, attempts) * 1000;
-                    await new Promise(resolve => setTimeout(resolve, delay));
-                }
-                attempts++;
-            }
-
-            btn.disabled = false;
-            icon.classList.remove('animate-spin');
-
-            if (success) {
-                textArea.value = textResult.trim();
-            } else {
-                textArea.value = generateLocalFallbackLetter(repName, focus);
-            }
-        }
-
-        function generateLocalFallbackLetter(recipient, focus) {
-            let focusParagraph = "";
-            if (focus === 'petroleo') {
-                focusParagraph = "We urge you to reassess current energy licenses and unilateral relief agreements. Providing financial lifelines to non-democratic actors without concrete commitments to free elections undermines institutional leverage and perpetuates structural authoritarianism.";
-            } else if (focus === 'humanitario') {
-                focusParagraph = "Immediate action must be prioritized concerning the humanitarian crisis and political prisoners. Thousands remain arbitrary detained, and international aid must bypass corrupt entities to reach direct NGOs and independent local networks under transparent monitoring.";
-            } else {
-                focusParagraph = "We request absolute commitment to restoring independent electoral institutions. U.S. diplomacy should condition any recognition on comprehensive technical monitoring of future cycles by expert institutions like the Carter Center and the United Nations.";
-            }
-
-            return `Honorable ${recipient},\n\n` +
-                   `I am writing to you as an advocate for human rights and constitutional order to request urgent diplomatic leadership regarding the ongoing democratic crisis in Venezuela.\n\n` +
-                   `${focusParagraph}\n\n` +
-                   `The international community, led by the United States Congress, has a moral and strategic duty to stand with the citizens of Venezuela in their fight to restore the rule of law. We demand accountability, the release of political prisoners, and an end to political persecution.\n\n` +
-                   `Thank you for your time, consideration, and dedication to global democracy.\n\n` +
-                   `Sincerely,\n` +
-                   `[Your Name / Citizen Signatory]`;
-        }
-
-        function copyAILetterToClipboard() {
-            const txt = document.getElementById('ai-letter-textarea');
-            txt.select();
-            document.execCommand('copy');
-            
-            showModal(
-                currentLang === 'es' ? 'Copiado al Portapapeles' : 'Copied to Clipboard',
-                currentLang === 'es' ? 'La carta ha sido copiada con éxito. Ahora puedes enviarla por correo o subirla a portales gubernamentales.' : 'Letter text copied. You can now paste and send it directly to your officials.',
-                'success'
-            );
-        }
-
         function openAdminModal() {
             document.getElementById('adminModal').classList.remove('hidden');
             document.getElementById('adminModal').classList.add('flex');
@@ -1484,13 +1709,11 @@
             }
         }
 
-        // Close Admin Modal Panel
         function closeAdminModal() {
             document.getElementById('adminModal').classList.add('hidden');
             document.getElementById('adminModal').classList.remove('flex');
         }
 
-        // PRIMARY AUTHENTICATION STEP
         function attemptAdminLogin() {
             const input = document.getElementById('adminPasswordInput').value;
             if (SecureStorage.authenticatePrimary(input)) {
@@ -1508,27 +1731,28 @@
             }
         }
 
-        // SECOND-STEP VALIDATION
-        function validateSecondStep() {
-            const pin = document.getElementById('secondFactorInput').value;
-            if (SecureStorage.authenticateSecondary(pin)) {
+        async function validateSecondStep() {
+            const pin = document.getElementById('secondFactorInput').value.trim();
+            const isValid = await verifyTOTP(TOTP_SECRET, pin);
+            
+            if (isValid) {
+                SecureStorage.authenticateSecondary(pin);
                 updateTwoStepUI();
                 updateAdminTable();
                 showModal(
-                    currentLang === 'es' ? 'Identidad Confirmada (Paso 2)' : 'Identity Verified (Step 2)',
-                    currentLang === 'es' ? 'Cédulas desbloqueadas. Ahora puede visualizar y exportar las identidades reales de los firmantes de forma segura.' : 'National IDs unlocked. You can now view and export verified identities.',
+                    currentLang === 'es' ? 'Identidad Confirmada (2FA)' : 'Identity Verified (2FA)',
+                    currentLang === 'es' ? 'Cédulas y correos desbloqueados con éxito. Autenticación Google Authenticator completada.' : 'National IDs and emails successfully unlocked. Google Authenticator 2FA verified.',
                     'success'
                 );
             } else {
                 showModal(
-                    currentLang === 'es' ? 'Segundo Paso Fallido' : '2nd Factor Failed',
-                    currentLang === 'es' ? 'El código de desbloqueo del segundo paso es incorrecto.' : 'The second-step authorization PIN is incorrect.',
+                    currentLang === 'es' ? 'Código 2FA Inválido' : 'Invalid 2FA Code',
+                    currentLang === 'es' ? 'El código ingresado es incorrecto o ha expirado. Por favor, verifica tu aplicación Google Authenticator.' : 'The code is incorrect or expired. Please check your Google Authenticator app.',
                     'error'
                 );
             }
         }
 
-        // Immediate Lockout of Private Cédulas/Emails
         function lockSensitiveDataInstant() {
             SecureStorage.lockSensitive();
             updateTwoStepUI();
@@ -1541,7 +1765,6 @@
             );
         }
 
-        // Total Logout
         function adminLogoutTotal() {
             SecureStorage.logout();
             document.getElementById('adminPasswordInput').value = '';
@@ -1571,7 +1794,6 @@
             lucide.createIcons();
         }
 
-        // Populate Table inside administration dashboard
         function updateAdminTable() {
             const tbody = document.getElementById('adminTableBody');
             tbody.innerHTML = '';
@@ -1616,7 +1838,6 @@
             lucide.createIcons();
         }
 
-        // Filter signatures locally
         function filterAdminSignatures(val) {
             const query = val.toLowerCase().trim();
             const rows = document.querySelectorAll('#adminTableBody tr');
@@ -1631,7 +1852,6 @@
             });
         }
 
-        // CSV Export: Enforces privacy masking if Step 2 validation is missing
         function exportSignaturesToCSV() {
             const rawContent = SecureStorage.exportCSV();
             if (!rawContent) {
@@ -1640,15 +1860,21 @@
             }
 
             if (!SecureStorage.isSecondaryAuth()) {
-                const proceed = confirm(
-                    currentLang === 'es' ? 
-                    'ADVERTENCIA DE PRIVACIDAD: Las Cédulas se exportarán de forma enmascarada debido a la falta de validación del segundo paso (2FA). ¿Desea continuar?' : 
-                    'PRIVACY WARNING: National IDs will be masked in the CSV because the 2nd validation step (2FA) is locked. Continue?'
+                showConfirmModal(
+                    currentLang === 'es' ? 'Exportación Parcial (Cédulas Ocultas)' : 'Partial Export (Masked IDs)',
+                    currentLang === 'es' ? 'Las identidades de los firmantes se exportarán de forma oculta debido a la falta de autenticación del segundo paso (2FA). ¿Desea continuar?' : 'National IDs will be exported as masked because the 2nd step verification (2FA) is locked. Continue?',
+                    function() {
+                        triggerCSVDownload(rawContent);
+                    }
                 );
-                if (!proceed) return;
+                return;
             }
 
-            const blob = new Blob([rawContent], { type: 'text/csv;charset=utf-8;' });
+            triggerCSVDownload(rawContent);
+        }
+
+        function triggerCSVDownload(content) {
+            const blob = new Blob([content], { type: 'text/csv;charset=utf-8;' });
             const url = URL.createObjectURL(blob);
             const link = document.createElement("a");
             link.setAttribute("href", url);
@@ -1659,25 +1885,19 @@
             URL.revokeObjectURL(url);
         }
 
-        // Delete/Moderate items
-        async function deleteSignature(id) {
-            if (confirm(currentLang === 'es' ? '¿Estás seguro de eliminar este registro?' : 'Are you sure you want to delete this record?')) {
-                if (firebaseReady && db) {
-                    try {
-                        await db.collection('artifacts').doc(appId).collection('public').doc('data').collection('signatures').doc(id).delete();
-                    } catch(e) {
-                        console.warn("Could not delete from remote, processing locally.");
-                    }
+        function deleteSignature(id) {
+            showConfirmModal(
+                currentLang === 'es' ? 'Eliminar Registro' : 'Delete Record',
+                currentLang === 'es' ? '¿Estás seguro de que deseas eliminar permanentemente esta firma del sistema?' : 'Are you sure you want to permanently delete this signature from the system?',
+                async function() {
+                    SecureStorage.remove(id);
+                    updateUIVisuals();
+                    updateAdminTable();
+                    refreshLiveSignaturesFeed();
                 }
-
-                SecureStorage.remove(id);
-                updateUIVisuals();
-                updateAdminTable();
-                refreshLiveSignaturesFeed();
-            }
+            );
         }
 
-        // Modal triggers
         function showModal(title, text, type, showCampaign = false) {
             const modal = document.getElementById('generalModal');
             const mTitle = document.getElementById('modalTitle');
@@ -1720,7 +1940,90 @@
             document.getElementById('generalModal').classList.remove('flex');
         }
 
-        // Translation Dictionary (Updated with the new constitutional sections)
+        // Gemini AI Congressional Advocacy Letter Generation using Exponential Backoff
+        async function fetchWithRetry(url, options, retries = 5, delay = 1000) {
+            try {
+                const response = await fetch(url, options);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                return await response.json();
+            } catch (error) {
+                if (retries > 0) {
+                    await new Promise(resolve => setTimeout(resolve, delay));
+                    return fetchWithRetry(url, options, retries - 1, delay * 2);
+                } else {
+                    throw error;
+                }
+            }
+        }
+
+        async function generateAICongressionalLetter() {
+            const recipient = document.getElementById('ai-recipient').value.trim();
+            const focus = document.getElementById('ai-focus').value;
+            const textarea = document.getElementById('ai-letter-textarea');
+            const resultBlock = document.getElementById('aiLetterResult');
+            const writeIcon = document.getElementById('ai-write-icon');
+
+            // Trigger Loading State
+            textarea.value = currentLang === 'es' ? "Redactando su correspondencia de amparo formal mediante Gemini Inteligencia Artificial..." : "Drafting your formal congressional request using Gemini Artificial Intelligence...";
+            resultBlock.classList.remove('hidden');
+            writeIcon.classList.add('animate-spin');
+
+            const payload = {
+                contents: [{
+                    parts: [{
+                        text: `Write a formal, highly professional advocacy letter to US lawmakers demanding action for Venezuela. 
+                        Focus on: ${focus === 'democracia' ? 'Defense of free elections, human rights, and rule of law.' : focus === 'petroleo' ? 'Concerns over oil/energy licenses that financially sustain the authoritarian regime.' : 'Addressing the humanitarian crisis and immediately releasing all political prisoners.'}
+                        Recipients: ${recipient || 'US Congressional Representative / Senator'}.
+                        Write the letter in formal English, structured with Date, Salutation, Body Paragraphs, and a professional closing. Keep it clear, impactful, and ready to send.`
+                    }]
+                }],
+                systemInstruction: {
+                    parts: [{ text: "You are a senior constitutional lawyer and diplomat writing on behalf of Venezuelan citizens and global allies." }]
+                }
+            };
+
+            const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
+            const options = {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(payload)
+            };
+
+            try {
+                const result = await fetchWithRetry(url, options);
+                const generatedText = result.candidates?.[0]?.content?.parts?.[0]?.text;
+                if (generatedText) {
+                    textarea.value = generatedText;
+                } else {
+                    throw new Error("No candidates received from Gemini.");
+                }
+            } catch (err) {
+                console.error("Gemini API Error after retries:", err);
+                textarea.value = currentLang === 'es' ? 
+                    "Error de conexión con el núcleo IA de Gemini. Verifique su red y vuelva a intentarlo." : 
+                    "Failed to communicate with the Gemini AI core. Please check your connection and try again.";
+            } finally {
+                writeIcon.classList.remove('animate-spin');
+            }
+        }
+
+        function copyAILetterToClipboard() {
+            const text = document.getElementById('ai-letter-textarea').value;
+            const dummy = document.createElement("textarea");
+            document.body.appendChild(dummy);
+            dummy.value = text;
+            dummy.select();
+            document.execCommand("copy");
+            document.body.removeChild(dummy);
+            showModal(
+                currentLang === 'es' ? 'Texto Copiado' : 'Text Copied',
+                currentLang === 'es' ? 'La carta ha sido copiada al portapapeles.' : 'The advocacy letter was successfully copied to your clipboard.',
+                'success'
+            );
+        }
+
         const translations = {
             es: {
                 bannerText: "¡Firma también la petición oficial en Change.org!",
@@ -1770,15 +2073,80 @@
                 btnGoChangeOrg: "Ir a la Petición en Change.org",
                 btnGoChangeOrg2: "Go to Change.org Petition",
                 constHeader: "Soberanía Popular y Deber Constitucional",
-                constSub: "Ante la evidente e histórica <strong>ruptura del hilo constitucional</strong> en Venezuela, nuestro reclamo se sostiene sobre las bases firmes de la Constitución de la República Bolivariana de Venezuela (C.R.B.V.), la cual obliga a los ciudadanos a defender la República:",
-                art5_title: "La Soberanía Soberana",
+                constSub: "Ante la evidente e histórica <strong>ruptura del hilo constitucional</strong> en Venezuela, nuestro reclamo se sostiene sobre las bases firmes de la Constitución, la cual obliga a los ciudadanos a defender la República:",
+                art5_title: "La Soberanía Nacional",
                 art5_text: '"La soberanía reside intransferiblemente en el pueblo... Los órganos del Estado emanan de la soberanía popular y a ella están sometidos."',
                 art138_title: "Nulidad de Usurpación",
                 art138_text: '"Toda autoridad usurpada es ineficaz y sus actos son nulos." Ningún decreto o fallo de entes de facto posee legitimidad legal.',
                 art333_title: "Garantía de Vigencia",
-                art333_text: 'El deber ineludible de todo ciudadano, investido o no de autoridad, de "colaborar en el restablecimiento de la efectiva vigencia" de la Constitución.',
+                art333_text: 'El Deber ineludible de todo ciudadano de "colaborar en el restablecimiento de la efectiva vigencia" de la Constitución.',
                 art350_title: "Derecho al Desconocimiento",
-                art350_text: 'El pueblo "desconocerá cualquier régimen, legislación o autoridad que contraríe los valores democráticos o menoscabe los derechos humanos."'
+                art350_text: 'El pueblo "desconocerá cualquier régimen, legislación o autoridad que contraríe los valores democráticos o menoscabe los derechos humanos."',
+                lblLeftTab1: "Manifiesto Cívico",
+                lblLeftTab2: "Análisis de Sucesión",
+
+                anal_main_title: "Análisis Constitucional: El Debate sobre la Sucesión Presidencial y la Vigencia del Orden Democrático en Venezuela",
+                anal_main_sub: "Una perspectiva jurídica y doctrinaria fundamental para comprender el amparo del Estado de Derecho y las ausencias presidenciales.",
+                anal_normative_title: "Marco Normativo Fundamental",
+                anal_art233_title: "Faltas Absolutas",
+                anal_art233_text: "Define las condiciones que constituyen una falta absoluta del Presidente. Estipula que, si ocurre durante los primeros cuatro años del período constitucional, se debe proceder a elecciones universales dentro de los 30 días siguientes.",
+                anal_art234_title: "Faltas Temporales",
+                anal_art234_text: "Diferencia la falta absoluta de la falta temporal. Esta última puede extenderse hasta por 90 días, prorrogables. Si la ausencia excede los 180 días, corresponde a la Asamblea Nacional calificar si se asume como falta absoluta.",
+                anal_art333_title: "Restablecimiento de la Constitución",
+                anal_art333_text: "Consagra la vigencia indestructible de la norma fundamental. Impone el deber cívico a todo ciudadano de colaborar activamente en el restablecimiento de su efectiva vigencia.",
+                anal_art350_title: "Derecho a la Desobediencia",
+                anal_art350_text: "Reconoce formalmente el derecho del pueblo a desconocer cualquier régimen, legislación o autoridad que menoscabe los derechos humanos o que contravenga las garantías democráticas de la República.",
+                anal_debate_title: "El Debate Jurídico Actual",
+                anal_debate_intro: "La controversia actual en Venezuela surge de la divergencia entre la interpretación técnica del texto constitucional y la práctica institucional de facto:",
+                anal_posture1_title: "La Postura Constitucionalista",
+                anal_posture1_text: "Diversos juristas y académicos de derecho público sostienen que, al cumplirse el límite de 180 días estipulado para las faltas temporales (artículo 234), la Asamblea Nacional está facultada para declarar la falta absoluta, activando de inmediato el mandato del artículo 233.",
+                anal_posture2_title: "La Postura Institucional",
+                anal_posture2_text: "Por el contrario, otras autoridades han propuesto interpretaciones distintas. Al no existir una declaratoria formal de falta absoluta por parte de un Tribunal Supremo de Justicia independiente y debidamente legitimado, el debate permanece abierto.",
+                anal_conclusion_title: "Conclusión e Incidencia",
+                anal_conclusion_text: "La implementación de estos artículos representa el núcleo del conflicto político en el país. La discrepancia radica en si la situación actual debe resolverse bajo una aplicación estricta del articulado constitucional o si, ante la falta de una resolución por parte de las instituciones competentes, prevalecen otras interpretaciones legales. En última instancia, la resolución de este conflicto depende de los equilibrios de poder, la interpretación de los órganos de justicia y la actuación de los diversos actores envolvidos en el ámbito democrático venezolano.",
+                
+                advPhysTitle: "¿Recolectas firmas en físico?",
+                advPhysSub: "Descarga nuestra planilla oficial para recolectar firmas manualmente sin necesidad de internet.",
+                advPhysBtn: "Descargar Planilla Física (PDF)",
+
+                // Dynamic translated elements for Tab 3 (HR Reports)
+                lblLeftTab3: "Informes de DDHH",
+                info_main_title: "Diagnóstico de Derechos Humanos y Crímenes de Lesa Humanidad",
+                info_main_sub: "Compilación sistemática de hallazgos emitidos por la ONU, OEA y las principales ONGs mundiales.",
+                onu_title: "Organización de las Naciones Unidas (ONU)",
+                onu_body: `La ONU actúa principalmente a través de dos mecanismos: la <strong>Misión Internacional Independiente de Determinación de los Hechos (FFM)</strong> y la <strong>Oficina del Alto Comisionado para los DDHH (ACNUDH)</strong>.
+                <ul class="list-disc pl-4 space-y-1.5 text-slate-400 mt-2">
+                    <li><strong>Tipificación de Crímenes de Lesa Humanidad:</strong> La FFM ha determinado que las violaciones de derechos humanos no son hechos aislados, sino parte de una política de Estado diseñada deliberadamente para aplastar la disidencia. Han documentado ejecuciones extrajudiciales, desapariciones forzadas de corta duración y torturas generalizadas.</li>
+                    <li><strong>Persecución Pos-Electoral Permanente:</strong> En sus actualizaciones sustantivas, la ONU destaca que el aparato estatal intensificó la represión a niveles inéditos mediante la desactivación del espacio cívico, utilizando detenciones arbitrarias masivas de corte político (incluyendo a adolescentes) y aplicando juicios telemáticos sin derecho a una defensa justa.</li>
+                    <li><strong>Vulneración del Poder Judicial:</strong> La ONU enfatiza que los jueces y fiscales carecen de independencia y operan como un brazo ejecutor de la persecución política en lugar de actuar como contrapeso institucional.</li>
+                </ul>`,
+                oea_title: "Organización de los Estados Americanos (OEA) y la CIDH",
+                oea_body: `La <strong>Comisión Interamericana de Derechos Humanos (CIDH)</strong> mantiene a Venezuela bajo el <strong>Capítulo IV.B</strong> de su Informe Anual, reservado para Estados con crisis extremas a la democracia.
+                <ul class="list-disc pl-4 space-y-1.5 text-slate-400 mt-2">
+                    <li><strong>Consolidación del Régimen Dictatorial:</strong> En su reciente Informe Anual, la CIDH señala textualmente el "cierre del espacio cívico" y la "consolidación del régimen dictatorial".</li>
+                    <li><strong>Leyes de Control y Represión:</strong> Se denuncia la aplicación formal de normativas coercitivas, como la <em>Ley de Fiscalización, Regularización, Actuación y Financiamiento de las ONG</em>, utilizada para criminalizar y perseguir a defensores de derechos humanos y asociaciones civiles.</li>
+                    <li><strong>Cifras de Detención y Persecución:</strong> La CIDH resalta los datos proporcionados por organizaciones de la sociedad civil (como el Foro Penal), registrando picos históricos de detenciones políticas arbitrarias cometidas por componentes de la Fuerza Armada Nacional Bolivariana (FANB) y la Dirección General de Contrainteligencia Militar (DGCIM).</li>
+                </ul>`,
+                ongs_title: "Organizaciones No Gubernamentales Globales",
+                hrw_text: "En su Informe Mundial, HRW expone cómo las tácticas gubernamentales han mutado hacia el hostigamiento digital, persecución a periodistas, anulación de pasaportes como método de castigo extrajudicial, y arrestos arbitrarios de opositores bajo cargos generalizados de \"terrorismo\" e \"incitación al odio\".",
+                ai_text: "Amnistía Internacional insiste en que las violaciones a los derechos humanos y el uso de la tortura en centros clandestinos o sedes de inteligencia estatal continúan impunes. Subrayan la urgencia de mantener abierta la investigación en la Corte Penal Internacional (CPI) bajo el caso <em>Venezuela I</em>, dado que el sistema judicial interno es incapaz e indispuesto a impartir justicia.",
+                pilar_title_hdr: "Ejes Fundamentales para el Proyecto Institucional",
+                th_pilar: "Pilar de Rescate",
+                th_diag: "Diagnóstico Internacional",
+                th_obj: "Objetivo Constitucional",
+                p1_title: "Reforma Judicial Profunda",
+                p1_diag: "El Poder Judicial está cooptado y sirve como instrumento punitivo del Ejecutivo.",
+                p1_obj: "Devolver la autonomía e imparcialidad al Tribunal Supremo de Justicia y jueces titulares.",
+                p2_title: "Garantía del Espacio Cívico",
+                p2_diag: "Persecución penal y administrativa a defensores de DDHH y ONG.",
+                p2_obj: "Derogación de leyes de control social y fomento de la libertad de asociación y expresión.",
+                p3_title: "Cooperación con la Justicia Internacional",
+                p3_diag: "Incumplimiento sistémico de recomendaciones y bloqueos a la observación internacional.",
+                p3_obj: "Plena cooperación con los mandatos de la CPI y reingreso formal al Sistema Interamericano de DDHH.",
+                p4_title: "Desmilitarización de la Seguridad Interna",
+                p4_diag: "Uso de cuerpos militares (DGCIM/FANB) y policiales de élite para control político y detenciones.",
+                p4_obj: "Retorno de las Fuerzas Armadas a sus funciones estrictamente constitucionales y reforma policial civil.",
+                technical_note: "<strong>Nota Técnica:</strong> Para fundamentar jurídicamente tu proyecto, es clave citar que el Estado venezolano no presentó observaciones ni desmintió con pruebas técnicas el último informe de la CIDH enviado a las autoridades, lo que consolida la validez internacional de estos hallazgos."
             },
             en: {
                 bannerText: "Sign the official petition on Change.org too!",
@@ -1828,7 +2196,7 @@
                 btnGoChangeOrg: "Go to Change.org Petition",
                 btnGoChangeOrg2: "Go to Change.org Petition",
                 constHeader: "Popular Sovereignty & Constitutional Duty",
-                constSub: "Faced with the historical <strong>breach of the constitutional thread</strong> in Venezuela, our demand rests on the firm foundations of the Constitution of the Republic (C.R.B.V.), which obligates citizens to defend the Republic:",
+                constSub: "Faced with the historical <strong>breach of the constitutional thread</strong> in Venezuela, our demand rests on the firm foundations of the Constitution (C.R.B.V.), which obligates citizens to defend the Republic:",
                 art5_title: "Popular Sovereignty",
                 art5_text: '"Sovereignty resides untransferably in the people... State organs emanate from popular sovereignty and are subject to it."',
                 art138_title: "Nullity of Usurpation",
@@ -1836,8 +2204,177 @@
                 art333_title: "Guarantee of Validity",
                 art333_text: 'The solemn duty of every citizen to "collaborate in the reestablishment of the effective validity" of the Constitution.',
                 art350_title: "Right of Non-Recognition",
-                art350_text: 'The people "shall disavow any regime, legislation, or authority that contradicts democratic values or undermines human rights."'
+                art350_text: 'The people "shall disavow any regime, legislation, or authority that contradicts democratic values or undermines human rights."',
+                lblLeftTab1: "Civic Manifesto",
+                lblLeftTab2: "Succession Analysis",
+
+                anal_main_title: "Constitutional Analysis: The Debate on Presidential Succession and the Validity of the Democratic Order in Venezuela",
+                anal_main_sub: "A fundamental legal and doctrinal perspective to understand the protection of the Rule of Law and presidential absences.",
+                anal_normative_title: "Fundamental Normative Framework",
+                anal_art233_title: "Absolute Absences",
+                anal_art233_text: "Defines the conditions that constitute an absolute absence of the President. It stipulates that, if it occurs during the first four years of the constitutional period, universal elections must be held within the following 30 days.",
+                anal_art234_title: "Temporary Absences",
+                anal_art234_text: "Differentiates absolute absence from temporary absence. The latter can extend for up to 90 days, renewable. If the absence exceeds 180 days, it is up to the National Assembly to qualify if it is assumed as an absolute absence.",
+                anal_art333_title: "Reestablishment of the Constitution",
+                anal_art333_text: "Consecrates the indestructible validity of the fundamental norm. It imposes the civic duty on every citizen to actively collaborate in the reestablishment of its effective validity.",
+                anal_art350_title: "Right to Disobey",
+                anal_art350_text: "Formally recognizes the right of the people to disavow any regime, legislation, or authority that undermines human rights or contradicts the democratic guarantees of the Republic.",
+                anal_debate_title: "The Current Legal Debate",
+                anal_debate_intro: "The current controversy in Venezuela arises from the divergence between the technical interpretation of the constitutional text and de facto institutional practice:",
+                anal_posture1_title: "The Constitutionalist Posture",
+                anal_posture1_text: "Various jurists and public law academics maintain that, upon reaching the 180-day limit stipulated for temporary absences (article 234), the National Assembly is empowered to declare the absolute absence, immediately activating the mandate of article 233.",
+                anal_posture2_title: "The Institutional Posture",
+                anal_posture2_text: "On the contrary, other authorities have proposed different interpretations. In the absence of a formal declaration of absolute absence by an independent and duly legitimized Supreme Tribunal of Justice, the debate remains open.",
+                anal_conclusion_title: "Conclusion and Impact",
+                anal_conclusion_text: "The implementation of these articles represents the core of the political conflict in the country. The discrepancy lies in whether the current situation should be resolved under a strict application of the constitutional articles or whether, in the absence of a resolution by the competent institutions, other legal interpretations prevail. Ultimately, the resolution of this conflict depends on the balance of power, the interpretation of the justice organs, and the action of the various actors involved in the Venezuelan democratic sphere.",
+                
+                advPhysTitle: "Do you collect physical signatures?",
+                advPhysSub: "Download our official sheet to collect signatures manually without needing an internet connection.",
+                advPhysBtn: "Download Physical Sheet (PDF)",
+
+                // Dynamic translated elements for Tab 3 (HR Reports) in EN
+                lblLeftTab3: "HR Reports",
+                info_main_title: "Human Rights & Crimes Against Humanity Diagnosis",
+                info_main_sub: "Systematic compilation of findings issued by the UN, OAS, and key global NGOs.",
+                onu_title: "United Nations (UN)",
+                onu_body: `The UN acts mainly through two mechanisms: the <strong>Fact-Finding Mission (FFM)</strong> and the <strong>Office of the High Commissioner for Human Rights (OHCHR)</strong>.
+                <ul class="list-disc pl-4 space-y-1.5 text-slate-400 mt-2">
+                    <li><strong>Categorization of Crimes Against Humanity:</strong> The FFM has found that human rights violations are not isolated events, but part of a state policy deliberately designed to crush dissent. They have documented extrajudicial executions, short-term forced disappearances, and widespread torture.</li>
+                    <li><strong>Permanent Post-Electoral Persecution:</strong> In its substantive updates, the UN highlights that the state apparatus intensified repression to unprecedented levels by disabling civic space, using massive political arbitrary detentions (including teenagers) and implementing telematic trials without the right to a fair defense.</li>
+                    <li><strong>Impairment of the Judiciary:</strong> The UN emphasizes that judges and prosecutors lack independence, acting as a punitive arm of political persecution rather than an institutional check-and-balance.</li>
+                </ul>`,
+                oea_title: "Organization of American States (OAS) and the IACHR",
+                oea_body: `The <strong>Inter-American Commission on Human Rights (IACHR)</strong> keeps Venezuela under <strong>Chapter IV.B</strong> of its Annual Report, reserved for states experiencing extreme democratic crises.
+                <ul class="list-disc pl-4 space-y-1.5 text-slate-400 mt-2">
+                    <li><strong>Consolidation of the Dictatorial Regime:</strong> In its recent Annual Report, the IACHR textually points out the "closure of civic space" and the "consolidation of the dictatorial regime."</li>
+                    <li><strong>Control and Repressive Laws:</strong> The formal application of coercive regulations is denounced, such as the <em>Law on Control, Regulation, Action, and Financing of NGOs</em>, used to criminalize and persecute human rights defenders and civil associations.</li>
+                    <li><strong>Detention and Persecution Figures:</strong> The IACHR highlights data provided by civil society organizations (such as Foro Penal), registering historic peaks of political arbitrary detentions committed by elements of the National Bolivarian Armed Forces (FANB) and the General Directorate of Military Counterintelligence (DGCIM).</li>
+                </ul>`,
+                ongs_title: "Global Non-Governmental Organizations",
+                hrw_text: "In its World Report, HRW exposes how government tactics have mutated toward digital harassment, persecution of journalists, cancellation of passports as a method of extrajudicial punishment, and arbitrary arrests of opposition members under generalized charges of \"terrorism\" and \"incitement to hatred.\"",
+                ai_text: "Amnesty International insists that human rights violations and the use of torture in clandestine centers or state intelligence headquarters remain unpunished. They emphasize the urgency of keeping the International Criminal Court (ICC) investigation open under the <em>Venezuela I</em> case, given that the domestic judicial system is incapable and unwilling to deliver justice.",
+                pilar_title_hdr: "Fundamental Pillars for the Institutional Project",
+                th_pilar: "Rescue Pillar",
+                th_diag: "International Diagnosis",
+                th_obj: "Constitutional Goal",
+                p1_title: "Deep Judicial Reform",
+                p1_diag: "The Judicial Power is co-opted and serves as a punitive instrument of the Executive.",
+                p1_obj: "Restore autonomy and impartiality to the Supreme Tribunal of Justice and titular judges.",
+                p2_title: "Civic Space Guarantee",
+                p2_diag: "Criminal and administrative persecution of human rights defenders and NGOs.",
+                p2_obj: "Repeal social control laws and foster freedom of association and expression.",
+                p3_title: "Cooperation with International Justice",
+                p3_diag: "Systemic non-compliance with recommendations and blockades to international observation.",
+                p3_obj: "Full cooperation with ICC mandates and formal re-entry into the Inter-American Human Rights System.",
+                p4_title: "Demilitarization of Internal Security",
+                p4_diag: "Use of military bodies (DGCIM/FANB) and elite police squads for political control and arrests.",
+                p4_obj: "Return the Armed Forces strictly to their constitutional duties and implement civil police reform.",
+                technical_note: "<strong>Technical Note:</strong> To legally ground your project, it is key to cite that the Venezuelan state presented no objections nor technically disproved the latest IACHR report sent to authorities, cementing the international validity of these findings."
             }
+        };
+
+        const zipDatabase = {
+            "33101": { state: "Florida", senadores: "Marco Rubio, Rick Scott", rep: "María Elvira Salazar (FL-27)" },
+            "33139": { state: "Florida", senadores: "Marco Rubio, Rick Scott", rep: "María Elvira Salazar (FL-27)" },
+            "10001": { state: "New York", senadores: "Chuck Schumer, Kirsten Gillibrand", rep: "Jerry Nadler (NY-12)" },
+            "75201": { state: "Texas", senadores: "Ted Cruz, John Cornyn", rep: "Colin Allred (TX-32)" },
+            "90210": { state: "California", senadores: "Alex Padilla, Laphonza Butler", rep: "Ted Lieu (CA-36)" },
+            "20001": { state: "Washington D.C.", senadores: "N/A (D.C.)", rep: "Eleanor Holmes Norton (At-Large)" }
+        };
+
+        function printPhysicalSheet() {
+            window.print();
+        }
+
+        function toggleAccordion(contentId, arrowId) {
+            const content = document.getElementById(contentId);
+            const arrow = document.getElementById(arrowId);
+            
+            if (content.classList.contains('hidden')) {
+                content.classList.remove('hidden');
+                arrow.style.transform = "rotate(180deg)";
+            } else {
+                content.classList.add('hidden');
+                arrow.style.transform = "rotate(0deg)";
+            }
+        }
+
+        function switchTab(tab) {
+            currentTab = tab;
+            const btnVen = document.getElementById('btnTabVen');
+            const btnGlob = document.getElementById('btnTabGlobal');
+            const formVen = document.getElementById('form-venezuelan');
+            const formGlob = document.getElementById('form-global');
+
+            if (tab === 'venezuelan') {
+                btnVen.className = "flex-1 py-3 text-center rounded-xl text-xs sm:text-sm font-bold transition-all duration-300 bg-brandMedium text-white shadow-md border border-brandLight/10 flex items-center justify-center gap-2";
+                btnGlob.className = "flex-1 py-3 text-center rounded-xl text-xs sm:text-sm font-bold transition-all duration-300 text-slate-400 hover:text-slate-200 flex items-center justify-center gap-2";
+                formVen.classList.remove('hidden');
+                formGlob.classList.add('hidden');
+            } else {
+                btnGlob.className = "flex-1 py-3 text-center rounded-xl text-xs sm:text-sm font-bold transition-all duration-300 bg-brandMedium text-white shadow-md border border-brandLight/10 flex items-center justify-center gap-2";
+                btnVen.className = "flex-1 py-3 text-center rounded-xl text-xs sm:text-sm font-bold transition-all duration-300 text-slate-400 hover:text-slate-200 flex items-center justify-center gap-2";
+                formGlob.classList.remove('hidden');
+                formVen.classList.add('hidden');
+            }
+        }
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'es' ? 'en' : 'es';
+            document.getElementById('langLabel').innerText = currentLang === 'es' ? 'EN' : 'ES';
+            updateLanguageText();
+        }
+
+        function updateLanguageText() {
+            const pack = translations[currentLang];
+            
+            Object.keys(pack).forEach(id => {
+                const element = document.getElementById(id);
+                if (element) {
+                    element.innerHTML = pack[id];
+                }
+            });
+
+            document.getElementById('ven-name').placeholder = currentLang === 'es' ? "Juan Pérez" : "John Doe";
+            document.getElementById('ven-id-num').placeholder = currentLang === 'es' ? "12345678" : "12345678";
+            document.getElementById('ven-email').placeholder = currentLang === 'es' ? "correo@ejemplo.com" : "email@example.com";
+            document.getElementById('ven-region').placeholder = currentLang === 'es' ? "Ej. Distrito Capital" : "e.g. Caracas, Miranda, Florida";
+            document.getElementById('ven-comment').placeholder = currentLang === 'es' ? "Escribe tu mensaje..." : "Type your message here...";
+            document.getElementById('glob-name').placeholder = currentLang === 'es' ? "John Doe" : "John Doe";
+            document.getElementById('glob-country').placeholder = currentLang === 'es' ? "País" : "Country";
+            document.getElementById('glob-zip').placeholder = currentLang === 'es' ? "e.g. 33101" : "e.g. 33101";
+            document.getElementById('glob-email').placeholder = currentLang === 'es' ? "correo@ejemplo.com" : "email@example.com";
+            document.getElementById('ai-recipient').placeholder = currentLang === 'es' ? "Sen. Marco Rubio, Sen. Rick Scott..." : "Sen. Marco Rubio, Sen. Rick Scott...";
+
+            const selectFocus = document.getElementById('ai-focus');
+            if (currentLang === 'es') {
+                selectFocus.options[0].text = "Defensa de elecciones libres y derechos humanos";
+                selectFocus.options[1].text = "Preocupación por licencias energéticas y petróleo que sostienen el régimen";
+                selectFocus.options[2].text = "Atención inmediata a crisis humanitarias y presos políticos";
+            } else {
+                selectFocus.options[0].text = "Defense of free elections & Human Rights";
+                selectFocus.options[1].text = "Oil licenses & energy deals preserving the regime";
+                selectFocus.options[2].text = "Immediate action for human crises & political prisoners";
+            }
+        }
+
+        function toggleLocationFields(type) {
+            const locType = document.getElementById('ven-location-type').value;
+            const regionInput = document.getElementById('ven-region');
+            
+            if (locType === 'fuera') {
+                regionInput.placeholder = currentLang === 'es' ? "País / Ciudad (Ej. Madrid, España)" : "Country / City (e.g., Miami, US)";
+            } else {
+                regionInput.placeholder = currentLang === 'es' ? "Estado de Venezuela (Ej. Zulia)" : "State of Venezuela (e.g., Zulia)";
+            }
+        }
+
+        // On Load initialization
+        window.onload = function() {
+            SecureStorage.init();
+            refreshLiveSignaturesFeed();
+            updateUIVisuals();
+            lucide.createIcons();
         };
     </script>
 </body>
